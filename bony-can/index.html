@@ -218,7 +218,6 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 .foot-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; justify-content: space-between }
 .logo-card { display: inline-block; background: #fff; border-radius: 20px; padding: 14px 20px; box-shadow: 0 0 0 3px rgba(234, 69, 146, 0.25) }
 .logo-card img { display: block; width: 220px; height: auto }
-.slogan { margin-top: 14px; font-size: 15px; color: #fff }
 .foot-cols { display: flex; flex-wrap: wrap; gap: 48px }
 .foot h3 { font-family: var(--display); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px }
 .foot-wa { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; color: #fff }
@@ -281,6 +280,7 @@ html:has(.lightbox[open]) { overflow: hidden }
 
 /* ---------- CONTACTO Y REDES ---------- */
 .contact-block, .follow-block { margin-top: 34px }
+.follow-block .slogan { font-family: var(--display); font-size: clamp(22px, 2.2vw, 28px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--chicle-claro); margin-bottom: 12px; text-wrap: balance; max-width: 22ch }
 .visit h3 { font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #fff }
 .contact-wa { margin-top: 14px; display: inline-flex; align-items: center; gap: 14px; padding: 12px 22px 12px 14px; border-radius: 20px; background: rgba(37, 211, 102, 0.12); border: 1.5px solid rgba(37, 211, 102, 0.45); transition: background .2s, transform .25s cubic-bezier(.3, 1.6, .5, 1) }
 .contact-wa:hover { background: rgba(37, 211, 102, 0.2); transform: translateY(-2px) }
@@ -291,9 +291,6 @@ html:has(.lightbox[open]) { overflow: hidden }
 .pay span { padding: 4px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: #fff; font-weight: 600; font-size: 13px }
 .panel-wa { display: flex; align-items: center; gap: 10px; margin: 6px 0 0; padding-top: 18px !important; border-top: 1px solid var(--line); border-radius: 0 !important; color: #fff !important; font-weight: 600 !important }
 .panel-wa svg { width: 22px; height: 22px; color: #25d366 }
-.panel-follow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 16px 10px }
-.panel-follow > span { font-size: 14px; color: var(--niebla) }
-.panel-follow .social a { padding: 0 }
 
 /* ---------- COLOR Y MOVIMIENTO ---------- */
 .gallery { position: relative; overflow: hidden; isolation: isolate; background-color: var(--marca-azul);
@@ -411,14 +408,6 @@ html:has(.lightbox[open]) { overflow: hidden }
       <a href="#boutique">Boutique</a>
       <a href="#ubicacion">Ubicación</a>
 <a class="panel-wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg>Escríbenos: 968 827 219</a>
-      <div class="panel-follow">
-        <span>Síguenos</span>
-        <ul class="social social-icons" aria-label="Redes sociales de Bony Can">
-          <li><a class="ig" href="https://www.instagram.com/bonycan_/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig" /></svg><span>Instagram</span></a></li>
-          <li><a class="tt" href="https://www.tiktok.com/@bonycan_ofc" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt" /></svg><span>TikTok</span></a></li>
-          <li><a class="fb" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb" /></svg><span>Facebook</span></a></li>
-        </ul>
-      </div>
     </div>
   </div>
 </header>
@@ -595,6 +584,7 @@ html:has(.lightbox[open]) { overflow: hidden }
         </div>
 
         <div class="follow-block rv">
+          <p class="slogan">Amamos a tu mascota como tú lo haces.</p>
           <h3>También puedes seguirnos en</h3>
         <ul class="social" aria-label="Redes sociales de Bony Can">
           <li><a class="ig" href="https://www.instagram.com/bonycan_/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig" /></svg><span>Instagram</span></a></li>
@@ -622,21 +612,12 @@ html:has(.lightbox[open]) { overflow: hidden }
   <div class="wrap foot-grid">
     <div class="foot-brand">
       <a class="logo-card" href="#inicio" aria-label="Bony Can, volver al inicio"><img src="img/logo.webp" alt="Bony Can Boutique &amp; Spa" width="640" height="249" loading="lazy" /></a>
-      <p class="slogan">Amamos a tu mascota como tú lo haces.</p>
     </div>
     <div class="foot-cols">
       <div>
         <h3>Contacto</h3>
         <a class="foot-wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg>968 827 219</a>
         <p>Carlos Wiesse N° 670, Urb. Vista Bella, Trujillo</p>
-      </div>
-      <div>
-        <h3>Síguenos</h3>
-        <ul class="social social-icons" aria-label="Redes sociales de Bony Can">
-          <li><a class="ig" href="https://www.instagram.com/bonycan_/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig" /></svg><span>Instagram</span></a></li>
-          <li><a class="tt" href="https://www.tiktok.com/@bonycan_ofc" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt" /></svg><span>TikTok</span></a></li>
-          <li><a class="fb" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb" /></svg><span>Facebook</span></a></li>
-        </ul>
       </div>
     </div>
   </div>
