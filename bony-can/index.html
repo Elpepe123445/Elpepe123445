@@ -11,7 +11,8 @@
 <meta property="og:description" content="Baño, corte, uñas y mimos para tu engreído en Trujillo." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="es_PE" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23FFC94A'/%3E%3Cg fill='%230A2B33' transform='rotate(-35 16 16)'%3E%3Crect x='9' y='13.5' width='14' height='5' rx='2.5'/%3E%3Ccircle cx='9' cy='13.2' r='3'/%3E%3Ccircle cx='9' cy='18.8' r='3'/%3E%3Ccircle cx='23' cy='13.2' r='3'/%3E%3Ccircle cx='23' cy='18.8' r='3'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" href="img/logo-casa.png" />
+<link rel="apple-touch-icon" href="img/logo-casa.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,14 +33,14 @@
   "description": "Spa y boutique para perros en Trujillo: baño, corte, uñas y cuidado integral.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Carlos Wiesse 670",
+    "streetAddress": "Carlos Wiesse N° 670, Urb. Vista Bella",
     "postalCode": "13007",
     "addressLocality": "Trujillo",
     "addressRegion": "La Libertad",
     "addressCountry": "PE"
   },
   "telephone": "+51 968 827 219",
-  "sameAs": ["https://www.facebook.com/bonycanpetshop/", "https://www.instagram.com/bonycan_/"]
+  "sameAs": ["https://www.facebook.com/bonycanpetshop/", "https://www.instagram.com/bonycan_/", "https://www.tiktok.com/@bonycan_ofc"]
 }
 </script>
 
@@ -56,6 +57,8 @@
   --chicle: #ff6f9f;
   --chicle-claro: #ff8db3;
   --patito: #ffc94a;
+  --marca-azul: #306de6;
+  --marca-rosa: #ea4592;
   --line: rgba(255, 255, 255, 0.08);
   --line-dark: rgba(10, 43, 51, 0.14);
   --nav-h: 64px;
@@ -75,8 +78,7 @@ button { font: inherit; color: inherit; cursor: pointer }
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: var(--nav-h); background: rgba(10, 43, 51, 0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line) }
 .nav-inner { max-width: 1344px; height: 100%; margin: 0 auto; padding: 0 68px; display: flex; align-items: center; justify-content: space-between }
 .brand { display: flex; align-items: center; gap: 11px; font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em }
-.brand-mark { width: 32px; height: 32px; border-radius: 50%; background: var(--patito); color: var(--agua); display: grid; place-items: center; box-shadow: inset -2px -3px 0 rgba(0, 0, 0, 0.12) }
-.brand-mark svg { width: 24px; height: 24px }
+.brand-mark { width: 36px; height: 36px; flex: none; border-radius: 50%; background: #fff; padding: 4px; object-fit: contain; box-shadow: 0 0 0 2px rgba(234, 69, 146, 0.35) }
 .nav-right { display: flex; align-items: center; gap: 30px }
 .nav-links { display: flex; gap: 36px; font-size: 15px; font-weight: 500; color: var(--link) }
 .nav-links a { transition: color .2s }
@@ -167,14 +169,14 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 .size[data-s="s"] .ico svg { transform: scale(.55) }
 .size[data-s="m"] .ico svg { transform: scale(.7) }
 .size[data-s="l"] .ico svg { transform: scale(.85) }
-.choice input:checked + .size { border-color: var(--agua); box-shadow: inset 0 0 0 1.5px var(--agua) }
+.choice input:checked + .size { border-color: var(--marca-azul); box-shadow: inset 0 0 0 1.5px var(--marca-azul) }
 .choice input:checked + .size .ico { color: var(--chicle) }
 .choice input:checked + .size .ico svg { animation: hop .45s cubic-bezier(.3, 1.6, .5, 1) }
 @keyframes hop { 40% { translate: 0 -8px } }
 
 .chips { display: flex; flex-wrap: wrap; gap: 10px }
 .chip { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 999px; background: #fff; border: 1.5px solid var(--line-dark); font-weight: 600; font-size: 15px; transition: background .2s, color .2s, border-color .2s }
-.choice input:checked + .chip { background: var(--agua); border-color: var(--agua); color: #fff }
+.choice input:checked + .chip { background: var(--marca-azul); border-color: var(--marca-azul); color: #fff }
 
 .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
 .svc { height: 100%; display: block; position: relative; padding: 16px 18px 16px 54px; border-radius: 18px; background: #fff; border: 1.5px solid var(--line-dark); transition: border-color .2s, box-shadow .2s }
@@ -182,7 +184,7 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 .svc::after { content: ""; position: absolute; left: 25px; top: 22px; width: 7px; height: 12px; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) scale(0); transition: transform .2s cubic-bezier(.3, 1.6, .5, 1) }
 .svc strong { display: block; font-weight: 700; font-size: 16px }
 .svc em { display: block; font-style: normal; font-size: 14px; color: var(--tinta-suave); margin-top: 2px; line-height: 1.4 }
-.choice input:checked + .svc { border-color: var(--agua); box-shadow: inset 0 0 0 1.5px var(--agua) }
+.choice input:checked + .svc { border-color: var(--marca-azul); box-shadow: inset 0 0 0 1.5px var(--marca-azul) }
 .choice input:checked + .svc::before { background: var(--chicle); border-color: var(--chicle) }
 .choice input:checked + .svc::after { transform: rotate(45deg) scale(1) }
 
@@ -193,7 +195,6 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 .chat { background: var(--agua); color: #fff; border-radius: 28px; padding: 18px; box-shadow: 0 30px 60px -20px rgba(10, 43, 51, 0.45) }
 .chat-head { display: flex; align-items: center; gap: 12px; padding: 4px 4px 16px; border-bottom: 1px solid var(--line) }
 .chat-head .brand-mark { width: 40px; height: 40px }
-.chat-head .brand-mark svg { width: 28px; height: 28px }
 .chat-head strong { display: block; font-size: 16px }
 .chat-head span { font-size: 13px; color: var(--niebla) }
 .chat-body { padding: 18px 2px 6px; display: flex; flex-direction: column; align-items: flex-end }
@@ -207,18 +208,22 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 /* ---------- UBICACIÓN ---------- */
 .visit { background: var(--agua); padding: 110px 0 }
 .visit-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center }
-.visit .addr.phone { margin-top: 10px }
-.visit .phone a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--chicle) }
 .visit .addr { margin-top: 22px; font-size: 20px; line-height: 1.5; color: #fff }
-.visit .note { margin-top: 14px; font-size: 16px; color: var(--niebla); max-width: 44ch }
+.visit .addr-ref { margin-top: 4px; font-size: 16px; color: var(--niebla) }
 .visit .cta-row { margin-top: 30px }
 .map-frame { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--agua-2); border: 1px solid var(--line) }
 .map-frame iframe { width: 100%; height: 100%; border: 0; display: block }
 
-.foot { background: var(--agua-hondo); padding: 36px 0 calc(36px + env(safe-area-inset-bottom)); color: var(--niebla); font-size: 14px }
-.foot .wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between }
-.foot .brand { color: #fff; font-size: 19px }
-.foot a:hover { color: #fff }
+.foot { background: var(--agua-hondo); padding: 56px 0 calc(48px + env(safe-area-inset-bottom)); color: var(--niebla); font-size: 14px }
+.foot-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; justify-content: space-between }
+.logo-card { display: inline-block; background: #fff; border-radius: 20px; padding: 14px 20px; box-shadow: 0 0 0 3px rgba(234, 69, 146, 0.25) }
+.logo-card img { display: block; width: 220px; height: auto }
+.slogan { margin-top: 14px; font-size: 15px; color: #fff }
+.foot-cols { display: flex; flex-wrap: wrap; gap: 48px }
+.foot h3 { font-family: var(--display); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px }
+.foot-wa { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; color: #fff }
+.foot-wa svg { width: 18px; height: 18px; color: #25d366 }
+.foot-cols p { margin-top: 8px; max-width: 30ch }
 
 /* ---------- FOTOS ---------- */
 .gallery { --gx: 40px; background: var(--agua); padding: 96px 0 120px }
@@ -259,14 +264,13 @@ html:has(.lightbox[open]) { overflow: hidden }
 
 /* ---------- REDES ---------- */
 .social { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px }
-.social a { display: inline-flex; align-items: center; gap: 9px; height: 46px; padding: 0 18px 0 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line); color: #fff; font-weight: 600; font-size: 15px; transition: background .2s, border-color .2s }
-.social a:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2) }
+.social a { display: inline-flex; align-items: center; gap: 9px; height: 46px; padding: 0 18px 0 14px; border-radius: 999px; color: #fff; font-weight: 600; font-size: 15px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); transition: transform .25s cubic-bezier(.3, 1.6, .5, 1), filter .2s }
+.social a:hover { transform: translateY(-3px) rotate(-2deg); filter: brightness(1.08) }
 .social svg { width: 20px; height: 20px; flex: none }
-.social .wa svg { color: #25d366 }
-.social .ig svg { color: #f06292 }
-.social .fb svg { color: #5b9dff }
-.social-compact { margin: 6px 8px 8px; padding-top: 12px; border-top: 1px solid var(--line) }
-.social-compact a { height: 42px; font-size: 14px }
+.social .ig { background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888) }
+.social .tt { background: #010101; border: 1px solid rgba(255, 255, 255, 0.18) }
+.social .tt svg { filter: drop-shadow(-1.5px -1px 0 #25f4ee) drop-shadow(1.5px 1px 0 #fe2c55) }
+.social .fb { background: #1877f2 }
 .social-icons { margin-top: 0 }
 .social-icons a { width: 42px; height: 42px; padding: 0; justify-content: center }
 .social-icons span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
@@ -274,6 +278,38 @@ html:has(.lightbox[open]) { overflow: hidden }
 .wa-float.show { opacity: 1; transform: none; pointer-events: auto }
 .wa-float:hover { transform: scale(1.06) }
 .wa-float svg { width: 30px; height: 30px }
+
+/* ---------- CONTACTO Y REDES ---------- */
+.contact-block, .follow-block { margin-top: 34px }
+.visit h3 { font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #fff }
+.contact-wa { margin-top: 14px; display: inline-flex; align-items: center; gap: 14px; padding: 12px 22px 12px 14px; border-radius: 20px; background: rgba(37, 211, 102, 0.12); border: 1.5px solid rgba(37, 211, 102, 0.45); transition: background .2s, transform .25s cubic-bezier(.3, 1.6, .5, 1) }
+.contact-wa:hover { background: rgba(37, 211, 102, 0.2); transform: translateY(-2px) }
+.contact-wa svg { width: 34px; height: 34px; color: #25d366 }
+.contact-wa strong { display: block; font-size: 22px; letter-spacing: 0.01em; font-variant-numeric: tabular-nums }
+.contact-wa small { display: block; font-size: 13px; color: var(--niebla) }
+.pay { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--niebla) }
+.pay span { padding: 4px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: #fff; font-weight: 600; font-size: 13px }
+.panel-wa { display: flex; align-items: center; gap: 10px; margin: 6px 0 0; padding-top: 18px !important; border-top: 1px solid var(--line); border-radius: 0 !important; color: #fff !important; font-weight: 600 !important }
+.panel-wa svg { width: 22px; height: 22px; color: #25d366 }
+.panel-follow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 16px 10px }
+.panel-follow > span { font-size: 14px; color: var(--niebla) }
+.panel-follow .social a { padding: 0 }
+
+/* ---------- COLOR Y MOVIMIENTO ---------- */
+.gallery { position: relative; overflow: hidden; isolation: isolate; background-color: var(--marca-azul);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23ffffff' fill-opacity='.09'%3E%3Cg transform='translate(28 30) rotate(-18)'%3E%3Cellipse cx='0' cy='8' rx='9' ry='7.5'/%3E%3Cellipse cx='-10' cy='-3' rx='3.6' ry='4.6'/%3E%3Cellipse cx='-3.5' cy='-9' rx='3.6' ry='4.8'/%3E%3Cellipse cx='3.5' cy='-9' rx='3.6' ry='4.8'/%3E%3Cellipse cx='10' cy='-3' rx='3.6' ry='4.6'/%3E%3C/g%3E%3Cg transform='translate(100 98) rotate(22) scale(.8)'%3E%3Cellipse cx='0' cy='8' rx='9' ry='7.5'/%3E%3Cellipse cx='-10' cy='-3' rx='3.6' ry='4.6'/%3E%3Cellipse cx='-3.5' cy='-9' rx='3.6' ry='4.8'/%3E%3Cellipse cx='3.5' cy='-9' rx='3.6' ry='4.8'/%3E%3Cellipse cx='10' cy='-3' rx='3.6' ry='4.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 140px 140px; animation: pawsDrift 60s linear infinite }
+@keyframes pawsDrift { to { background-position: 280px -280px } }
+.gallery::before, .gallery::after { content: ""; position: absolute; z-index: -1; background: var(--marca-rosa); animation: blob 14s ease-in-out infinite alternate }
+.gallery::before { width: 340px; height: 300px; right: -150px; top: -110px; border-radius: 58% 42% 55% 45% / 45% 55% 45% 55% }
+.gallery::after { width: 260px; height: 240px; left: -130px; bottom: -120px; border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%; animation-delay: -7s }
+@keyframes blob { to { border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%; transform: rotate(14deg) scale(1.08) } }
+.gallery-head p { color: rgba(255, 255, 255, 0.88) }
+.gallery .arrow { background: rgba(255, 255, 255, 0.18); border-color: rgba(255, 255, 255, 0.3) }
+.gallery .arrow:hover { background: rgba(255, 255, 255, 0.3) }
+.shot { box-shadow: 0 18px 36px -18px rgba(8, 24, 80, 0.6) }
+.rv-on .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i, 0) * 70ms) }
+.rv-on .rv.in { opacity: 1; transform: none }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1100px) {
@@ -305,6 +341,9 @@ html:has(.lightbox[open]) { overflow: hidden }
   .shop { padding: 84px 0 }
   .shop-grid { grid-template-columns: minmax(0, 1fr); gap: 36px }
   .shop-photo { max-width: 460px }
+  .gallery::before { width: 220px; height: 200px; right: -110px; top: -90px }
+  .gallery::after { width: 180px; height: 160px; left: -100px; bottom: -90px }
+  .foot-cols { gap: 32px }
 }
 @media (max-width: 560px) {
   .services { grid-template-columns: minmax(0, 1fr) }
@@ -325,6 +364,7 @@ html:has(.lightbox[open]) { overflow: hidden }
   .lb-prev, .lb-next { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: none }
 }
 @media (prefers-reduced-motion: reduce) {
+  .gallery, .gallery::before, .gallery::after { animation: none }
   .wa-float { transition: none }
   html { scroll-behavior: auto }
   .reveal { animation: none; opacity: 1; transform: none }
@@ -335,13 +375,6 @@ html:has(.lightbox[open]) { overflow: hidden }
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-bone" viewBox="0 0 32 32">
-    <g transform="rotate(-35 16 16)" fill="currentColor">
-      <rect x="9" y="13.5" width="14" height="5" rx="2.5" />
-      <circle cx="9" cy="13.2" r="3" /><circle cx="9" cy="18.8" r="3" />
-      <circle cx="23" cy="13.2" r="3" /><circle cx="23" cy="18.8" r="3" />
-    </g>
-  </symbol>
   <symbol id="i-dog" viewBox="0 0 48 48">
     <ellipse cx="9.5" cy="22" rx="5.5" ry="11" transform="rotate(18 9.5 22)" fill="currentColor" opacity=".6" />
     <ellipse cx="38.5" cy="22" rx="5.5" ry="11" transform="rotate(-18 38.5 22)" fill="currentColor" opacity=".6" />
@@ -353,6 +386,7 @@ html:has(.lightbox[open]) { overflow: hidden }
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077" /></symbol>
   <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" /></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" /></symbol>
   <symbol id="i-paw" viewBox="0 0 24 24">
     <g fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4.2" /><ellipse cx="5.8" cy="10.5" rx="2" ry="2.5" /><ellipse cx="9.8" cy="6.8" rx="2" ry="2.6" /><ellipse cx="14.2" cy="6.8" rx="2" ry="2.6" /><ellipse cx="18.2" cy="10.5" rx="2" ry="2.5" /></g>
   </symbol>
@@ -360,7 +394,7 @@ html:has(.lightbox[open]) { overflow: hidden }
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="brand" href="#inicio" aria-label="Bony Can, inicio"><span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>Bony Can</a>
+    <a class="brand" href="#inicio" aria-label="Bony Can, inicio"><img class="brand-mark" src="img/logo-casa.webp" alt="" width="36" height="36" />Bony Can</a>
     <div class="nav-right">
       <nav class="nav-links" aria-label="Principal">
         <a href="#fotos">Fotos</a>
@@ -376,11 +410,15 @@ html:has(.lightbox[open]) { overflow: hidden }
       <a href="#servicios">Servicios</a>
       <a href="#boutique">Boutique</a>
       <a href="#ubicacion">Ubicación</a>
-      <ul class="social social-compact" aria-label="Redes sociales de Bony Can">
-          <li><a class="wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg><span>WhatsApp</span></a></li>
+<a class="panel-wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg>Escríbenos: 968 827 219</a>
+      <div class="panel-follow">
+        <span>Síguenos</span>
+        <ul class="social social-icons" aria-label="Redes sociales de Bony Can">
           <li><a class="ig" href="https://www.instagram.com/bonycan_/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig" /></svg><span>Instagram</span></a></li>
+          <li><a class="tt" href="https://www.tiktok.com/@bonycan_ofc" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt" /></svg><span>TikTok</span></a></li>
           <li><a class="fb" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb" /></svg><span>Facebook</span></a></li>
         </ul>
+      </div>
     </div>
   </div>
 </header>
@@ -408,7 +446,7 @@ html:has(.lightbox[open]) { overflow: hidden }
 
   <section class="gallery" id="fotos" aria-labelledby="gallery-title">
     <div class="wrap gallery-head">
-      <div>
+      <div class="rv">
         <h2 id="gallery-title">Así salen de Bony Can</h2>
         <p>Fotos reales de nuestros clientes después de su baño y corte. Toca una para verla completa.</p>
       </div>
@@ -418,26 +456,26 @@ html:has(.lightbox[open]) { overflow: hidden }
       </div>
     </div>
     <ul class="gallery-track" id="galTrack">
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Golden retriever sentado en la mesa de grooming con pañoleta roja de Bony Can"><img src="img/clientes/01.webp" alt="Golden retriever sentado en la mesa de grooming con pañoleta roja de Bony Can" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrita de pelo largo color crema con lazo naranja y pañoleta de girasoles"><img src="img/clientes/02.webp" alt="Perrita de pelo largo color crema con lazo naranja y pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Husky echado en la mesa de grooming con pañoleta roja, sacando la lengua"><img src="img/clientes/03.webp" alt="Husky echado en la mesa de grooming con pañoleta roja, sacando la lengua" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Dos perritos recién arreglados: uno negro con lazos rojos y un caniche blanco"><img src="img/clientes/04.webp" alt="Dos perritos recién arreglados: uno negro con lazos rojos y un caniche blanco" width="600" height="1182" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Schnauzer gris claro con pañoleta rosada de girasoles"><img src="img/clientes/05.webp" alt="Schnauzer gris claro con pañoleta rosada de girasoles" width="600" height="1047" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: San Bernardo sentado con pañoleta rosada de corazones"><img src="img/clientes/06.webp" alt="San Bernardo sentado con pañoleta rosada de corazones" width="600" height="1067" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco y crema de orejas largas con pañoleta roja"><img src="img/clientes/07.webp" alt="Perrito blanco y crema de orejas largas con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrita de pelo largo blanco y crema, de pie en la mesa de grooming"><img src="img/clientes/08.webp" alt="Perrita de pelo largo blanco y crema, de pie en la mesa de grooming" width="600" height="1134" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrita blanca y canela con dos colitas y pañoleta de girasoles"><img src="img/clientes/09.webp" alt="Perrita blanca y canela con dos colitas y pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco de pelo rizado con pañoleta roja"><img src="img/clientes/10.webp" alt="Perrito blanco de pelo rizado con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco con manchas grises y corbata de colores"><img src="img/clientes/11.webp" alt="Perrito blanco con manchas grises y corbata de colores" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito de pelo largo crema con pañoleta azul de Bony Can"><img src="img/clientes/12.webp" alt="Perrito de pelo largo crema con pañoleta azul de Bony Can" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Cachorro color crema de orejas largas con pañoleta de girasoles"><img src="img/clientes/13.webp" alt="Cachorro color crema de orejas largas con pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
-      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco y canela de pelo corto con pañoleta roja"><img src="img/clientes/14.webp" alt="Perrito blanco y canela de pelo corto con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Golden retriever sentado en la mesa de grooming con pañoleta roja de Bony Can"><img src="img/clientes/01.webp" alt="Golden retriever sentado en la mesa de grooming con pañoleta roja de Bony Can" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrita de pelo largo color crema con lazo naranja y pañoleta de girasoles"><img src="img/clientes/02.webp" alt="Perrita de pelo largo color crema con lazo naranja y pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Husky echado en la mesa de grooming con pañoleta roja, sacando la lengua"><img src="img/clientes/03.webp" alt="Husky echado en la mesa de grooming con pañoleta roja, sacando la lengua" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Dos perritos recién arreglados: uno negro con lazos rojos y un caniche blanco"><img src="img/clientes/04.webp" alt="Dos perritos recién arreglados: uno negro con lazos rojos y un caniche blanco" width="600" height="1182" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Schnauzer gris claro con pañoleta rosada de girasoles"><img src="img/clientes/05.webp" alt="Schnauzer gris claro con pañoleta rosada de girasoles" width="600" height="1047" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: San Bernardo sentado con pañoleta rosada de corazones"><img src="img/clientes/06.webp" alt="San Bernardo sentado con pañoleta rosada de corazones" width="600" height="1067" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco y crema de orejas largas con pañoleta roja"><img src="img/clientes/07.webp" alt="Perrito blanco y crema de orejas largas con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrita de pelo largo blanco y crema, de pie en la mesa de grooming"><img src="img/clientes/08.webp" alt="Perrita de pelo largo blanco y crema, de pie en la mesa de grooming" width="600" height="1134" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrita blanca y canela con dos colitas y pañoleta de girasoles"><img src="img/clientes/09.webp" alt="Perrita blanca y canela con dos colitas y pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco de pelo rizado con pañoleta roja"><img src="img/clientes/10.webp" alt="Perrito blanco de pelo rizado con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco con manchas grises y corbata de colores"><img src="img/clientes/11.webp" alt="Perrito blanco con manchas grises y corbata de colores" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrito de pelo largo crema con pañoleta azul de Bony Can"><img src="img/clientes/12.webp" alt="Perrito de pelo largo crema con pañoleta azul de Bony Can" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Cachorro color crema de orejas largas con pañoleta de girasoles"><img src="img/clientes/13.webp" alt="Cachorro color crema de orejas largas con pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li class="rv"><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco y canela de pelo corto con pañoleta roja"><img src="img/clientes/14.webp" alt="Perrito blanco y canela de pelo corto con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
     </ul>
   </section>
 
   <section class="book" id="servicios" aria-labelledby="book-title">
     <div class="wrap">
-      <div class="book-head">
+      <div class="book-head rv">
         <h2 id="book-title">Arma la cita de tu perro</h2>
         <p>Elige lo que necesita y te dejamos el mensaje listo para WhatsApp. Te respondemos con el precio y el horario disponible.</p>
       </div>
@@ -453,10 +491,10 @@ html:has(.lightbox[open]) { overflow: hidden }
           <fieldset>
             <legend>Tamaño</legend>
             <div class="sizes">
-              <label class="choice"><input type="radio" name="size" value="Pequeño" /><span class="size" data-s="s"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Pequeño</strong><em>como un shih tzu</em></span></label>
-              <label class="choice"><input type="radio" name="size" value="Mediano" /><span class="size" data-s="m"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Mediano</strong><em>como un beagle</em></span></label>
-              <label class="choice"><input type="radio" name="size" value="Grande" /><span class="size" data-s="l"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Grande</strong><em>como un labrador</em></span></label>
-              <label class="choice"><input type="radio" name="size" value="Gigante" /><span class="size" data-s="xl"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Gigante</strong><em>como un gran danés</em></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Pequeño" /><span class="size" data-s="s"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Pequeño</strong><em>como un shih tzu</em></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Mediano" /><span class="size" data-s="m"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Mediano</strong><em>como un beagle</em></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Grande" /><span class="size" data-s="l"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Grande</strong><em>como un labrador</em></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Gigante" /><span class="size" data-s="xl"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Gigante</strong><em>como un gran danés</em></span></label>
             </div>
           </fieldset>
 
@@ -474,14 +512,14 @@ html:has(.lightbox[open]) { overflow: hidden }
           <fieldset>
             <legend>Servicios</legend>
             <div class="services">
-              <label class="choice"><input type="checkbox" name="svc" value="Baño completo" checked /><span class="svc"><strong>Baño completo</strong><em>Shampoo según su pelo, secado y cepillado.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Corte de pelo" /><span class="svc"><strong>Corte de pelo</strong><em>Corte de raza o como tú lo prefieras.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Corte de uñas" /><span class="svc"><strong>Corte de uñas</strong><em>Cortadas y limadas, con calma.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Limpieza de oídos" /><span class="svc"><strong>Limpieza de oídos</strong><em>Limpieza suave para que no se acumule cerumen.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Deslanado" /><span class="svc"><strong>Deslanado</strong><em>Retira el pelo muerto en razas de doble capa.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Baño antipulgas" /><span class="svc"><strong>Baño antipulgas</strong><em>Shampoo especial contra pulgas y garrapatas.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Perfume y lazo" /><span class="svc"><strong>Perfume y lazo</strong><em>El toque final para que salga regio.</em></span></label>
-              <label class="choice"><input type="checkbox" name="svc" value="Ver productos de la boutique" /><span class="svc"><strong>Productos de la boutique</strong><em>Quiero que me muestren lo que tienen.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Baño completo" checked /><span class="svc"><strong>Baño completo</strong><em>Shampoo según su pelo, secado y cepillado.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Corte de pelo" /><span class="svc"><strong>Corte de pelo</strong><em>Corte de raza o como tú lo prefieras.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Corte de uñas" /><span class="svc"><strong>Corte de uñas</strong><em>Cortadas y limadas, con calma.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Limpieza de oídos" /><span class="svc"><strong>Limpieza de oídos</strong><em>Limpieza suave para que no se acumule cerumen.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Deslanado" /><span class="svc"><strong>Deslanado</strong><em>Retira el pelo muerto en razas de doble capa.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Baño antipulgas" /><span class="svc"><strong>Baño antipulgas</strong><em>Shampoo especial contra pulgas y garrapatas.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Perfume y lazo" /><span class="svc"><strong>Perfume y lazo</strong><em>El toque final para que salga regio.</em></span></label>
+              <label class="choice rv"><input type="checkbox" name="svc" value="Ver productos de la boutique" /><span class="svc"><strong>Productos de la boutique</strong><em>Quiero que me muestren lo que tienen.</em></span></label>
             </div>
           </fieldset>
 
@@ -499,7 +537,7 @@ html:has(.lightbox[open]) { overflow: hidden }
         <aside class="preview" aria-label="Vista previa del mensaje">
           <div class="chat">
             <div class="chat-head">
-              <span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>
+              <img class="brand-mark" src="img/logo-casa.webp" alt="" width="40" height="40" />
               <div><strong>Bony Can</strong><span>Boutique y Spa, Trujillo</span></div>
             </div>
             <div class="chat-body">
@@ -519,10 +557,10 @@ html:has(.lightbox[open]) { overflow: hidden }
 
   <section class="shop" id="boutique" aria-labelledby="shop-title">
     <div class="wrap shop-grid">
-      <figure class="shop-photo">
+      <figure class="shop-photo rv">
         <img src="img/boutique.webp" alt="Estante de la boutique de Bony Can con ropa para perros, shampoos, juguetes, mantitas y una transportadora" width="820" height="1158" loading="lazy" decoding="async" />
       </figure>
-      <div class="shop-copy">
+      <div class="shop-copy rv">
         <h2 id="shop-title">También somos boutique</h2>
         <p>Ropita, juguetes y todo para engreírlo en casa. Pregunta por tallas y modelos cuando vengas o por WhatsApp.</p>
         <ul class="shop-list">
@@ -541,16 +579,29 @@ html:has(.lightbox[open]) { overflow: hidden }
       <div>
         <h2 id="visit-title">Ven a visitarnos</h2>
         <!-- TODO: añadir horario de atención cuando Bony Can lo confirme. -->
-        <p class="addr">Carlos Wiesse 670, junto al Parque Olivar<br />Trujillo, La Libertad</p>
-        <p class="addr phone">WhatsApp: <a href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener">968 827 219</a></p>
+        <p class="addr">Carlos Wiesse N° 670, Urb. Vista Bella<br />Trujillo, La Libertad</p>
+        <p class="addr-ref">Junto al Parque Olivar.</p>
         <div class="cta-row">
           <a class="btn-try" href="https://www.google.com/maps/search/?api=1&amp;query=Bony%20Can%20Trujillo" target="_blank" rel="noopener">Abrir en Google Maps</a>
         </div>
+
+        <div class="contact-block rv">
+          <h3>Escríbenos para reservar</h3>
+          <a class="contact-wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa" /></svg>
+            <span><strong>968 827 219</strong><small>WhatsApp</small></span>
+          </a>
+          <p class="pay">Aceptamos <span>Visa</span> <span>Mastercard</span> <span>Yape</span> <span>Plin</span></p>
+        </div>
+
+        <div class="follow-block rv">
+          <h3>También puedes seguirnos en</h3>
         <ul class="social" aria-label="Redes sociales de Bony Can">
-          <li><a class="wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg><span>WhatsApp</span></a></li>
           <li><a class="ig" href="https://www.instagram.com/bonycan_/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig" /></svg><span>Instagram</span></a></li>
+          <li><a class="tt" href="https://www.tiktok.com/@bonycan_ofc" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt" /></svg><span>TikTok</span></a></li>
           <li><a class="fb" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb" /></svg><span>Facebook</span></a></li>
         </ul>
+        </div>
       </div>
       <div class="map-frame">
         <iframe title="Mapa de Bony Can en Trujillo" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Bony%20Can%2C%20Trujillo%2C%20Per%C3%BA&amp;z=16&amp;output=embed"></iframe>
@@ -568,14 +619,26 @@ html:has(.lightbox[open]) { overflow: hidden }
 </dialog>
 
 <footer class="foot">
-  <div class="wrap">
-    <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>Bony Can</a>
-    <span>Boutique y spa para perros en Trujillo, Perú.</span>
-    <ul class="social social-icons" aria-label="Redes sociales de Bony Can">
-          <li><a class="wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg><span>WhatsApp</span></a></li>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="logo-card" href="#inicio" aria-label="Bony Can, volver al inicio"><img src="img/logo.webp" alt="Bony Can Boutique &amp; Spa" width="640" height="249" loading="lazy" /></a>
+      <p class="slogan">Amamos a tu mascota como tú lo haces.</p>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h3>Contacto</h3>
+        <a class="foot-wa" href="https://wa.me/51968827219?text=%C2%A1Hola%2C%20Bony%20Can!%20Quiero%20informaci%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg>968 827 219</a>
+        <p>Carlos Wiesse N° 670, Urb. Vista Bella, Trujillo</p>
+      </div>
+      <div>
+        <h3>Síguenos</h3>
+        <ul class="social social-icons" aria-label="Redes sociales de Bony Can">
           <li><a class="ig" href="https://www.instagram.com/bonycan_/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig" /></svg><span>Instagram</span></a></li>
+          <li><a class="tt" href="https://www.tiktok.com/@bonycan_ofc" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tt" /></svg><span>TikTok</span></a></li>
           <li><a class="fb" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb" /></svg><span>Facebook</span></a></li>
         </ul>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -674,6 +737,35 @@ html:has(.lightbox[open]) { overflow: hidden }
     touchX = null;
   });
   lb.addEventListener("close", () => shots[cur].focus({ preventScroll: true }));
+
+  // Galería en movimiento: avanza sola y se detiene cuando la persona interactúa.
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let galPaused = false, galVisible = false;
+  const galPause = () => { galPaused = true; };
+  ["pointerenter", "pointerdown", "focusin", "wheel", "touchstart"].forEach((ev) => track.addEventListener(ev, galPause, { passive: true }));
+  track.addEventListener("pointerleave", () => { galPaused = false; });
+  new IntersectionObserver(([e]) => { galVisible = e.isIntersecting; }, { threshold: 0.3 }).observe(track);
+  if (!reduceMotion) {
+    setInterval(() => {
+      if (galPaused || !galVisible || lb.open || document.hidden) return;
+      const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+      const card = shots[0].parentElement.getBoundingClientRect().width + 16;
+      track.scrollTo({ left: end ? 0 : track.scrollLeft + card, behavior: "smooth" });
+    }, 3200);
+  }
+
+  // Apariciones suaves al hacer scroll
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    document.documentElement.classList.add("rv-on");
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".rv").forEach((el) => {
+      const sibs = [...el.parentElement.children].filter((c) => c.classList.contains("rv"));
+      el.style.setProperty("--i", Math.min(sibs.indexOf(el), 8));
+      io.observe(el);
+    });
+  }
 
   // Botón flotante de WhatsApp: aparece cuando el hero ya no está a la vista.
   const waFloat = document.getElementById("waFloat");
