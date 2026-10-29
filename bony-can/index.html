@@ -38,6 +38,7 @@
     "addressRegion": "La Libertad",
     "addressCountry": "PE"
   },
+  "telephone": "+51 968 827 219",
   "sameAs": ["https://www.facebook.com/bonycanpetshop/"]
 }
 </script>
@@ -206,6 +207,8 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 /* ---------- UBICACIÓN ---------- */
 .visit { background: var(--agua); padding: 110px 0 }
 .visit-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center }
+.visit .addr.phone { margin-top: 10px }
+.visit .phone a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--chicle) }
 .visit .addr { margin-top: 22px; font-size: 20px; line-height: 1.5; color: #fff }
 .visit .note { margin-top: 14px; font-size: 16px; color: var(--niebla); max-width: 44ch }
 .visit .cta-row { margin-top: 30px }
@@ -415,8 +418,9 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
     <div class="wrap visit-grid">
       <div>
         <h2 id="visit-title">Ven a visitarnos</h2>
-        <!-- TODO: añadir horario de atención y teléfono cuando Bony Can los confirme. -->
+        <!-- TODO: añadir horario de atención cuando Bony Can lo confirme. -->
         <p class="addr">Carlos Wiesse 670, junto al Parque Olivar<br />Trujillo, La Libertad</p>
+        <p class="addr phone">WhatsApp: <a href="https://wa.me/51968827219">968 827 219</a></p>
         <p class="note">Además del spa, en nuestra boutique encuentras productos para tu mascota.</p>
         <div class="cta-row">
           <a class="btn-try" href="https://www.google.com/maps/search/?api=1&amp;query=Bony%20Can%20Trujillo" target="_blank" rel="noopener">Abrir en Google Maps</a>
@@ -441,8 +445,8 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 <script>
 // Interfaz que no depende de WebGL: menú y armador de citas.
 (() => {
-  // TODO: número de WhatsApp de Bony Can en formato internacional, sin "+" ni espacios (ej. "51987654321").
-  const WHATSAPP = "";
+  // Número de WhatsApp en formato internacional, sin "+" ni espacios.
+  const WHATSAPP = "51968827219";
 
   const nav = document.getElementById("nav");
   const menuBtn = document.getElementById("menuBtn");
