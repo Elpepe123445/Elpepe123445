@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark light" />
+<meta name="theme-color" content="#0a2b33" />
+<title>Bony Can | Spa y boutique para perros en Trujillo</title>
+<meta name="description" content="Spa y boutique para perros en Trujillo, Perú. Baño, corte de pelo, uñas, limpieza de oídos y más. Arma la cita de tu perro y envíala por WhatsApp." />
+<meta property="og:title" content="Bony Can | Spa y boutique para perros en Trujillo" />
+<meta property="og:description" content="Baño, corte, uñas y mimos para tu engreído en Trujillo." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_PE" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23FFC94A'/%3E%3Cg fill='%230A2B33' transform='rotate(-35 16 16)'%3E%3Crect x='9' y='13.5' width='14' height='5' rx='2.5'/%3E%3Ccircle cx='9' cy='13.2' r='3'/%3E%3Ccircle cx='9' cy='18.8' r='3'/%3E%3Ccircle cx='23' cy='13.2' r='3'/%3E%3Ccircle cx='23' cy='18.8' r='3'/%3E%3C/g%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PetStore",
+  "name": "Bony Can Boutique y Spa",
+  "description": "Spa y boutique para perros en Trujillo: baño, corte, uñas y cuidado integral.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Carlos Wiesse 670",
+    "postalCode": "13007",
+    "addressLocality": "Trujillo",
+    "addressRegion": "La Libertad",
+    "addressCountry": "PE"
+  },
+  "sameAs": ["https://www.facebook.com/bonycanpetshop/"]
+}
+</script>
+
+<style>
+:root {
+  --agua: #0a2b33;
+  --agua-2: #0f3a44;
+  --agua-hondo: #071f25;
+  --espuma: #eaf7f5;
+  --tinta: #0a2b33;
+  --tinta-suave: #42666d;
+  --niebla: #9ec4c7;
+  --link: #cfe6e7;
+  --chicle: #ff6f9f;
+  --chicle-claro: #ff8db3;
+  --patito: #ffc94a;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-dark: rgba(10, 43, 51, 0.14);
+  --nav-h: 64px;
+  --display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h) }
+html, body { background: var(--agua); color: #fff }
+body { font-family: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.5 }
+a { color: inherit; text-decoration: none }
+svg { display: block }
+button { font: inherit; color: inherit; cursor: pointer }
+:focus-visible { outline: 2px solid var(--patito); outline-offset: 3px; border-radius: 8px }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
+
+/* ---------- NAV ---------- */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: var(--nav-h); background: rgba(10, 43, 51, 0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line) }
+.nav-inner { max-width: 1344px; height: 100%; margin: 0 auto; padding: 0 68px; display: flex; align-items: center; justify-content: space-between }
+.brand { display: flex; align-items: center; gap: 11px; font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em }
+.brand-mark { width: 32px; height: 32px; border-radius: 50%; background: var(--patito); color: var(--agua); display: grid; place-items: center; box-shadow: inset -2px -3px 0 rgba(0, 0, 0, 0.12) }
+.brand-mark svg { width: 24px; height: 24px }
+.nav-right { display: flex; align-items: center; gap: 30px }
+.nav-links { display: flex; gap: 36px; font-size: 15px; font-weight: 500; color: var(--link) }
+.nav-links a { transition: color .2s }
+.nav-links a:hover { color: #fff }
+.btn-open { background: #fff; color: var(--agua); font-weight: 700; font-size: 14px; padding: 10px 19px; border-radius: 999px; transition: transform .2s, box-shadow .2s }
+.btn-open:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15) }
+.menu-btn { display: none; width: 40px; height: 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line); align-items: center; justify-content: center; position: relative }
+.menu-btn span, .menu-btn span::before, .menu-btn span::after { display: block; width: 16px; height: 1.6px; background: #fff; border-radius: 2px; transition: transform .25s, background .2s, top .25s }
+.menu-btn span { position: relative }
+.menu-btn span::before, .menu-btn span::after { content: ""; position: absolute; left: 0 }
+.menu-btn span::before { top: -5px }
+.menu-btn span::after { top: 5px }
+.nav.open .menu-btn span { background: transparent }
+.nav.open .menu-btn span::before { top: 0; transform: rotate(45deg) }
+.nav.open .menu-btn span::after { top: 0; transform: rotate(-45deg) }
+.mobile-panel { display: none; position: absolute; top: calc(var(--nav-h) + 8px); left: 16px; right: 16px; background: rgba(12, 48, 56, 0.97); border: 1px solid var(--line); border-radius: 18px; padding: 8px; flex-direction: column; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) }
+.mobile-panel a { padding: 14px 16px; border-radius: 12px; font-weight: 500; color: var(--link) }
+.mobile-panel a:hover { background: rgba(255, 255, 255, 0.05); color: #fff }
+.nav.open .mobile-panel { display: flex }
+
+/* ---------- HERO ---------- */
+.hero { position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; isolation: isolate; background: var(--agua) }
+#stage { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; touch-action: pan-y }
+/* azulejos de baño que se desvanecen hacia el agua */
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 56px 56px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.45) 45%, transparent 78%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.45) 45%, transparent 78%) }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(120% 80% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.38) 100%) }
+.hero-inner { position: relative; z-index: 2; pointer-events: none; max-width: 1344px; margin: 0 auto; min-height: inherit; padding: calc(var(--nav-h) + 40px) 68px 80px; display: flex; flex-direction: column; justify-content: center }
+.copy { max-width: 600px; pointer-events: auto }
+h1 { font-family: var(--display); font-size: clamp(42px, 5.4vw, 78px); line-height: 1; font-weight: 800; letter-spacing: -0.035em }
+.sub { margin-top: 26px; color: var(--niebla); font-size: clamp(17px, 1.5vw, 21px); line-height: 1.55; max-width: 34ch }
+.cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
+.btn-try { display: inline-flex; align-items: center; justify-content: center; height: 58px; padding: 0 34px; border-radius: 999px; background: linear-gradient(180deg, var(--chicle-claro), var(--chicle)); color: var(--agua); font-weight: 700; font-size: 18px; letter-spacing: -0.005em; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35); transition: transform .25s, filter .25s }
+.btn-try:hover { transform: translateY(-2px); filter: brightness(1.05) }
+.btn-ghost { display: inline-flex; align-items: center; justify-content: center; height: 58px; padding: 0 26px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, 0.22); color: #fff; font-weight: 600; font-size: 17px; transition: border-color .2s, background .2s }
+.btn-ghost:hover { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.04) }
+.hint { margin-top: 28px; display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--niebla) }
+.hint svg { width: 16px; height: 16px; flex: none; color: var(--patito) }
+.hint a { color: #fff; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--chicle) }
+.reveal { opacity: 0; transform: translateY(18px); animation: rise .9s cubic-bezier(.2, .7, .2, 1) forwards }
+.d1 { animation-delay: .08s } .d2 { animation-delay: .2s } .d3 { animation-delay: .32s } .d4 { animation-delay: .9s }
+@keyframes rise { to { opacity: 1; transform: none } }
+.loader { position: absolute; z-index: 2; left: 70%; top: 50%; width: 46px; height: 46px; border-radius: 50%; border: 2px solid rgba(110, 230, 220, 0.18); border-top-color: #6ee6dc; transform: translate(-50%, -50%); animation: spin 1s linear infinite; transition: opacity .5s; pointer-events: none }
+.loader.hide { opacity: 0 }
+@keyframes spin { from { transform: translate(-50%, -50%) rotate(0) } to { transform: translate(-50%, -50%) rotate(360deg) } }
+.sound-btn { position: absolute; z-index: 3; right: 24px; bottom: 24px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line); color: var(--link); transition: background .2s, color .2s }
+.sound-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff }
+.sound-btn svg { width: 19px; height: 19px }
+.sound-btn .off { display: none }
+.sound-btn[aria-pressed="false"] .on { display: none }
+.sound-btn[aria-pressed="false"] .off { display: block }
+.hero.no-webgl #stage, .hero.no-webgl .sound-btn, .hero.no-webgl .hint { display: none }
+
+/* ---------- RESERVA ---------- */
+.book { position: relative; background-color: var(--espuma); color: var(--tinta); padding: 110px 0 120px;
+  background-image: linear-gradient(rgba(10, 43, 51, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(10, 43, 51, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px }
+/* borde de espuma */
+.book::before { content: ""; position: absolute; left: 0; right: 0; top: -23px; height: 24px; pointer-events: none;
+  background:
+    radial-gradient(circle at 14px 24px, var(--espuma) 13px, transparent 14px) 9px 0 / 58px 24px repeat-x,
+    radial-gradient(circle at 29px 24px, var(--espuma) 22px, transparent 23px) 0 0 / 58px 24px repeat-x }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px }
+.book-head { max-width: 620px }
+h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-height: 1.04; font-weight: 800; letter-spacing: -0.03em }
+.book-head p { margin-top: 16px; font-size: 18px; color: var(--tinta-suave); max-width: 52ch }
+.book-grid { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr); gap: 56px; align-items: start }
+.book-form fieldset { border: 0; min-width: 0 }
+.book-form fieldset + fieldset { margin-top: 40px }
+.book-form legend { font-family: var(--display); font-size: 21px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 14px }
+.book-form legend small { font-family: "Figtree", sans-serif; font-size: 14px; font-weight: 500; color: var(--tinta-suave); letter-spacing: 0; margin-left: 6px }
+.field-input { width: 100%; max-width: 360px; height: 54px; border-radius: 16px; border: 1.5px solid var(--line-dark); background: #fff; padding: 0 18px; font: 500 17px "Figtree", sans-serif; color: var(--tinta); transition: border-color .2s, box-shadow .2s }
+.field-input:focus { outline: none; border-color: var(--agua); box-shadow: 0 0 0 4px rgba(10, 43, 51, 0.1) }
+.choice { position: relative; display: block; cursor: pointer }
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px }
+.choice input:focus-visible + span { outline: 2px solid var(--chicle); outline-offset: 3px }
+
+.sizes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px }
+.size { height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 16px 10px 14px; border-radius: 20px; background: #fff; border: 1.5px solid var(--line-dark); transition: border-color .2s, box-shadow .2s, transform .2s }
+.size .ico { height: 54px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 8px; color: #c9a27a; transition: color .2s }
+.size .ico svg { width: 54px; height: 54px; transform-origin: 50% 100%; transition: transform .35s cubic-bezier(.3, 1.6, .5, 1) }
+.size strong { font-weight: 700; font-size: 16px }
+.size em { font-style: normal; font-size: 13px; color: var(--tinta-suave) }
+.size[data-s="s"] .ico svg { transform: scale(.55) }
+.size[data-s="m"] .ico svg { transform: scale(.7) }
+.size[data-s="l"] .ico svg { transform: scale(.85) }
+.choice input:checked + .size { border-color: var(--agua); box-shadow: inset 0 0 0 1.5px var(--agua) }
+.choice input:checked + .size .ico { color: var(--chicle) }
+.choice input:checked + .size .ico svg { animation: hop .45s cubic-bezier(.3, 1.6, .5, 1) }
+@keyframes hop { 40% { translate: 0 -8px } }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px }
+.chip { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 999px; background: #fff; border: 1.5px solid var(--line-dark); font-weight: 600; font-size: 15px; transition: background .2s, color .2s, border-color .2s }
+.choice input:checked + .chip { background: var(--agua); border-color: var(--agua); color: #fff }
+
+.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.svc { height: 100%; display: block; position: relative; padding: 16px 18px 16px 54px; border-radius: 18px; background: #fff; border: 1.5px solid var(--line-dark); transition: border-color .2s, box-shadow .2s }
+.svc::before { content: ""; position: absolute; left: 18px; top: 18px; width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid rgba(10, 43, 51, 0.3); background: #fff; transition: background .2s, border-color .2s }
+.svc::after { content: ""; position: absolute; left: 25px; top: 22px; width: 7px; height: 12px; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) scale(0); transition: transform .2s cubic-bezier(.3, 1.6, .5, 1) }
+.svc strong { display: block; font-weight: 700; font-size: 16px }
+.svc em { display: block; font-style: normal; font-size: 14px; color: var(--tinta-suave); margin-top: 2px; line-height: 1.4 }
+.choice input:checked + .svc { border-color: var(--agua); box-shadow: inset 0 0 0 1.5px var(--agua) }
+.choice input:checked + .svc::before { background: var(--chicle); border-color: var(--chicle) }
+.choice input:checked + .svc::after { transform: rotate(45deg) scale(1) }
+
+.when { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.when .field-input { width: auto; max-width: none; flex: 0 1 220px }
+
+.preview { position: sticky; top: calc(var(--nav-h) + 24px) }
+.chat { background: var(--agua); color: #fff; border-radius: 28px; padding: 18px; box-shadow: 0 30px 60px -20px rgba(10, 43, 51, 0.45) }
+.chat-head { display: flex; align-items: center; gap: 12px; padding: 4px 4px 16px; border-bottom: 1px solid var(--line) }
+.chat-head .brand-mark { width: 40px; height: 40px }
+.chat-head .brand-mark svg { width: 28px; height: 28px }
+.chat-head strong { display: block; font-size: 16px }
+.chat-head span { font-size: 13px; color: var(--niebla) }
+.chat-body { padding: 18px 2px 6px; display: flex; flex-direction: column; align-items: flex-end }
+.bubble { max-width: 92%; background: #d9f3ee; color: var(--tinta); border-radius: 20px 20px 6px 20px; padding: 14px 16px; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere }
+.bubble-meta { margin-top: 6px; font-size: 12px; color: var(--niebla) }
+.btn-wa { margin-top: 16px; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 58px; border-radius: 999px; background: linear-gradient(180deg, var(--chicle-claro), var(--chicle)); color: var(--agua); font-weight: 700; font-size: 18px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35); transition: transform .25s, filter .25s }
+.btn-wa:hover { transform: translateY(-2px); filter: brightness(1.05) }
+.btn-wa svg { width: 20px; height: 20px }
+.fine { margin-top: 12px; font-size: 13px; color: var(--tinta-suave); text-align: center }
+
+/* ---------- UBICACIÓN ---------- */
+.visit { background: var(--agua); padding: 110px 0 }
+.visit-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center }
+.visit .addr { margin-top: 22px; font-size: 20px; line-height: 1.5; color: #fff }
+.visit .note { margin-top: 14px; font-size: 16px; color: var(--niebla); max-width: 44ch }
+.visit .cta-row { margin-top: 30px }
+.map-frame { border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--agua-2); border: 1px solid var(--line) }
+.map-frame iframe { width: 100%; height: 100%; border: 0; display: block }
+
+.foot { background: var(--agua-hondo); padding: 36px 0 calc(36px + env(safe-area-inset-bottom)); color: var(--niebla); font-size: 14px }
+.foot .wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between }
+.foot .brand { color: #fff; font-size: 19px }
+.foot a:hover { color: #fff }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) {
+  .nav-inner, .hero-inner { padding-left: 40px; padding-right: 40px }
+  .nav-links { gap: 26px }
+  .book-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 40px }
+  .sizes { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 860px) {
+  .nav-links { display: none }
+  .menu-btn { display: inline-flex }
+  .nav-right { gap: 10px }
+  .hero-inner { justify-content: flex-end; text-align: center; align-items: center; padding: calc(var(--nav-h) + 20px) 24px 48px }
+  .copy { max-width: 560px }
+  h1 { font-size: clamp(34px, 9vw, 56px) }
+  .br-desk { display: none }
+  .sub { margin: 16px auto 0 }
+  .cta-row { margin-top: 24px; justify-content: center }
+  .hint { justify-content: center; margin-top: 20px }
+  .sound-btn { top: calc(var(--nav-h) + 14px); bottom: auto; right: 16px }
+  .book { padding: 84px 0 90px }
+  .book-grid { grid-template-columns: minmax(0, 1fr); margin-top: 40px }
+  .preview { position: static }
+  .visit { padding: 84px 0 }
+  .visit-grid { grid-template-columns: minmax(0, 1fr); gap: 36px }
+}
+@media (max-width: 560px) {
+  .services { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 480px) {
+  .nav-inner { padding: 0 16px }
+  .hero-inner { padding: calc(var(--nav-h) + 16px) 16px 36px }
+  .wrap { padding: 0 16px }
+  .brand { font-size: 20px }
+  .btn-open { padding: 9px 15px; font-size: 13px }
+  .btn-try, .btn-ghost { height: 50px; font-size: 16px }
+  .btn-try { padding: 0 24px }
+  .btn-ghost { padding: 0 18px }
+  .sizes { gap: 10px }
+  .size { padding: 14px 8px 12px }
+  .when .field-input { flex: 1 1 100% }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  .reveal { animation: none; opacity: 1; transform: none }
+  .choice input:checked + .size .ico svg { animation: none }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bone" viewBox="0 0 32 32">
+    <g transform="rotate(-35 16 16)" fill="currentColor">
+      <rect x="9" y="13.5" width="14" height="5" rx="2.5" />
+      <circle cx="9" cy="13.2" r="3" /><circle cx="9" cy="18.8" r="3" />
+      <circle cx="23" cy="13.2" r="3" /><circle cx="23" cy="18.8" r="3" />
+    </g>
+  </symbol>
+  <symbol id="i-dog" viewBox="0 0 48 48">
+    <ellipse cx="9.5" cy="22" rx="5.5" ry="11" transform="rotate(18 9.5 22)" fill="currentColor" opacity=".6" />
+    <ellipse cx="38.5" cy="22" rx="5.5" ry="11" transform="rotate(-18 38.5 22)" fill="currentColor" opacity=".6" />
+    <ellipse cx="24" cy="26" rx="14" ry="13.5" fill="currentColor" />
+    <ellipse cx="24" cy="32" rx="7.5" ry="5.4" fill="#fff" opacity=".92" />
+    <circle cx="18.5" cy="24" r="2.1" fill="#0a2b33" /><circle cx="29.5" cy="24" r="2.1" fill="#0a2b33" />
+    <ellipse cx="24" cy="29.6" rx="2.6" ry="1.9" fill="#0a2b33" />
+  </symbol>
+  <symbol id="i-paw" viewBox="0 0 24 24">
+    <g fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4.2" /><ellipse cx="5.8" cy="10.5" rx="2" ry="2.5" /><ellipse cx="9.8" cy="6.8" rx="2" ry="2.6" /><ellipse cx="14.2" cy="6.8" rx="2" ry="2.6" /><ellipse cx="18.2" cy="10.5" rx="2" ry="2.5" /></g>
+  </symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#inicio" aria-label="Bony Can, inicio"><span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>Bony Can</a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Facebook</a>
+      </nav>
+      <a class="btn-open" href="#servicios">Reservar</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false" aria-controls="mobilePanel"><span></span></button>
+    </div>
+    <div class="mobile-panel" id="mobilePanel">
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <canvas id="stage" aria-hidden="true"></canvas>
+    <div class="loader" id="loader"></div>
+    <div class="hero-inner">
+      <div class="copy">
+        <h1 class="reveal d1">Llega con barro,<br />se va oliendo<br class="br-desk" /> a nube.</h1>
+        <p class="sub reveal d2">Spa y boutique para perros en Trujillo. Baño, corte, uñas y todos los mimos que tu engreído se merece.</p>
+        <div class="cta-row reveal d3">
+          <a class="btn-try" href="#servicios">Reservar cita</a>
+          <a class="btn-ghost" href="#ubicacion">Cómo llegar</a>
+        </div>
+        <p class="hint reveal d4" id="hint"><svg aria-hidden="true"><use href="#i-paw" /></svg><span>Toca a Bony y revienta las burbujas.</span></p>
+      </div>
+    </div>
+    <button class="sound-btn" id="soundBtn" aria-pressed="true" aria-label="Sonidos activados" hidden>
+      <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5z" fill="currentColor" /><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+      <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5z" fill="currentColor" /><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+    </button>
+  </section>
+
+  <section class="book" id="servicios" aria-labelledby="book-title">
+    <div class="wrap">
+      <div class="book-head">
+        <h2 id="book-title">Arma la cita de tu perro</h2>
+        <p>Elige lo que necesita y te dejamos el mensaje listo para WhatsApp. Te respondemos con el precio y el horario disponible.</p>
+      </div>
+
+      <div class="book-grid">
+        <form class="book-form" id="bookForm" novalidate>
+          <fieldset>
+            <legend>¿Cómo se llama? <small>opcional</small></legend>
+            <label class="sr-only" for="dogName">Nombre de tu perro</label>
+            <input class="field-input" id="dogName" name="dogName" type="text" maxlength="24" placeholder="Ej. Rocky" autocomplete="off" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Tamaño</legend>
+            <div class="sizes">
+              <label class="choice"><input type="radio" name="size" value="Pequeño" /><span class="size" data-s="s"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Pequeño</strong><em>como un shih tzu</em></span></label>
+              <label class="choice"><input type="radio" name="size" value="Mediano" /><span class="size" data-s="m"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Mediano</strong><em>como un beagle</em></span></label>
+              <label class="choice"><input type="radio" name="size" value="Grande" /><span class="size" data-s="l"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Grande</strong><em>como un labrador</em></span></label>
+              <label class="choice"><input type="radio" name="size" value="Gigante" /><span class="size" data-s="xl"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Gigante</strong><em>como un gran danés</em></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Tipo de pelo</legend>
+            <div class="chips">
+              <label class="choice"><input type="radio" name="coat" value="corto" /><span class="chip">Corto</span></label>
+              <label class="choice"><input type="radio" name="coat" value="largo" /><span class="chip">Largo</span></label>
+              <label class="choice"><input type="radio" name="coat" value="rizado" /><span class="chip">Rizado</span></label>
+              <label class="choice"><input type="radio" name="coat" value="doble capa" /><span class="chip">Doble capa</span></label>
+            </div>
+          </fieldset>
+
+          <!-- TODO: confirmar con Bony Can la lista real de servicios. -->
+          <fieldset>
+            <legend>Servicios</legend>
+            <div class="services">
+              <label class="choice"><input type="checkbox" name="svc" value="Baño completo" checked /><span class="svc"><strong>Baño completo</strong><em>Shampoo según su pelo, secado y cepillado.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Corte de pelo" /><span class="svc"><strong>Corte de pelo</strong><em>Corte de raza o como tú lo prefieras.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Corte de uñas" /><span class="svc"><strong>Corte de uñas</strong><em>Cortadas y limadas, con calma.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Limpieza de oídos" /><span class="svc"><strong>Limpieza de oídos</strong><em>Limpieza suave para que no se acumule cerumen.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Deslanado" /><span class="svc"><strong>Deslanado</strong><em>Retira el pelo muerto en razas de doble capa.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Baño antipulgas" /><span class="svc"><strong>Baño antipulgas</strong><em>Shampoo especial contra pulgas y garrapatas.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Perfume y lazo" /><span class="svc"><strong>Perfume y lazo</strong><em>El toque final para que salga regio.</em></span></label>
+              <label class="choice"><input type="checkbox" name="svc" value="Ver productos de la boutique" /><span class="svc"><strong>Productos de la boutique</strong><em>Quiero que me muestren lo que tienen.</em></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>¿Cuándo te gustaría venir? <small>opcional</small></legend>
+            <div class="when">
+              <label class="sr-only" for="dogDate">Fecha</label>
+              <input class="field-input" id="dogDate" name="dogDate" type="date" />
+              <label class="choice"><input type="radio" name="turn" value="mañana" /><span class="chip">Mañana</span></label>
+              <label class="choice"><input type="radio" name="turn" value="tarde" /><span class="chip">Tarde</span></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <aside class="preview" aria-label="Vista previa del mensaje">
+          <div class="chat">
+            <div class="chat-head">
+              <span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>
+              <div><strong>Bony Can</strong><span>Boutique y Spa, Trujillo</span></div>
+            </div>
+            <div class="chat-body">
+              <p class="bubble" id="msgPreview" aria-live="polite"></p>
+              <span class="bubble-meta">Tu mensaje</span>
+            </div>
+          </div>
+          <a class="btn-wa" id="waBtn" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.8a.6.6 0 0 1-1-.5z" fill="currentColor" /></svg>
+            Enviar por WhatsApp
+          </a>
+          <p class="fine">Se abre WhatsApp con el mensaje listo. Tú decides si lo envías.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="ubicacion" aria-labelledby="visit-title">
+    <div class="wrap visit-grid">
+      <div>
+        <h2 id="visit-title">Ven a visitarnos</h2>
+        <!-- TODO: añadir horario de atención y teléfono cuando Bony Can los confirme. -->
+        <p class="addr">Carlos Wiesse 670, junto al Parque Olivar<br />Trujillo, La Libertad</p>
+        <p class="note">Además del spa, en nuestra boutique encuentras productos para tu mascota.</p>
+        <div class="cta-row">
+          <a class="btn-try" href="https://www.google.com/maps/search/?api=1&amp;query=Bony%20Can%20Trujillo" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn-ghost" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Ver Facebook</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe title="Mapa de Bony Can en Trujillo" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Bony%20Can%2C%20Trujillo%2C%20Per%C3%BA&amp;z=16&amp;output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>Bony Can</a>
+    <span>Boutique y spa para perros en Trujillo, Perú.</span>
+    <a href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Facebook</a>
+  </div>
+</footer>
+
+<script>
+// Interfaz que no depende de WebGL: menú y armador de citas.
+(() => {
+  // TODO: número de WhatsApp de Bony Can en formato internacional, sin "+" ni espacios (ej. "51987654321").
+  const WHATSAPP = "";
+
+  const nav = document.getElementById("nav");
+  const menuBtn = document.getElementById("menuBtn");
+  const setMenu = (open) => { nav.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", String(open)); };
+  menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+  nav.querySelectorAll(".mobile-panel a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+
+  const form = document.getElementById("bookForm");
+  const nameInput = document.getElementById("dogName");
+  const dateInput = document.getElementById("dogDate");
+  const preview = document.getElementById("msgPreview");
+  const waBtn = document.getElementById("waBtn");
+
+  const d = new Date();
+  dateInput.min = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+  const picked = (name) => form.querySelector(`input[name="${name}"]:checked`)?.value || "";
+  const fmtDate = (v) => v ? new Date(`${v}T12:00:00`).toLocaleDateString("es-PE", { weekday: "long", day: "numeric", month: "long" }) : "";
+
+  function compose() {
+    const name = nameInput.value.trim();
+    const size = picked("size");
+    const coat = picked("coat");
+    const services = [...form.querySelectorAll('input[name="svc"]:checked')].map((i) => i.value);
+    const when = [fmtDate(dateInput.value), picked("turn") && `por la ${picked("turn")}`].filter(Boolean).join(", ");
+
+    const lines = [`¡Hola, Bony Can! Quiero reservar una cita para ${name || "mi perro"}.`, ""];
+    if (size || coat) lines.push(`• Tamaño y pelo: ${[size && size.toLowerCase(), coat && `pelo ${coat}`].filter(Boolean).join(", ")}`);
+    lines.push(`• Servicios: ${services.length ? services.join(", ").toLowerCase() : "quiero que me recomienden"}`);
+    if (when) lines.push(`• Fecha: ${when}`);
+    lines.push("", "¿Me confirman el precio y el horario disponible? ¡Gracias!");
+    return lines.join("\n");
+  }
+
+  function update() {
+    const msg = compose();
+    preview.textContent = msg;
+    waBtn.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  }
+  form.addEventListener("input", update);
+  form.addEventListener("change", update);
+  form.addEventListener("submit", (e) => e.preventDefault());
+  update();
+
+  // Si three.js no llega a cargar, el hero queda solo con el texto.
+  setTimeout(() => {
+    if (!window.__bonyReady) {
+      document.getElementById("inicio").classList.add("no-webgl");
+      document.getElementById("loader").classList.add("hide");
+    }
+  }, 10000);
+})();
+</script>
+
+<script type="module">
+import * as THREE from "three";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+
+const hero = document.getElementById("inicio");
+const canvas = document.getElementById("stage");
+const loader = document.getElementById("loader");
+const copy = hero.querySelector(".copy");
+const hint = document.getElementById("hint");
+const soundBtn = document.getElementById("soundBtn");
+
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const M = reduceMotion ? 0.25 : 1;
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, k) => a + (b - a) * k;
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+} catch (err) {
+  hero.classList.add("no-webgl");
+  loader.classList.add("hide");
+  throw err;
+}
+window.__bonyReady = true;
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a2b33);
+const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
+
+function radialTexture(stops, size = 256) {
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const g = c.getContext("2d");
+  const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  for (const [o, col] of stops) grad.addColorStop(o, col);
+  g.fillStyle = grad;
+  g.fillRect(0, 0, size, size);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+const glowTex = radialTexture([[0, "rgba(140,255,240,1)"], [0.25, "rgba(70,215,205,.55)"], [0.6, "rgba(30,160,160,.12)"], [1, "rgba(20,120,130,0)"]]);
+
+// Estudio oscuro con "softboxes" redondos: blancos arriba, agua y chicle detrás.
+function studioEnvironment() {
+  const env = new THREE.Scene();
+  env.background = new THREE.Color(0x030607);
+  const geo = new THREE.SphereGeometry(0.5, 32, 16);
+  const box = (color, mult, w, h, x, y, z) => {
+    const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(mult) }));
+    m.scale.set(w, h, 0.3);
+    m.position.set(x, y, z);
+    m.lookAt(0, 0, 0);
+    env.add(m);
+  };
+  box(0xffffff, 3.2, 5, 3.2, -3, 4.5, 4);
+  box(0xffffff, 1.1, 1.2, 6, 6, 0.5, 2);
+  box(0xffffff, 0.8, 3, 1, 1.5, 5, -1);
+  box(0x2ec4b6, 1.0, 4, 5, -5, 0, -4);
+  box(0xff6f9f, 0.8, 4, 5, 5, 0, -4);
+  box(0x2ec4b6, 0.35, 6, 3, 0, -5, 1);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const tex = pmrem.fromScene(env, 0.02).texture;
+  pmrem.dispose();
+  return tex;
+}
+scene.environment = studioEnvironment();
+scene.environmentIntensity = 1.0;
+
+scene.add(new THREE.HemisphereLight(0xfff3e4, 0x0b3a40, 2.1));
+const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+keyLight.position.set(-3, 4, 5);
+scene.add(keyLight);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.45, 0.4, 0.9);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+function rimMaterial(color, power, strength) {
+  return new THREE.ShaderMaterial({
+    uniforms: { uColor: { value: new THREE.Color(color) }, uPower: { value: power }, uStrength: { value: strength } },
+    vertexShader: /* glsl */`
+      varying vec3 vN; varying vec3 vV;
+      void main() {
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        vN = normalize(normalMatrix * normal);
+        vV = normalize(-mv.xyz);
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader: /* glsl */`
+      uniform vec3 uColor; uniform float uPower; uniform float uStrength;
+      varying vec3 vN; varying vec3 vV;
+      void main() {
+        float f = pow(1.0 - max(dot(normalize(vN), normalize(vV)), 0.0), uPower);
+        gl_FragColor = vec4(uColor * f * uStrength, f);
+      }`,
+    blending: THREE.AdditiveBlending,
+    transparent: true,
+    depthWrite: false,
+  });
+}
+
+// ---------- Materiales ----------
+const fur = (color, sheen) => new THREE.MeshPhysicalMaterial({
+  color, roughness: 0.6, sheen: 1, sheenColor: new THREE.Color(sheen), sheenRoughness: 0.42,
+  clearcoat: 0.1, clearcoatRoughness: 0.6, envMapIntensity: 0.75,
+});
+const glossy = (color, extra = {}) => new THREE.MeshPhysicalMaterial({
+  color, roughness: 0.16, clearcoat: 1, clearcoatRoughness: 0.08, envMapIntensity: 1.1, ...extra,
+});
+const caramel = fur(0xe3a565, 0xffe1b8);
+const cream = fur(0xfff1dc, 0xffffff);
+const earMat = fur(0x9a5a34, 0xd89a6a);
+const browMat = fur(0x80482a, 0xc98858);
+const noseMat = glossy(0x231513);
+const mouthMat = new THREE.MeshStandardMaterial({ color: 0x3a2320, roughness: 0.6 });
+const tongueMat = new THREE.MeshPhysicalMaterial({ color: 0xff7aa6, roughness: 0.35, clearcoat: 0.5, sheen: 0.4, sheenColor: new THREE.Color(0xffc0d4) });
+const pinkMat = glossy(0xff6f9f, { roughness: 0.3, clearcoat: 0.6 });
+const goldMat = new THREE.MeshPhysicalMaterial({ color: 0xffc94a, metalness: 0.55, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.1, envMapIntensity: 1.2 });
+const beanMat = new THREE.MeshPhysicalMaterial({ color: 0xff8fb2, roughness: 0.4, clearcoat: 0.6 });
+const eyeWhite = glossy(0xfbf7f0, { roughness: 0.12 });
+const irisMat = glossy(0x4a2a16, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+const pupilMat = glossy(0x0b0605, { polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+const glintMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const blushMat = new THREE.MeshBasicMaterial({ color: 0xff8fb2, transparent: true, opacity: 0.5, depthWrite: false });
+const rimFur = rimMaterial(0x9ff7ee, 3.0, 0.42);
+const duckMat = new THREE.MeshPhysicalMaterial({ color: 0xffc94a, roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.15 });
+const beakMat = new THREE.MeshPhysicalMaterial({ color: 0xff8a3d, roughness: 0.3, clearcoat: 0.6 });
+const foamMat = new THREE.MeshPhysicalMaterial({
+  color: 0xf2fbfb, roughness: 0.32, clearcoat: 0.7, clearcoatRoughness: 0.2,
+  sheen: 0.6, sheenColor: new THREE.Color(0xbff6f0),
+  iridescence: 0.55, iridescenceIOR: 1.33, iridescenceThicknessRange: [180, 420], envMapIntensity: 0.9,
+});
+
+const SPHERE = new THREE.SphereGeometry(1, 48, 32);
+const LOW = new THREE.SphereGeometry(1, 12, 8);
+const hidden = new THREE.MeshBasicMaterial({ visible: false });
+const Z = new THREE.Vector3(0, 0, 1);
+
+function part(parent, geo, mat, { p = [0, 0, 0], s = [1, 1, 1], r = [0, 0, 0], rim = null } = {}) {
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.set(...p);
+  mesh.scale.set(...s);
+  mesh.rotation.set(...r);
+  if (rim) {
+    const shell = new THREE.Mesh(geo, rim);
+    shell.renderOrder = 2;
+    mesh.add(shell);
+  }
+  parent.add(mesh);
+  return mesh;
+}
+
+// ---------- Rig: bony (flota / intro) → body (giro parcial) → head (giro completo) ----------
+const BASE_Y = 0.15;
+const bony = new THREE.Group();
+scene.add(bony);
+const body = new THREE.Group();
+bony.add(body);
+const head = new THREE.Group();
+head.position.set(0, 0.42, 0);
+body.add(head);
+const bath = new THREE.Group(); // espuma y patito: no giran con el perro
+bony.add(bath);
+
+// Cabeza (elipsoide) y helper para colocar cosas sobre su superficie.
+const HA = 1.06, HB = 0.94, HC = 0.98;
+part(head, SPHERE, caramel, { s: [HA, HB, HC], rim: rimFur });
+function onHead(obj, x, y, lift = 0) {
+  const z = HC * Math.sqrt(Math.max(0, 1 - (x / HA) ** 2 - (y / HB) ** 2));
+  const n = new THREE.Vector3(x / (HA * HA), y / (HB * HB), z / (HC * HC)).normalize();
+  obj.position.set(x, y, z).addScaledVector(n, lift);
+  obj.quaternion.setFromUnitVectors(Z, n);
+  head.add(obj);
+  return obj;
+}
+const headProxy = part(head, LOW, hidden, { s: [1.25, 1.1, 1.15] });
+
+// Hocico, nariz y boca "ω"
+part(head, SPHERE, cream, { p: [0, -0.3, 0.7], s: [0.52, 0.38, 0.42] });
+part(head, SPHERE, cream, { p: [-0.17, -0.36, 0.74], s: [0.3, 0.27, 0.34] });
+part(head, SPHERE, cream, { p: [0.17, -0.36, 0.74], s: [0.3, 0.27, 0.34] });
+part(head, SPHERE, noseMat, { p: [0, -0.15, 1.06], s: [0.16, 0.11, 0.1] });
+part(head, new THREE.CapsuleGeometry(0.012, 0.07, 4, 8), mouthMat, { p: [0, -0.27, 1.11] });
+const arcGeo = new THREE.TorusGeometry(0.068, 0.014, 8, 24, Math.PI);
+part(head, arcGeo, mouthMat, { p: [-0.068, -0.31, 1.1], r: [0, 0, Math.PI] });
+part(head, arcGeo, mouthMat, { p: [0.068, -0.31, 1.1], r: [0, 0, Math.PI] });
+
+const tongue = new THREE.Group();
+tongue.position.set(0, -0.36, 1.07);
+tongue.rotation.x = -0.25;
+head.add(tongue);
+part(tongue, new THREE.CapsuleGeometry(0.07, 0.09, 6, 16), tongueMat, { p: [0, -0.09, 0.02], s: [1, 1, 0.5] });
+tongue.visible = false;
+
+// Ojos: globo blanco, iris y pupila que giran hacia el cursor, brillos fijos.
+const eyeBallGeo = new THREE.SphereGeometry(0.2, 48, 32);
+const irisGeo = new THREE.SphereGeometry(0.203, 48, 16, 0, Math.PI * 2, 0, 0.8);
+const pupilGeo = new THREE.SphereGeometry(0.206, 48, 12, 0, Math.PI * 2, 0, 0.42);
+const glintGeo = new THREE.SphereGeometry(0.038, 16, 12);
+const smileGeo = new THREE.TorusGeometry(0.11, 0.026, 8, 28, Math.PI);
+const eyes = [];
+for (const side of [-1, 1]) {
+  const socket = onHead(new THREE.Group(), side * 0.36, 0.1, -0.075);
+  const lid = new THREE.Group();
+  socket.add(lid);
+  lid.add(new THREE.Mesh(eyeBallGeo, eyeWhite));
+  const pivot = new THREE.Group();
+  lid.add(pivot);
+  part(pivot, irisGeo, irisMat, { r: [Math.PI / 2, 0, 0] });
+  part(pivot, pupilGeo, pupilMat, { r: [Math.PI / 2, 0, 0] });
+  part(lid, glintGeo, glintMat, { p: [-0.06, 0.07, 0.18] });
+  part(lid, glintGeo, glintMat, { p: [0.05, -0.045, 0.19], s: [0.45, 0.45, 0.45] });
+  const smile = part(socket, smileGeo, mouthMat, { p: [0, -0.02, 0.17] });
+  smile.visible = false;
+  eyes.push({ lid, pivot, smile });
+}
+
+// Cejas, mejillas, copete y lazo
+const brows = [];
+for (const side of [-1, 1]) {
+  const b = onHead(new THREE.Group(), side * 0.33, 0.41, 0.01);
+  part(b, new THREE.CapsuleGeometry(0.03, 0.12, 6, 12), browMat, { r: [0, 0, Math.PI / 2 - side * 0.2] });
+  b.userData.base = b.position.clone();
+  brows.push(b);
+  const blush = onHead(new THREE.Group(), side * 0.6, -0.14, 0.0);
+  part(blush, SPHERE, blushMat, { s: [0.12, 0.07, 0.03] });
+}
+for (const [x, y, s] of [[-0.13, 0.86, 0.15], [0.02, 0.9, 0.17], [0.15, 0.86, 0.14]]) {
+  const tuft = onHead(new THREE.Group(), x, y, -0.02);
+  part(tuft, SPHERE, caramel, { s: [s * 0.8, s * 0.8, s] });
+}
+const bow = onHead(new THREE.Group(), 0.46, 0.76, 0.03);
+bow.rotateZ(-0.45);
+part(bow, SPHERE, pinkMat, { p: [-0.14, 0, 0], s: [0.16, 0.1, 0.06], r: [0, 0, 0.35] });
+part(bow, SPHERE, pinkMat, { p: [0.14, 0, 0], s: [0.16, 0.1, 0.06], r: [0, 0, -0.35] });
+part(bow, SPHERE, pinkMat, { p: [0, 0, 0.02], s: [0.065, 0.065, 0.065] });
+
+// Orejas caídas con resorte
+const ears = [];
+for (const side of [-1, 1]) {
+  const pivot = new THREE.Group();
+  pivot.position.set(side * 0.8, 0.52, 0);
+  head.add(pivot);
+  part(pivot, SPHERE, earMat, { p: [side * 0.16, -0.5, 0], s: [0.14, 0.6, 0.3], r: [0, 0, side * 0.08], rim: rimFur });
+  ears.push({ pivot, side, x: 0, v: 0 });
+}
+
+// Cuerpo, pecho, collar y placa de hueso
+part(body, SPHERE, caramel, { p: [0, -0.98, -0.08], s: [0.74, 0.7, 0.64], rim: rimFur });
+part(body, SPHERE, cream, { p: [0, -0.86, 0.34], s: [0.46, 0.52, 0.3] });
+const bodyProxy = part(body, LOW, hidden, { p: [0, -0.95, 0], s: [0.85, 0.75, 0.8] });
+part(body, new THREE.TorusGeometry(0.5, 0.07, 16, 64), pinkMat, { p: [0, -0.52, 0.04], r: [Math.PI / 2 - 0.15, 0, 0], s: [1.08, 1, 1] });
+const tag = new THREE.Group();
+tag.position.set(0, -0.6, 0.6);
+body.add(tag);
+const tagBone = new THREE.Group();
+tagBone.position.y = -0.1;
+tag.add(tagBone);
+part(tag, new THREE.TorusGeometry(0.035, 0.012, 8, 16), goldMat, { p: [0, -0.03, 0] });
+part(tagBone, new THREE.CapsuleGeometry(0.04, 0.16, 6, 12), goldMat, { r: [0, 0, Math.PI / 2] });
+for (const [x, y] of [[-0.12, 0.035], [-0.12, -0.035], [0.12, 0.035], [0.12, -0.035]]) {
+  part(tagBone, SPHERE, goldMat, { p: [x, y, 0], s: [0.05, 0.05, 0.05] });
+}
+
+// Patitas flotantes con almohadillas
+const paws = [];
+for (const [side, phase] of [[-1, 0], [1, Math.PI * 0.85]]) {
+  const g = new THREE.Group();
+  const rest = { x: side * 0.68, y: -1.08, z: 0.62, rz: side * -0.18 };
+  g.position.set(rest.x, rest.y, rest.z);
+  g.rotation.z = rest.rz;
+  body.add(g);
+  part(g, SPHERE, cream, { s: [0.22, 0.24, 0.18], rim: rimFur });
+  part(g, SPHERE, beanMat, { p: [0, -0.05, 0.165], s: [0.085, 0.065, 0.03] });
+  for (const [x, y, z] of [[-0.09, 0.07, 0.15], [0, 0.1, 0.16], [0.09, 0.07, 0.15]]) {
+    part(g, SPHERE, beanMat, { p: [x, y, z], s: [0.04, 0.045, 0.025] });
+  }
+  paws.push({ g, rest, phase, side, wave: side === 1 });
+}
+
+// Cola que sale de la espuma
+const tail = new THREE.Group();
+tail.position.set(0.62, -1.0, -0.45);
+body.add(tail);
+part(tail, new THREE.CapsuleGeometry(0.075, 0.36, 6, 16), caramel, { p: [0, 0.22, 0], r: [0, 0, -0.35], rim: rimFur });
+part(tail, SPHERE, cream, { p: [0.085, 0.45, 0], s: [0.085, 0.085, 0.085] });
+
+// ---------- Baño de espuma ----------
+function mulberry32(a) {
+  return () => {
+    a |= 0; a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rnd = mulberry32(7);
+const foamData = [];
+for (let i = 0; i < 34; i++) {
+  const a = (i / 34) * Math.PI * 2 + rnd() * 0.15;
+  const rr = 1.0 + rnd() * 0.32;
+  const z = Math.sin(a) * rr * 0.62 - 0.05;
+  foamData.push({ x: Math.cos(a) * rr, z, y: (z > 0.3 ? -1.42 : -1.26) + rnd() * 0.1, s: 0.22 + rnd() * 0.14, ph: rnd() * 6.28 });
+}
+for (let i = 0; i < 22; i++) {
+  const a = rnd() * Math.PI * 2;
+  const rr = 0.2 + rnd() * 0.75;
+  const z = Math.sin(a) * rr * 0.62 - 0.05;
+  foamData.push({ x: Math.cos(a) * rr, z, y: (z > 0.3 ? -1.36 : -1.2) + rnd() * 0.1, s: 0.2 + rnd() * 0.16, ph: rnd() * 6.28 });
+}
+const foam = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 32, 20), foamMat, foamData.length);
+foam.frustumCulled = false;
+bath.add(foam);
+
+// Patito de hule
+const duck = new THREE.Group();
+duck.position.set(1.22, -1.0, 0.5);
+duck.rotation.y = -2.2;
+bath.add(duck);
+const duckBody = new THREE.Group();
+duck.add(duckBody);
+part(duckBody, SPHERE, duckMat, { s: [0.26, 0.19, 0.2] });
+part(duckBody, SPHERE, duckMat, { p: [-0.22, 0.1, 0], s: [0.09, 0.08, 0.07], r: [0, 0, -0.6] });
+part(duckBody, SPHERE, duckMat, { p: [0.13, 0.2, 0], s: [0.14, 0.14, 0.14] });
+part(duckBody, SPHERE, beakMat, { p: [0.27, 0.18, 0], s: [0.09, 0.035, 0.075] });
+for (const s of [-1, 1]) {
+  part(duckBody, SPHERE, noseMat, { p: [0.21, 0.25, s * 0.085], s: [0.022, 0.022, 0.022] });
+  part(duckBody, SPHERE, duckMat, { p: [-0.02, 0.03, s * 0.18], s: [0.12, 0.08, 0.03] });
+}
+const duckProxy = part(duck, LOW, hidden, { p: [0.05, 0.08, 0], s: [0.36, 0.32, 0.3] });
+const duckState = { y: 0, vy: 0, spin: 0, jumping: false };
+
+// Brillo de fondo y reflejo bajo el baño
+const haze = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: 0x3fd8c8, opacity: 0.07, blending: THREE.AdditiveBlending, depthWrite: false }));
+haze.scale.setScalar(7.5);
+haze.position.set(0, 0.1, -3);
+scene.add(haze);
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: glowTex, color: 0x5fe6da, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false }));
+floor.position.set(0, -1.75, -0.6);
+floor.scale.set(3.8, 0.5, 1);
+scene.add(floor);
+
+// ---------- Burbujas (instanciadas, con película iridiscente) ----------
+const BUB_N = 30;
+const bubGeo = new THREE.SphereGeometry(1, 24, 16);
+const aAlpha = new THREE.InstancedBufferAttribute(new Float32Array(BUB_N), 1).setUsage(THREE.DynamicDrawUsage);
+const aHue = new THREE.InstancedBufferAttribute(new Float32Array(BUB_N), 1);
+bubGeo.setAttribute("aAlpha", aAlpha);
+bubGeo.setAttribute("aHue", aHue);
+const bubMat = new THREE.ShaderMaterial({
+  vertexShader: /* glsl */`
+    attribute float aAlpha; attribute float aHue;
+    varying vec3 vN; varying vec3 vV; varying float vA; varying float vH;
+    void main() {
+      vec4 mv = modelViewMatrix * instanceMatrix * vec4(position, 1.0);
+      vN = normalize(normalMatrix * mat3(instanceMatrix) * normal);
+      vV = normalize(-mv.xyz);
+      vA = aAlpha; vH = aHue;
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: /* glsl */`
+    varying vec3 vN; varying vec3 vV; varying float vA; varying float vH;
+    void main() {
+      vec3 N = normalize(vN); vec3 V = normalize(vV);
+      float ndv = max(dot(N, V), 0.0);
+      float f = pow(1.0 - ndv, 2.4);
+      vec3 film = 0.55 + 0.45 * cos(6.2831 * (vec3(0.0, 0.33, 0.67) + ndv * 1.4 + vH));
+      vec3 L = normalize(vec3(-0.45, 0.65, 0.6));
+      float s = pow(max(dot(N, normalize(L + V)), 0.0), 120.0);
+      float soft = pow(max(dot(N, normalize(L + V)), 0.0), 16.0);
+      vec3 col = film * (f * 1.25 + 0.06) + vec3(s) * 1.6 + vec3(soft) * 0.12;
+      gl_FragColor = vec4(col * vA, 1.0);
+    }`,
+  transparent: true,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending,
+});
+const bubbles = new THREE.InstancedMesh(bubGeo, bubMat, BUB_N);
+bubbles.frustumCulled = false;
+bubbles.renderOrder = 5;
+scene.add(bubbles);
+const bub = [];
+function spawnBubble(b, initial) {
+  b.r = 0.05 + Math.random() * 0.11;
+  b.p.set((Math.random() * 2 - 1) * 2.4, initial ? -1.1 + Math.random() * 3.4 : -1.05 - Math.random() * 0.2, -1.4 + Math.random() * 2.4);
+  b.v.set(0, 0, 0);
+  b.rise = 0.16 + Math.random() * 0.22;
+  b.life = initial ? 1 : 0;
+  b.pop = -1;
+  b.wait = initial ? 0 : Math.random() * 1.6;
+  aHue.setX(b.i, Math.random());
+  aHue.needsUpdate = true;
+}
+for (let i = 0; i < BUB_N; i++) {
+  const b = { i, p: new THREE.Vector3(), v: new THREE.Vector3(), r: 0.1, rise: 0.2, life: 0, pop: -1, wait: 0, ph: Math.random() * 6.28 };
+  spawnBubble(b, true);
+  bub.push(b);
+}
+function popBubble(b) {
+  if (b.pop >= 0 || b.wait > 0 || b.life < 0.3) return false;
+  b.pop = 0;
+  plip();
+  return true;
+}
+const tmpV = new THREE.Vector3();
+function burst() {
+  head.getWorldPosition(tmpV);
+  const free = bub.filter((b) => b.pop < 0).sort(() => Math.random() - 0.5).slice(0, 12);
+  for (const b of free) {
+    const a = Math.random() * Math.PI * 2;
+    b.r = 0.05 + Math.random() * 0.1;
+    b.p.set(tmpV.x + Math.cos(a) * 0.9, tmpV.y + Math.sin(a) * 0.7, tmpV.z + 0.4 + Math.random() * 0.5);
+    b.v.set(Math.cos(a) * 1.6, Math.sin(a) * 1.2 + 0.6, (Math.random() - 0.3) * 0.6);
+    b.life = 1; b.wait = 0; b.pop = -1;
+  }
+}
+
+// ---------- Sonidos (solo después de que la persona interactúa) ----------
+let actx = null, soundOn = true, gestured = false;
+function audio() {
+  if (!soundOn || !gestured) return null;
+  if (!actx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    actx = new AC();
+  }
+  if (actx.state === "suspended") actx.resume();
+  return actx;
+}
+function plip() {
+  const a = audio();
+  if (!a) return;
+  const t = a.currentTime, o = a.createOscillator(), g = a.createGain();
+  o.type = "sine";
+  o.frequency.setValueAtTime(900 + Math.random() * 500, t);
+  o.frequency.exponentialRampToValueAtTime(260, t + 0.07);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.1, t + 0.005);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+  o.connect(g).connect(a.destination);
+  o.start(t);
+  o.stop(t + 0.1);
+}
+function squeak() {
+  const a = audio();
+  if (!a) return;
+  const t0 = a.currentTime;
+  for (const d of [0, 0.17]) {
+    const t = t0 + d, o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain();
+    o.type = "sawtooth";
+    f.type = "bandpass"; f.frequency.value = 2200; f.Q.value = 3;
+    o.frequency.setValueAtTime(950, t);
+    o.frequency.linearRampToValueAtTime(1600, t + 0.06);
+    o.frequency.linearRampToValueAtTime(1250, t + 0.13);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.16, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
+    o.connect(f).connect(g).connect(a.destination);
+    o.start(t);
+    o.stop(t + 0.16);
+  }
+}
+function splash() {
+  const a = audio();
+  if (!a) return;
+  const t = a.currentTime, len = 0.7;
+  const buf = a.createBuffer(1, Math.floor(a.sampleRate * len), a.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (0.55 + 0.45 * Math.sin(i / a.sampleRate * 2 * Math.PI * 19));
+  const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+  src.buffer = buf;
+  f.type = "bandpass"; f.frequency.value = 1400; f.Q.value = 0.8;
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.12, t + 0.05);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+  src.connect(f).connect(g).connect(a.destination);
+  src.start(t);
+}
+soundBtn.hidden = false;
+soundBtn.addEventListener("click", () => {
+  soundOn = !soundOn;
+  soundBtn.setAttribute("aria-pressed", String(soundOn));
+  soundBtn.setAttribute("aria-label", soundOn ? "Sonidos activados" : "Sonidos desactivados");
+});
+
+// ---------- Layout ----------
+let W = 1, H = 1, isMobile = false, robotPx = 300;
+const anchor = { x: 0, y: 0 };
+function layout() {
+  const r = hero.getBoundingClientRect();
+  W = Math.max(1, r.width);
+  H = Math.max(1, r.height);
+  isMobile = W <= 860;
+  const pr = Math.min(devicePixelRatio, isMobile ? 1.75 : 2);
+  renderer.setPixelRatio(pr);
+  composer.setPixelRatio(pr);
+  renderer.setSize(W, H, false);
+  composer.setSize(W, H);
+  if (isMobile) {
+    const copyTop = copy.getBoundingClientRect().top - r.top;
+    const room = Math.max(copyTop - 62, 220);
+    robotPx = Math.min(room * 0.92, W * 0.82);
+    anchor.x = W / 2;
+    anchor.y = 62 + room * 0.5;
+  } else {
+    robotPx = Math.min(H * 0.62, W * 0.4, 640);
+    anchor.x = W * 0.695;
+    anchor.y = H * 0.5 + 8;
+  }
+  camera.aspect = W / H;
+  camera.position.set(0, 0, (3.4 * H) / (robotPx * 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
+  camera.setViewOffset(W, H, W / 2 - anchor.x, H / 2 - anchor.y, W, H);
+  camera.updateProjectionMatrix();
+  loader.style.left = `${anchor.x}px`;
+  loader.style.top = `${anchor.y}px`;
+}
+new ResizeObserver(layout).observe(hero);
+layout();
+
+// ---------- Puntero ----------
+const target = { x: 0, y: 0 }, look = { x: 0, y: 0 };
+const ndc = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
+let lastMove = -1e9, pointerDirty = false, pointerInHero = false, hovering = false;
+function readPointer(cx, cy) {
+  const r = hero.getBoundingClientRect();
+  const rx = isMobile ? W * 0.5 : Math.max(W * 0.55, 500);
+  const ry = isMobile ? H * 0.5 : Math.max(H * 0.55, 400);
+  target.x = clamp((cx - r.left - anchor.x) / rx, -1.2, 1.2);
+  target.y = clamp((cy - r.top - anchor.y) / ry, -1.2, 1.2);
+  ndc.set(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+  pointerInHero = cy >= r.top && cy <= r.bottom;
+  pointerDirty = true;
+  lastMove = performance.now();
+}
+window.addEventListener("pointermove", (e) => readPointer(e.clientX, e.clientY), { passive: true });
+window.addEventListener("pointerdown", (e) => { gestured = true; readPointer(e.clientX, e.clientY); }, { passive: true });
+window.addEventListener("touchmove", (e) => { if (e.touches[0]) readPointer(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+
+let shakeT = 0, happyT = 0, happy = 0;
+const SHAKE_DUR = 1.3;
+let bathed = false;
+function bathBony() {
+  if (shakeT > 0.6) return;
+  shakeT = SHAKE_DUR;
+  happyT = 2.8;
+  burst();
+  splash();
+  if (!bathed) {
+    bathed = true;
+    hint.querySelector("span").innerHTML = '¡Quedó regio! Ahora <a href="#servicios">arma la cita del tuyo</a>.';
+  }
+}
+function jumpDuck() {
+  if (duckState.jumping) return;
+  duckState.jumping = true;
+  duckState.vy = 2.6;
+  squeak();
+}
+canvas.addEventListener("click", (e) => {
+  gestured = true;
+  readPointer(e.clientX, e.clientY);
+  raycaster.setFromCamera(ndc, camera);
+  if (raycaster.intersectObject(duckProxy, false).length) return jumpDuck();
+  if (raycaster.intersectObjects([headProxy, bodyProxy], false).length) return bathBony();
+  for (const b of bub) if (raycaster.ray.distanceSqToPoint(b.p) < (b.r * 1.3) ** 2 && popBubble(b)) break;
+});
+
+// ---------- Animación ----------
+const clock = new THREE.Clock();
+const dummy = new THREE.Object3D();
+let t = 0, intro = 0, nextBlink = 2, blinkStart = -10;
+let prevHeadZ = 0, prevHeadY = 0;
+
+function frame() {
+  const dt = Math.min(clock.getDelta(), 0.05);
+  t += dt;
+
+  if (performance.now() - lastMove > 3500) {
+    target.x = Math.sin(t * 0.45) * 0.45;
+    target.y = Math.sin(t * 0.31 + 1.2) * 0.2;
+  }
+  const k = 1 - Math.pow(0.0025, dt);
+  look.x += (target.x - look.x) * k;
+  look.y += (target.y - look.y) * k;
+
+  if (intro < 1) {
+    intro = Math.min(1, intro + dt * 1.4);
+    const q = intro - 1;
+    bony.scale.setScalar(Math.max(0.001, 1 + 2.4 * q * q * q + 1.4 * q * q));
+  }
+
+  // Hover y burbujas bajo el puntero
+  if (pointerDirty) {
+    pointerDirty = false;
+    if (pointerInHero) {
+      raycaster.setFromCamera(ndc, camera);
+      hovering = raycaster.intersectObjects([headProxy, bodyProxy], false).length > 0;
+      const overDuck = raycaster.intersectObject(duckProxy, false).length > 0;
+      canvas.style.cursor = hovering || overDuck ? "pointer" : "";
+      for (const b of bub) if (raycaster.ray.distanceSqToPoint(b.p) < b.r * b.r) popBubble(b);
+    } else {
+      hovering = false;
+    }
+  }
+
+  // Estados: sacudida de perro mojado y felicidad
+  let shake = 0;
+  if (shakeT > 0) {
+    shakeT = Math.max(0, shakeT - dt);
+    shake = Math.sin(Math.PI * (1 - shakeT / SHAKE_DUR));
+  }
+  const shakeOsc = Math.sin(t * 38) * shake * M;
+  happyT = Math.max(0, happyT - dt);
+  happy += ((happyT > 0 ? 1 : 0) - happy) * (1 - Math.pow(0.0005, dt));
+
+  const bob = Math.sin(t * 1.6) * 0.07 * M;
+  const bobVel = Math.cos(t * 1.6) * 0.112 * M;
+  bony.position.y = BASE_Y + bob;
+  bath.position.y = -bob * 0.6;
+
+  head.rotation.y = look.x * 0.5 + Math.sin(t * 38 - 0.8) * shake * 0.12 * M;
+  head.rotation.x = look.y * 0.42 - happy * 0.1;
+  head.rotation.z = -look.x * 0.06 + Math.sin(t * 1.1) * 0.015 * M + shakeOsc * 0.3 + happy * Math.sin(t * 3) * 0.05 * M;
+  body.rotation.y = look.x * 0.28 + shakeOsc * 0.1;
+  body.rotation.x = look.y * 0.12;
+  body.rotation.z = shakeOsc * 0.05;
+
+  // Orejas: resorte amortiguado impulsado por el movimiento de la cabeza
+  const headZVel = (head.rotation.z - prevHeadZ) / Math.max(dt, 1e-4);
+  const headYVel = (head.rotation.y - prevHeadY) / Math.max(dt, 1e-4);
+  prevHeadZ = head.rotation.z;
+  prevHeadY = head.rotation.y;
+  for (const ear of ears) {
+    const goal = ear.side * headZVel * 0.05 + ear.side * headYVel * 0.03 + bobVel * 0.5 + happy * 0.15;
+    ear.v += ((goal - ear.x) * 90 - ear.v * 9) * dt;
+    ear.x = clamp(ear.x + ear.v * dt, -0.6, 1.1);
+    ear.pivot.rotation.z = ear.side * (0.25 + ear.x);
+    ear.pivot.rotation.x = ear.x * 0.15;
+  }
+
+  // Ojos, parpadeo y ojos felices
+  const px = clamp(look.x * 0.42, -0.42, 0.42), py = clamp(look.y * 0.36, -0.36, 0.36);
+  if (t > nextBlink) { blinkStart = t; nextBlink = t + 2.5 + Math.random() * 3.5; }
+  const bk = (t - blinkStart) / 0.32;
+  const open = bk >= 0 && bk < 1 ? (bk < 0.5 ? lerp(1, 0.08, bk / 0.5) : lerp(0.08, 1, (bk - 0.5) / 0.5)) : 1;
+  for (const eye of eyes) {
+    eye.pivot.rotation.y = px;
+    eye.pivot.rotation.x = py;
+    eye.lid.scale.y = Math.max(0.03, lerp(open, 0.03, happy));
+    eye.smile.visible = happy > 0.05;
+    eye.smile.scale.setScalar(Math.max(0.001, happy));
+  }
+  for (const b of brows) b.position.y = b.userData.base.y + happy * 0.05 + (hovering ? 0.025 : 0) + Math.max(0, -look.y) * 0.03;
+  tongue.visible = happy > 0.03;
+  tongue.scale.y = Math.max(0.001, happy);
+  tongue.rotation.x = -0.25 + Math.sin(t * 9) * 0.08 * happy;
+  tag.rotation.z = Math.sin(t * 2.2) * 0.12 * M + shakeOsc * 0.6;
+  tail.rotation.z = -0.1 + Math.sin(t * (4 + happy * 12 + (hovering ? 4 : 0))) * (0.25 + 0.2 * happy) * M;
+
+  for (const p of paws) {
+    const w = Math.sin(t * 2.0 + p.phase);
+    p.g.position.y = p.rest.y + w * 0.06 * M - bob * 0.35;
+    p.g.position.x = p.rest.x + p.side * look.x * -0.04;
+    p.g.position.z = p.rest.z;
+    p.g.rotation.z = p.rest.rz + w * 0.1 * p.side * M;
+    p.g.rotation.x = Math.sin(t * 1.3 + p.phase) * 0.08 * M;
+    if (p.wave) {
+      p.g.position.y += happy * 0.42;
+      p.g.position.z += happy * 0.1;
+      p.g.rotation.z += happy * Math.sin(t * 14) * 0.35;
+    }
+  }
+
+  // Espuma que respira
+  for (let i = 0; i < foamData.length; i++) {
+    const f = foamData[i];
+    dummy.position.set(f.x, f.y + Math.sin(t * 0.9 + f.ph) * 0.015 * M, f.z);
+    dummy.scale.setScalar(f.s * (1 + Math.sin(t * 1.3 + f.ph) * 0.05 * M));
+    dummy.updateMatrix();
+    foam.setMatrixAt(i, dummy.matrix);
+  }
+  foam.instanceMatrix.needsUpdate = true;
+
+  // Patito
+  if (duckState.jumping) {
+    duckState.vy -= 9.8 * dt;
+    duckState.y += duckState.vy * dt;
+    duckState.spin += dt * 9;
+    if (duckState.y <= 0) { duckState.y = 0; duckState.jumping = false; duckState.spin = 0; }
+  }
+  duck.position.y = -1.0 + Math.sin(t * 1.7 + 1) * 0.03 * M + duckState.y;
+  duckBody.rotation.set(0, duckState.jumping ? duckState.spin : 0, Math.sin(t * 1.3) * 0.08 * M);
+
+  // Burbujas
+  for (const b of bub) {
+    let alpha = 0, scale = 0.0001;
+    if (b.wait > 0) {
+      b.wait -= dt;
+    } else if (b.pop >= 0) {
+      b.pop += dt;
+      const kk = b.pop / 0.18;
+      if (kk >= 1) spawnBubble(b, false);
+      else { scale = b.r * (1 + kk * 0.7); alpha = 1 - kk; }
+    } else {
+      b.life = Math.min(1, b.life + dt * 2.5);
+      const damp = Math.max(0, 1 - dt * 1.8);
+      b.v.multiplyScalar(damp);
+      b.p.x += (b.v.x + Math.sin(t * 1.4 + b.ph) * 0.06 * M) * dt;
+      b.p.y += (b.v.y + b.rise * M) * dt;
+      b.p.z += b.v.z * dt;
+      alpha = b.life * clamp((2.8 - b.p.y) / 0.7, 0, 1);
+      scale = b.r * (1 + Math.sin(t * 3 + b.ph) * 0.04);
+      if (b.p.y > 2.8 || Math.abs(b.p.x) > 4) spawnBubble(b, false);
+    }
+    dummy.position.copy(b.p);
+    dummy.scale.setScalar(scale);
+    dummy.updateMatrix();
+    bubbles.setMatrixAt(b.i, dummy.matrix);
+    aAlpha.setX(b.i, alpha);
+  }
+  bubbles.instanceMatrix.needsUpdate = true;
+  aAlpha.needsUpdate = true;
+
+  floor.scale.set(3.8 - bob * 3, 0.5 - bob * 0.4, 1);
+  floor.material.opacity = clamp(0.55 + (0.07 - bob) * 1.5, 0, 1);
+
+  composer.render();
+}
+
+let running = false;
+function setRunning(on) {
+  if (on === running) return;
+  running = on;
+  if (on) clock.getDelta();
+  renderer.setAnimationLoop(on ? frame : null);
+}
+new IntersectionObserver(([entry]) => setRunning(entry.isIntersecting && !document.hidden)).observe(hero);
+document.addEventListener("visibilitychange", () => {
+  const r = hero.getBoundingClientRect();
+  setRunning(!document.hidden && r.bottom > 0 && r.top < innerHeight);
+});
+
+bony.scale.setScalar(0.001);
+renderer.compile(scene, camera);
+loader.classList.add("hide");
+setRunning(true);
+</script>
+</body>
+</html>
