@@ -220,6 +220,43 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
 .foot .brand { color: #fff; font-size: 19px }
 .foot a:hover { color: #fff }
 
+/* ---------- FOTOS ---------- */
+.gallery { --gx: 40px; background: var(--agua); padding: 96px 0 120px }
+.gallery-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px }
+.gallery-head p { margin-top: 14px; color: var(--niebla); font-size: 18px; max-width: 46ch }
+.gallery-nav { display: flex; gap: 10px; flex: none }
+.arrow { width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line); display: grid; place-items: center; color: #fff; transition: background .2s, opacity .2s }
+.arrow:hover { background: rgba(255, 255, 255, 0.12) }
+.arrow:disabled { opacity: .3; cursor: default }
+.arrow svg, .lb-btn svg { width: 22px; height: 22px }
+.gallery-track { list-style: none; margin-top: 40px; display: grid; grid-auto-flow: column; grid-auto-columns: clamp(200px, 23vw, 290px); gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 4px max(var(--gx), calc((100% - 1100px) / 2)) 12px; scroll-padding-inline: max(var(--gx), calc((100% - 1100px) / 2)); scrollbar-width: none }
+.gallery-track::-webkit-scrollbar { display: none }
+.gallery-track li { scroll-snap-align: start }
+.shot { display: block; width: 100%; aspect-ratio: 3 / 4; padding: 0; border: 0; border-radius: 24px; overflow: hidden; background: var(--agua-2); cursor: zoom-in }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; display: block; transition: transform .5s cubic-bezier(.2, .7, .2, 1) }
+.shot:hover img { transform: scale(1.04) }
+.lightbox { margin: auto; padding: 0; border: 0; background: transparent; width: 100%; height: 100%; max-width: none; max-height: none; color: #fff; overflow: hidden }
+.lightbox[open] { display: grid; place-items: center }
+.lightbox::backdrop { background: rgba(4, 20, 24, 0.92) }
+.lightbox img { display: block; width: auto; height: auto; max-width: min(92vw, 540px); max-height: 84vh; max-height: 84svh; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5) }
+.lb-count { position: absolute; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); font-size: 14px; color: var(--niebla); font-variant-numeric: tabular-nums }
+.lb-btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.16); transition: background .2s }
+.lb-btn:hover { background: rgba(255, 255, 255, 0.2) }
+.lb-close { top: calc(16px + env(safe-area-inset-top, 0px)); right: 16px }
+.lb-prev { left: 16px; top: 50%; transform: translateY(-50%) }
+.lb-next { right: 16px; top: 50%; transform: translateY(-50%) }
+html:has(.lightbox[open]) { overflow: hidden }
+
+/* ---------- BOUTIQUE ---------- */
+.shop { background: #f6eef6; color: var(--tinta); padding: 110px 0 }
+.shop-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: 64px; align-items: center }
+.shop-photo { border-radius: 28px; overflow: hidden; background: #eadfeb; box-shadow: 0 30px 60px -24px rgba(74, 36, 84, 0.35) }
+.shop-photo img { display: block; width: 100%; height: auto }
+.shop-copy p { margin-top: 16px; font-size: 18px; color: var(--tinta-suave); max-width: 44ch }
+.shop-list { list-style: none; margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px }
+.shop-list li { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px 0 14px; border-radius: 999px; background: #fff; border: 1.5px solid rgba(74, 36, 84, 0.12); font-weight: 600; font-size: 15px }
+.shop-list svg { width: 16px; height: 16px; color: var(--chicle) }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1100px) {
   .nav-inner, .hero-inner { padding-left: 40px; padding-right: 40px }
@@ -244,6 +281,12 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
   .preview { position: static }
   .visit { padding: 84px 0 }
   .visit-grid { grid-template-columns: minmax(0, 1fr); gap: 36px }
+  .gallery { padding: 72px 0 84px }
+  .gallery-nav { display: none }
+  .gallery-track { margin-top: 28px; grid-auto-columns: minmax(200px, 62vw) }
+  .shop { padding: 84px 0 }
+  .shop-grid { grid-template-columns: minmax(0, 1fr); gap: 36px }
+  .shop-photo { max-width: 460px }
 }
 @media (max-width: 560px) {
   .services { grid-template-columns: minmax(0, 1fr) }
@@ -260,6 +303,8 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
   .sizes { gap: 10px }
   .size { padding: 14px 8px 12px }
   .when .field-input { flex: 1 1 100% }
+  .gallery { --gx: 16px }
+  .lb-prev, .lb-next { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: none }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto }
@@ -296,15 +341,18 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
     <a class="brand" href="#inicio" aria-label="Bony Can, inicio"><span class="brand-mark" aria-hidden="true"><svg><use href="#i-bone" /></svg></span>Bony Can</a>
     <div class="nav-right">
       <nav class="nav-links" aria-label="Principal">
+        <a href="#fotos">Fotos</a>
         <a href="#servicios">Servicios</a>
+        <a href="#boutique">Boutique</a>
         <a href="#ubicacion">Ubicación</a>
-        <a href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Facebook</a>
       </nav>
       <a class="btn-open" href="#servicios">Reservar</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false" aria-controls="mobilePanel"><span></span></button>
     </div>
     <div class="mobile-panel" id="mobilePanel">
+      <a href="#fotos">Fotos</a>
       <a href="#servicios">Servicios</a>
+      <a href="#boutique">Boutique</a>
       <a href="#ubicacion">Ubicación</a>
       <a href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Facebook</a>
     </div>
@@ -330,6 +378,35 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
       <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5z" fill="currentColor" /><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
       <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.6L12 18.5v-13L7.6 9.5z" fill="currentColor" /><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
     </button>
+  </section>
+
+  <section class="gallery" id="fotos" aria-labelledby="gallery-title">
+    <div class="wrap gallery-head">
+      <div>
+        <h2 id="gallery-title">Así salen de Bony Can</h2>
+        <p>Fotos reales de nuestros clientes después de su baño y corte. Toca una para verla completa.</p>
+      </div>
+      <div class="gallery-nav">
+        <button class="arrow" id="galPrev" type="button" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+        <button class="arrow" id="galNext" type="button" aria-label="Más fotos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+      </div>
+    </div>
+    <ul class="gallery-track" id="galTrack">
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Golden retriever sentado en la mesa de grooming con pañoleta roja de Bony Can"><img src="img/clientes/01.webp" alt="Golden retriever sentado en la mesa de grooming con pañoleta roja de Bony Can" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrita de pelo largo color crema con lazo naranja y pañoleta de girasoles"><img src="img/clientes/02.webp" alt="Perrita de pelo largo color crema con lazo naranja y pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Husky echado en la mesa de grooming con pañoleta roja, sacando la lengua"><img src="img/clientes/03.webp" alt="Husky echado en la mesa de grooming con pañoleta roja, sacando la lengua" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Dos perritos recién arreglados: uno negro con lazos rojos y un caniche blanco"><img src="img/clientes/04.webp" alt="Dos perritos recién arreglados: uno negro con lazos rojos y un caniche blanco" width="600" height="1182" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Schnauzer gris claro con pañoleta rosada de girasoles"><img src="img/clientes/05.webp" alt="Schnauzer gris claro con pañoleta rosada de girasoles" width="600" height="1047" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: San Bernardo sentado con pañoleta rosada de corazones"><img src="img/clientes/06.webp" alt="San Bernardo sentado con pañoleta rosada de corazones" width="600" height="1067" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco y crema de orejas largas con pañoleta roja"><img src="img/clientes/07.webp" alt="Perrito blanco y crema de orejas largas con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrita de pelo largo blanco y crema, de pie en la mesa de grooming"><img src="img/clientes/08.webp" alt="Perrita de pelo largo blanco y crema, de pie en la mesa de grooming" width="600" height="1134" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrita blanca y canela con dos colitas y pañoleta de girasoles"><img src="img/clientes/09.webp" alt="Perrita blanca y canela con dos colitas y pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco de pelo rizado con pañoleta roja"><img src="img/clientes/10.webp" alt="Perrito blanco de pelo rizado con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco con manchas grises y corbata de colores"><img src="img/clientes/11.webp" alt="Perrito blanco con manchas grises y corbata de colores" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito de pelo largo crema con pañoleta azul de Bony Can"><img src="img/clientes/12.webp" alt="Perrito de pelo largo crema con pañoleta azul de Bony Can" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Cachorro color crema de orejas largas con pañoleta de girasoles"><img src="img/clientes/13.webp" alt="Cachorro color crema de orejas largas con pañoleta de girasoles" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+      <li><button class="shot" type="button" aria-label="Ampliar foto: Perrito blanco y canela de pelo corto con pañoleta roja"><img src="img/clientes/14.webp" alt="Perrito blanco y canela de pelo corto con pañoleta roja" width="600" height="1331" loading="lazy" decoding="async" /></button></li>
+    </ul>
   </section>
 
   <section class="book" id="servicios" aria-labelledby="book-title">
@@ -414,6 +491,25 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
     </div>
   </section>
 
+  <section class="shop" id="boutique" aria-labelledby="shop-title">
+    <div class="wrap shop-grid">
+      <figure class="shop-photo">
+        <img src="img/boutique.webp" alt="Estante de la boutique de Bony Can con ropa para perros, shampoos, juguetes, mantitas y una transportadora" width="820" height="1158" loading="lazy" decoding="async" />
+      </figure>
+      <div class="shop-copy">
+        <h2 id="shop-title">También somos boutique</h2>
+        <p>Ropita, juguetes y todo para engreírlo en casa. Pregunta por tallas y modelos cuando vengas o por WhatsApp.</p>
+        <ul class="shop-list">
+          <li><svg aria-hidden="true"><use href="#i-paw" /></svg>Ropita y vestidos</li>
+          <li><svg aria-hidden="true"><use href="#i-paw" /></svg>Shampoos y perfumes</li>
+          <li><svg aria-hidden="true"><use href="#i-paw" /></svg>Juguetes</li>
+          <li><svg aria-hidden="true"><use href="#i-paw" /></svg>Mantitas</li>
+          <li><svg aria-hidden="true"><use href="#i-paw" /></svg>Transportadoras</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="visit" id="ubicacion" aria-labelledby="visit-title">
     <div class="wrap visit-grid">
       <div>
@@ -421,7 +517,6 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
         <!-- TODO: añadir horario de atención cuando Bony Can lo confirme. -->
         <p class="addr">Carlos Wiesse 670, junto al Parque Olivar<br />Trujillo, La Libertad</p>
         <p class="addr phone">WhatsApp: <a href="https://wa.me/51968827219">968 827 219</a></p>
-        <p class="note">Además del spa, en nuestra boutique encuentras productos para tu mascota.</p>
         <div class="cta-row">
           <a class="btn-try" href="https://www.google.com/maps/search/?api=1&amp;query=Bony%20Can%20Trujillo" target="_blank" rel="noopener">Abrir en Google Maps</a>
           <a class="btn-ghost" href="https://www.facebook.com/bonycanpetshop/" target="_blank" rel="noopener">Ver Facebook</a>
@@ -433,6 +528,14 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
     </div>
   </section>
 </main>
+
+<dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
+  <img id="lbImg" src="" alt="" />
+  <p class="lb-count" id="lbCount"></p>
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+</dialog>
 
 <footer class="foot">
   <div class="wrap">
@@ -490,6 +593,51 @@ h2 { font-family: var(--display); font-size: clamp(32px, 3.6vw, 50px); line-heig
   form.addEventListener("change", update);
   form.addEventListener("submit", (e) => e.preventDefault());
   update();
+
+  // Galería: flechas y visor de fotos
+  const track = document.getElementById("galTrack");
+  const shots = [...track.querySelectorAll(".shot")];
+  const galPrev = document.getElementById("galPrev");
+  const galNext = document.getElementById("galNext");
+  const syncArrows = () => {
+    galPrev.disabled = track.scrollLeft < 8;
+    galNext.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
+  };
+  galPrev.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: "smooth" }));
+  galNext.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: "smooth" }));
+  track.addEventListener("scroll", syncArrows, { passive: true });
+  window.addEventListener("resize", syncArrows);
+  syncArrows();
+
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lbImg");
+  const lbCount = document.getElementById("lbCount");
+  let cur = 0;
+  const showShot = (i) => {
+    cur = (i + shots.length) % shots.length;
+    const img = shots[cur].querySelector("img");
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt;
+    lbCount.textContent = `${cur + 1} / ${shots.length}`;
+  };
+  shots.forEach((b, i) => b.addEventListener("click", () => { showShot(i); lb.showModal(); }));
+  document.getElementById("lbPrev").addEventListener("click", () => showShot(cur - 1));
+  document.getElementById("lbNext").addEventListener("click", () => showShot(cur + 1));
+  document.getElementById("lbClose").addEventListener("click", () => lb.close());
+  lb.addEventListener("click", (e) => { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") showShot(cur - 1);
+    if (e.key === "ArrowRight") showShot(cur + 1);
+  });
+  let touchX = null;
+  lb.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) showShot(cur + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
+  lb.addEventListener("close", () => shots[cur].focus({ preventScroll: true }));
 
   // Si three.js no llega a cargar, el hero queda solo con el texto.
   setTimeout(() => {
