@@ -285,6 +285,7 @@ h2::after { content: ""; display: block; width: 92px; height: 12px; margin-top: 
 .gallery-track { list-style: none; margin-top: 40px; display: grid; grid-auto-flow: column; grid-auto-columns: clamp(200px, 23vw, 290px); gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 4px max(var(--gx), calc((100% - 1100px) / 2)) 12px; scroll-padding-inline: max(var(--gx), calc((100% - 1100px) / 2)); scrollbar-width: none }
 .gallery-track::-webkit-scrollbar { display: none }
 .gallery-track li { scroll-snap-align: start }
+.gallery-track.auto { scroll-snap-type: none }
 .shot { display: block; width: 100%; aspect-ratio: 3 / 4; padding: 0; border: 0; border-radius: 24px; overflow: hidden; background: var(--agua-2); cursor: zoom-in }
 .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; display: block; transition: transform .5s cubic-bezier(.2, .7, .2, 1) }
 .shot:hover img { transform: scale(1.04) }
@@ -829,8 +830,9 @@ html:has(.lightbox[open]) { overflow: hidden }
     galPrev.disabled = track.scrollLeft < 8;
     galNext.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
   };
-  galPrev.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: "smooth" }));
-  galNext.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: "smooth" }));
+  let idleUntil = 0; // pausa breve mientras la persona mueve la galería
+  galPrev.addEventListener("click", () => { idleUntil = performance.now() + 4000; track.scrollBy({ left: -track.clientWidth * 0.8, behavior: "smooth" }); });
+  galNext.addEventListener("click", () => { idleUntil = performance.now() + 4000; track.scrollBy({ left: track.clientWidth * 0.8, behavior: "smooth" }); });
   track.addEventListener("scroll", syncArrows, { passive: true });
   window.addEventListener("resize", syncArrows);
   syncArrows();
@@ -847,7 +849,11 @@ html:has(.lightbox[open]) { overflow: hidden }
     lbImg.alt = img.alt;
     lbCount.textContent = `${cur + 1} / ${shots.length}`;
   };
-  shots.forEach((b, i) => b.addEventListener("click", () => { showShot(i); lb.showModal(); }));
+  shots.forEach((b, i) => { b.dataset.i = i; });
+  track.addEventListener("click", (e) => {
+    const b = e.target.closest(".shot");
+    if (b) { showShot(Number(b.dataset.i)); lb.showModal(); }
+  });
   document.getElementById("lbPrev").addEventListener("click", () => showShot(cur - 1));
   document.getElementById("lbNext").addEventListener("click", () => showShot(cur + 1));
   document.getElementById("lbClose").addEventListener("click", () => lb.close());
@@ -866,10 +872,12 @@ html:has(.lightbox[open]) { overflow: hidden }
   });
   lb.addEventListener("close", () => shots[cur].focus({ preventScroll: true }));
 
-  // Galería en movimiento: avanza sola, con botón de pausa; se detiene al tocarla o enfocarla.
+  // Galería en movimiento: se desliza de forma continua y lenta, en bucle.
+  // Se detiene con el botón de pausa, al pasar el cursor, al enfocarla y mientras la persona la desliza.
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const galPauseBtn = document.getElementById("galPause");
-  let hoverPause = false, userPaused = false, galVisible = false;
+  const SPEED = 30; // px por segundo
+  let hoverPause = false, focusPause = false, userPaused = false, rafId = 0, lastT = 0, pos = 0, autoLeft = -1;
   const setUserPaused = (v) => {
     userPaused = v;
     galPauseBtn.setAttribute("aria-pressed", String(v));
@@ -878,17 +886,44 @@ html:has(.lightbox[open]) { overflow: hidden }
   galPauseBtn.addEventListener("click", () => setUserPaused(!userPaused));
   track.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") hoverPause = true; });
   track.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hoverPause = false; });
-  ["touchstart", "wheel", "focusin"].forEach((ev) => track.addEventListener(ev, () => setUserPaused(true), { passive: true }));
-  new IntersectionObserver(([e]) => { galVisible = e.isIntersecting; }, { threshold: 0.3 }).observe(track);
+  track.addEventListener("focusin", () => { focusPause = true; });
+  track.addEventListener("focusout", (e) => { if (!track.contains(e.relatedTarget)) focusPause = false; });
+  ["touchstart", "wheel"].forEach((ev) => track.addEventListener(ev, () => { idleUntil = performance.now() + 4000; }, { passive: true }));
+  track.addEventListener("scroll", () => {
+    if (autoLeft >= 0 && Math.abs(track.scrollLeft - autoLeft) > 3) idleUntil = performance.now() + 4000;
+  }, { passive: true });
+
   if (reduceMotion) {
     galPauseBtn.hidden = true;
   } else {
-    setInterval(() => {
-      if (userPaused || hoverPause || !galVisible || lb.open || document.hidden) return;
-      const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
-      const card = shots[0].parentElement.getBoundingClientRect().width + 16;
-      track.scrollTo({ left: end ? 0 : track.scrollLeft + card, behavior: "smooth" });
-    }, 3200);
+    // copia de las fotos al final para que el bucle no tenga cortes
+    shots.forEach((b) => {
+      const li = b.parentElement.cloneNode(true);
+      li.setAttribute("aria-hidden", "true");
+      li.querySelector("button").tabIndex = -1;
+      track.appendChild(li);
+    });
+    track.classList.add("auto");
+    const loopWidth = () => track.children[shots.length].offsetLeft - track.children[0].offsetLeft;
+    const tick = (now) => {
+      rafId = requestAnimationFrame(tick);
+      const dt = Math.min(0.05, (now - lastT) / 1000);
+      lastT = now;
+      if (userPaused || hoverPause || focusPause || lb.open || document.hidden || now < idleUntil) {
+        pos = track.scrollLeft;
+        autoLeft = -1;
+        return;
+      }
+      pos += SPEED * dt;
+      const w = loopWidth();
+      if (pos >= w) pos -= w;
+      track.scrollLeft = pos;
+      autoLeft = track.scrollLeft;
+    };
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !rafId) { lastT = performance.now(); pos = track.scrollLeft; rafId = requestAnimationFrame(tick); }
+      if (!e.isIntersecting && rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+    }, { threshold: 0.2 }).observe(track);
   }
 
   // Menú: marca la sección que se está viendo
@@ -1262,7 +1297,7 @@ for (let i = 0; i < 22; i++) {
   const z = Math.sin(a) * rr * 0.62 - 0.05;
   foamData.push({ x: Math.cos(a) * rr, z, y: (z > 0.3 ? -1.36 : -1.2) + rnd() * 0.1, s: 0.2 + rnd() * 0.16, ph: rnd() * 6.28 });
 }
-for (const [x, z, sz] of [[-1.62, -0.32, 0.3], [-1.86, -0.5, 0.24], [-1.42, -0.12, 0.26]]) {
+for (const [x, z, sz] of [[-1.62, -0.32, 0.3], [-1.86, -0.5, 0.24], [-1.42, -0.12, 0.26], [1.18, 0.12, 0.26], [1.48, 0.06, 0.24], [1.72, -0.16, 0.22], [1.62, -0.42, 0.24]]) {
   foamData.push({ x, z, y: -1.28 + rnd() * 0.06, s: sz, ph: rnd() * 6.28 });
 }
 const foam = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 32, 20), foamMat, foamData.length);
@@ -1348,8 +1383,9 @@ const huskyProxy = part(husky, LOW, hidden, { p: [0, 0.2, 0.2], s: [1.25, 1.3, 1
 
 // Michi, el gato: sentado en el borde, bien seco
 const cat = new THREE.Group();
-cat.position.set(1.5, -0.46, -0.3);
-cat.rotation.y = -0.4;
+const CAT_Y = -0.62;
+cat.position.set(1.36, CAT_Y, -0.22);
+cat.rotation.y = -0.35;
 cat.scale.setScalar(0.5);
 bath.add(cat);
 part(cat, SPHERE, catBlue, { p: [0, -0.5, -0.05], s: [0.55, 0.62, 0.5], rim: rimFur });
@@ -1829,7 +1865,7 @@ function frame() {
     catJump.y += catJump.vy * dt;
     if (catJump.y <= 0) { catJump.y = 0; catJump.on = false; }
   }
-  cat.position.y = -0.46 + catJump.y;
+  cat.position.y = CAT_Y + catJump.y;
   cHead.rotation.y = pets[1].baseYaw + pets[1].lx * 0.5;
   cHead.rotation.x = pets[1].ly * 0.32;
   cHead.rotation.z = Math.sin(t * 0.9) * 0.05 * M;
