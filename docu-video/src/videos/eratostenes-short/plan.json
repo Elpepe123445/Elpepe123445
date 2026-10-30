@@ -1,0 +1,75 @@
+{
+  "fps": 30,
+  "transitionFrames": 8,
+  "durationInFrames": 451,
+  "scenes": [
+    {
+      "id": "hook",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 158,
+      "lines": [
+        {
+          "id": "s1",
+          "text": "¿Medir la Tierra con una sombra?",
+          "from": 3,
+          "durationInFrames": 56
+        },
+        {
+          "id": "s2",
+          "text": "Hace 2.200 años, alguien lo logró.",
+          "from": 62,
+          "durationInFrames": 88
+        }
+      ]
+    },
+    {
+      "id": "sombras",
+      "chapter": null,
+      "from": 150,
+      "durationInFrames": 143,
+      "lines": [
+        {
+          "id": "s3",
+          "text": "En Siena, una vara no daba sombra.",
+          "from": 11,
+          "durationInFrames": 76
+        },
+        {
+          "id": "s4",
+          "text": "En Alejandría, sí.",
+          "from": 89,
+          "durationInFrames": 46
+        }
+      ]
+    },
+    {
+      "id": "angulo",
+      "chapter": null,
+      "from": 285,
+      "durationInFrames": 68,
+      "lines": [
+        {
+          "id": "s5",
+          "text": "Un cincuentavo de círculo.",
+          "from": 11,
+          "durationInFrames": 49
+        }
+      ]
+    },
+    {
+      "id": "medida",
+      "chapter": null,
+      "from": 345,
+      "durationInFrames": 106,
+      "lines": [
+        {
+          "id": "s6",
+          "text": "Por cincuenta… ¡la vuelta al mundo!",
+          "from": 11,
+          "durationInFrames": 69
+        }
+      ]
+    }
+  ]
+}

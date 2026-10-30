@@ -5,6 +5,7 @@ import {
   EratostenesVideo,
   plan,
 } from "./videos/eratostenes/Video";
+import { EratostenesShort, shortPlan } from "./videos/eratostenes-short/Video";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -16,6 +17,14 @@ export const RemotionRoot: React.FC = () => (
       fps={plan.fps}
       durationInFrames={plan.durationInFrames}
       defaultProps={{ subtitles: true }}
+    />
+    <Composition
+      id="EratostenesShort"
+      component={EratostenesShort}
+      width={1080}
+      height={1920}
+      fps={shortPlan.fps}
+      durationInFrames={shortPlan.durationInFrames}
     />
     <Folder name="Eratostenes-Escenas">
       {plan.scenes.map((s) => (

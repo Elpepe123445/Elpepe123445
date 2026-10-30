@@ -1,0 +1,72 @@
+{
+  "id": "eratostenes-short",
+  "title": "Medir la Tierra con una sombra (short)",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 0.88,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "lexicon": {
+      "Alejandría": "Alejandríia",
+      "ía": "íia"
+    }
+  },
+  "defaults": {
+    "pauseAfter": 0.14,
+    "padStart": 0.1,
+    "padEnd": 0.12,
+    "transitionFrames": 8
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "padStart": 0.1,
+      "lines": [
+        {
+          "id": "s1",
+          "text": "¿Medir la Tierra con una sombra?",
+          "pauseAfter": 0.1
+        },
+        {
+          "id": "s2",
+          "text": "Hace 2.200 años, alguien lo logró.",
+          "say": "Hace dos mil doscientos años, alguien lo logró."
+        }
+      ]
+    },
+    {
+      "id": "sombras",
+      "lines": [
+        {
+          "id": "s3",
+          "text": "En Siena, una vara no daba sombra.",
+          "pauseAfter": 0.08
+        },
+        {
+          "id": "s4",
+          "text": "En Alejandría, sí."
+        }
+      ]
+    },
+    {
+      "id": "angulo",
+      "lines": [
+        {
+          "id": "s5",
+          "text": "Un cincuentavo de círculo."
+        }
+      ]
+    },
+    {
+      "id": "medida",
+      "padEnd": 0.7,
+      "lines": [
+        {
+          "id": "s6",
+          "text": "Por cincuenta… ¡la vuelta al mundo!",
+          "say": "Por cincuenta, la vuelta al mundo."
+        }
+      ]
+    }
+  ]
+}

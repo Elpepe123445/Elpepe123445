@@ -168,6 +168,9 @@ SCORE = {
     "comparacion": {"chords": [FMAJ7, AM7], "amp": 0.75, "arp": 0.08},
     "legado": {"chords": [BB9, C, DM9, F], "amp": 1.0, "bells": 0.08},
     "cierre": {"chords": [DM9, DMAJ], "amp": 0.85, "bells": 0.09, "harp": 0.1},
+    # Short vertical (eratostenes-short): más pulso, clímax en la última frase.
+    "angulo": {"chords": [DM9, AM7], "amp": 0.9, "arp": 0.14, "pulse": 0.3},
+    "medida": {"chords": [BB9, DMAJ], "amp": 1.0, "pulse": 0.35, "climax": "s6", "bells": 0.08},
 }
 
 
@@ -214,9 +217,9 @@ def compose(plan: dict) -> np.ndarray:
                 bell(out, n, climax + 0.08 * k, 0.12, 0.2 + 0.15 * k)
             pulse(out, climax, 0.9)
 
-    # Dinámica general: entrada y salida suaves.
+    # Dinámica general: entrada y salida suaves (más cortas en clips breves).
     n = out.shape[1]
-    out *= env_adsr(n, 3.0, 5.0)
+    out *= env_adsr(n, min(3.0, total * 0.06), min(5.0, total * 0.12))
     return spectral_mix(out, wet_gain=0.55, voice_pocket_db=-5)
 
 
