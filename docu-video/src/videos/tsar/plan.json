@@ -1,0 +1,141 @@
+{
+  "fps": 30,
+  "transitionFrames": 10,
+  "durationInFrames": 1905,
+  "scenes": [
+    {
+      "id": "z-hook",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 137,
+      "lines": [
+        {
+          "id": "z1",
+          "text": "Esta bomba era tan potente… que la probaron a media potencia.",
+          "from": 6,
+          "durationInFrames": 114
+        }
+      ]
+    },
+    {
+      "id": "z-lugar",
+      "chapter": null,
+      "from": 127,
+      "durationInFrames": 156,
+      "lines": [
+        {
+          "id": "z2",
+          "text": "30 de octubre de 1961. Ártico soviético.",
+          "from": 14,
+          "durationInFrames": 129
+        }
+      ]
+    },
+    {
+      "id": "z-caida",
+      "chapter": null,
+      "from": 273,
+      "durationInFrames": 340,
+      "lines": [
+        {
+          "id": "z3",
+          "text": "Un bombardero suelta la Bomba del Zar: 27 toneladas, frenadas por un paracaídas gigante.",
+          "from": 14,
+          "durationInFrames": 188
+        },
+        {
+          "id": "z4",
+          "text": "Tres minutos después, a 4 km de altura…",
+          "from": 209,
+          "durationInFrames": 96
+        }
+      ]
+    },
+    {
+      "id": "z-boom",
+      "chapter": null,
+      "from": 603,
+      "durationInFrames": 269,
+      "lines": [
+        {
+          "id": "z5",
+          "text": "Una bola de fuego de 8 km.",
+          "from": 28,
+          "durationInFrames": 67
+        },
+        {
+          "id": "z6",
+          "text": "Una nube de 64 km de altura: siete Everest, uno encima de otro.",
+          "from": 101,
+          "durationInFrames": 155
+        }
+      ]
+    },
+    {
+      "id": "z-alcance",
+      "chapter": null,
+      "from": 862,
+      "durationInFrames": 291,
+      "lines": [
+        {
+          "id": "z7",
+          "text": "El destello se vio a 1.000 km. Rompió ventanas a 900.",
+          "from": 14,
+          "durationInFrames": 120
+        },
+        {
+          "id": "z8",
+          "text": "Un pueblo vacío, a 55 km, quedó arrasado.",
+          "from": 141,
+          "durationInFrames": 138
+        }
+      ]
+    },
+    {
+      "id": "z-escala",
+      "chapter": null,
+      "from": 1143,
+      "durationInFrames": 309,
+      "lines": [
+        {
+          "id": "z9",
+          "text": "Su potencia: 50 millones de toneladas de TNT. Más de 3.000 bombas de Hiroshima.",
+          "from": 14,
+          "durationInFrames": 171
+        },
+        {
+          "id": "z10",
+          "text": "La onda de presión dio la vuelta al planeta… tres veces.",
+          "from": 191,
+          "durationInFrames": 105
+        }
+      ]
+    },
+    {
+      "id": "z-legado",
+      "chapter": null,
+      "from": 1442,
+      "durationInFrames": 463,
+      "lines": [
+        {
+          "id": "z11",
+          "text": "Y el diseño original era el doble: 100 millones de toneladas.",
+          "from": 14,
+          "durationInFrames": 118
+        },
+        {
+          "id": "z12",
+          "text": "Nunca fue un arma de verdad. Dos años después, se prohibieron los ensayos nucleares en la atmósfera.",
+          "from": 139,
+          "durationInFrames": 194
+        },
+        {
+          "id": "z13",
+          "text": "Algunos récords… es mejor no batirlos.",
+          "from": 346,
+          "durationInFrames": 81
+        }
+      ]
+    }
+  ]
+}

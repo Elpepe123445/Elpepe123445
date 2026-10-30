@@ -257,6 +257,32 @@ export const SurfaceMarker: React.FC<{
   );
 };
 
+/**
+ * Frente de onda sobre la esfera: círculo a una distancia angular `angle` (rad) de un punto.
+ * `angle` 0→π recorre el planeta hasta las antípodas (una vuelta completa = ida y regreso).
+ */
+export const WaveRing: React.FC<{
+  lat: number;
+  lon: number;
+  angle: number;
+  color?: string;
+  opacity?: number;
+}> = ({ lat, lon, angle, color = "#FFE1A8", opacity = 1 }) => {
+  const dir = new THREE.Vector3(...latLon(lat, lon)).normalize();
+  const quat = new THREE.Quaternion().setFromUnitVectors(
+    new THREE.Vector3(0, 0, 1),
+    dir,
+  );
+  const r = Math.max(0.001, Math.sin(angle)) * 1.012;
+  const pos = dir.clone().multiplyScalar(Math.cos(angle) * 1.012);
+  return (
+    <mesh position={pos} quaternion={quat}>
+      <torusGeometry args={[r, 0.008, 8, 160]} />
+      <meshBasicMaterial color={color} transparent opacity={opacity} />
+    </mesh>
+  );
+};
+
 /** Anillo que se dibuja progresivamente (p. ej. medición del ecuador). */
 export const ArcRing: React.FC<{
   radius: number;

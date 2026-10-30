@@ -1,0 +1,56 @@
+{
+  "id": "tunel",
+  "title": "¿Y si atravesaras la Tierra?",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 0.93,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "lexicon": { "ía": "íia" }
+  },
+  "defaults": { "pauseAfter": 0.2, "padStart": 0.15, "padEnd": 0.2, "transitionFrames": 10 },
+  "scenes": [
+    {
+      "id": "t-hook",
+      "padStart": 0.1,
+      "lines": [
+        { "id": "w1", "text": "¿Y si cavaras un túnel que atraviese la Tierra… y saltaras dentro?", "say": "¿Y si cavaras un túnel que atraviese la Tierra, y saltaras dentro?", "pauseAfter": 0.25 }
+      ]
+    },
+    {
+      "id": "t-real",
+      "lines": [
+        { "id": "w2", "text": "12.742 kilómetros, de polo a polo.", "say": "Doce mil setecientos kilómetros, de polo a polo." },
+        { "id": "w3", "text": "Spoiler: el agujero más profundo jamás excavado mide 12 km.", "say": "Spoiler: el agujero más profundo jamás excavado mide doce kilómetros." },
+        { "id": "w4", "text": "Ni el 0,1 % del camino.", "say": "Ni el uno por mil del camino." },
+        { "id": "w5", "text": "Pero imaginemos que existe… y que no hay aire.", "say": "Pero imaginemos que existe, y que no hay aire.", "pauseAfter": 0.3 }
+      ]
+    },
+    {
+      "id": "t-caida",
+      "lines": [
+        { "id": "w6", "text": "Saltas.", "pauseAfter": 0.45 },
+        { "id": "w7", "text": "En menos de dos minutos ya vas más rápido que una bala." },
+        { "id": "w8", "text": "Cruzas el manto… el núcleo de hierro líquido… a más de 5.000 °C.", "say": "Cruzas el manto, el núcleo de hierro líquido, a más de cinco mil grados." },
+        { "id": "w9", "text": "En el centro vas a unos 35.000 km/h… y la gravedad tira de ti hacia todos lados a la vez.", "say": "En el centro vas a unos treinta y cinco mil kilómetros por hora, y la gravedad tira de ti hacia todos lados a la vez." },
+        { "id": "w10", "text": "Sigues de largo, frenando… hasta asomarte al otro lado del planeta.", "say": "Sigues de largo, frenando, hasta asomarte al otro lado del planeta." },
+        { "id": "w11", "text": "38 minutos después.", "say": "Treinta y ocho minutos después.", "pauseAfter": 0.35 }
+      ]
+    },
+    {
+      "id": "t-giro",
+      "lines": [
+        { "id": "w12", "text": "Si no te agarras del borde… caes otra vez. Ida y vuelta, para siempre.", "say": "Si no te agarras del borde, caes otra vez. Ida y vuelta, para siempre." },
+        { "id": "w13", "text": "Con aire, el rozamiento te frenaría… hasta dejarte atrapado en el centro.", "say": "Con aire, el rozamiento te frenaría, hasta dejarte atrapado en el centro." }
+      ]
+    },
+    {
+      "id": "t-final",
+      "padEnd": 1.2,
+      "lines": [
+        { "id": "w14", "text": "Lo más loco: en un planeta ideal, cualquier túnel recto tardaría lo mismo. Unos 42 minutos.", "say": "Lo más loco: en un planeta ideal, cualquier túnel recto tardaría lo mismo. Unos cuarenta y dos minutos." },
+        { "id": "w15", "text": "¿Adónde saldrías tú?" }
+      ]
+    }
+  ]
+}

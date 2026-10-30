@@ -1,0 +1,127 @@
+{
+  "id": "tsar",
+  "title": "La Bomba del Zar",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 0.91,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "lexicon": {
+      "ía": "íia",
+      "ío": "íio"
+    }
+  },
+  "defaults": {
+    "pauseAfter": 0.22,
+    "padStart": 0.15,
+    "padEnd": 0.2,
+    "transitionFrames": 10
+  },
+  "scenes": [
+    {
+      "id": "z-hook",
+      "padStart": 0.2,
+      "padEnd": 0.35,
+      "lines": [
+        {
+          "id": "z1",
+          "text": "Esta bomba era tan potente… que la probaron a media potencia.",
+          "say": "Esta bomba era tan potente, que la probaron a media potencia."
+        }
+      ]
+    },
+    {
+      "id": "z-lugar",
+      "lines": [
+        {
+          "id": "z2",
+          "text": "30 de octubre de 1961. Ártico soviético.",
+          "say": "Treinta de octubre de mil novecientos sesenta y uno. Ártico soviético."
+        }
+      ]
+    },
+    {
+      "id": "z-caida",
+      "lines": [
+        {
+          "id": "z3",
+          "text": "Un bombardero suelta la Bomba del Zar: 27 toneladas, frenadas por un paracaídas gigante.",
+          "say": "Un bombardero suelta la Bomba del Zar: veintisiete toneladas, frenadas por un paracaídas gigante."
+        },
+        {
+          "id": "z4",
+          "text": "Tres minutos después, a 4 km de altura…",
+          "say": "Tres minutos después, a cuatro kilómetros de altura.",
+          "pauseAfter": 1.0
+        }
+      ]
+    },
+    {
+      "id": "z-boom",
+      "padStart": 0.6,
+      "lines": [
+        {
+          "id": "z5",
+          "text": "Una bola de fuego de 8 km.",
+          "say": "Una bola de fuego de ocho kilómetros."
+        },
+        {
+          "id": "z6",
+          "text": "Una nube de 64 km de altura: siete Everest, uno encima de otro.",
+          "say": "Una nube de sesenta y cuatro kilómetros de altura: siete Everest, uno encima de otro."
+        }
+      ]
+    },
+    {
+      "id": "z-alcance",
+      "lines": [
+        {
+          "id": "z7",
+          "text": "El destello se vio a 1.000 km. Rompió ventanas a 900.",
+          "say": "El destello se vio a mil kilómetros. Rompió ventanas a novecientos."
+        },
+        {
+          "id": "z8",
+          "text": "Un pueblo vacío, a 55 km, quedó arrasado.",
+          "say": "Un pueblo vacío, a cincuenta y cinco kilómetros, quedó arrasado."
+        }
+      ]
+    },
+    {
+      "id": "z-escala",
+      "lines": [
+        {
+          "id": "z9",
+          "text": "Su potencia: 50 millones de toneladas de TNT. Más de 3.000 bombas de Hiroshima.",
+          "say": "Su potencia: cincuenta millones de toneladas de te ene te. Más de tres mil bombas de Hiroshima."
+        },
+        {
+          "id": "z10",
+          "text": "La onda de presión dio la vuelta al planeta… tres veces.",
+          "say": "La onda de presión dio la vuelta al planeta, tres veces."
+        }
+      ]
+    },
+    {
+      "id": "z-legado",
+      "padEnd": 1.0,
+      "lines": [
+        {
+          "id": "z11",
+          "text": "Y el diseño original era el doble: 100 millones de toneladas.",
+          "say": "Y el diseño original era el doble: cien millones de toneladas."
+        },
+        {
+          "id": "z12",
+          "text": "Nunca fue un arma de verdad. Dos años después, se prohibieron los ensayos nucleares en la atmósfera.",
+          "pauseAfter": 0.45
+        },
+        {
+          "id": "z13",
+          "text": "Algunos récords… es mejor no batirlos.",
+          "say": "Algunos récords, es mejor no batirlos."
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,6 @@
 import {
+  geoAzimuthalEquidistant,
+  geoCircle,
   geoEquirectangular,
   geoGraticule,
   geoMercator,
@@ -14,12 +16,16 @@ import land50 from "world-atlas/land-50m.json";
 import { C } from "../engine/theme";
 
 export type LonLat = [number, number];
+
+const KM_PER_DEG = 111.195;
 export type View = { x: number; y: number; w: number; h: number };
 
 export type MapApi = {
   project: (p: LonLat) => [number, number];
   /** Trazado SVG de una línea geográfica (lista de [lon, lat]). */
   line: (coords: LonLat[]) => string;
+  /** Círculo geodésico real (radio en km) alrededor de un punto. */
+  circle: (center: LonLat, radiusKm: number) => string;
   /** Escala actual de la cámara: multiplica tamaños para que se vean constantes en pantalla. */
   k: number;
 };
@@ -31,7 +37,11 @@ type Props = {
    *  Puede ser una función que recibe `project` para encuadrar sobre lugares concretos. */
   view?: View | ((project: (p: LonLat) => [number, number]) => View);
   detail?: "50m" | "110m";
-  projection?: "mercator" | "equirectangular";
+  /** "azimuthal": equidistante centrada en `center`; los radios se ven como círculos verdaderos. */
+  projection?: "mercator" | "equirectangular" | "azimuthal";
+  /** Centro y radio (km) del encuadre para la proyección azimutal (ignora `fit`). */
+  center?: LonLat;
+  radiusKm?: number;
   rotate?: number;
   land?: string;
   ocean?: string;
@@ -54,6 +64,8 @@ export const GeoMap: React.FC<Props> = ({
   coast = "#C9A66B",
   graticuleStep = 5,
   size,
+  center,
+  radiusKm = 1000,
   children,
 }) => {
   const video = useVideoConfig();
@@ -61,16 +73,25 @@ export const GeoMap: React.FC<Props> = ({
 
   const { proj, landPath, gratPath } = useMemo(() => {
     const topo = (detail === "50m" ? land50 : land110) as unknown as Topology;
-    const p: GeoProjection = (
-      projection === "mercator" ? geoMercator() : geoEquirectangular()
-    ).rotate([rotate, 0]);
     const [[w0, s0], [e0, n0]] = fit;
-    p.fitExtent(
-      [
-        [0, 0],
-        [width, height],
-      ],
-      {
+    const extent: [[number, number], [number, number]] = [
+      [0, 0],
+      [width, height],
+    ];
+    let p: GeoProjection;
+    if (projection === "azimuthal" && center) {
+      p = geoAzimuthalEquidistant().rotate([-center[0], -center[1]]);
+      p.fitExtent(
+        extent,
+        geoCircle()
+          .center(center)
+          .radius(radiusKm / KM_PER_DEG)(),
+      );
+    } else {
+      p = (
+        projection === "mercator" ? geoMercator() : geoEquirectangular()
+      ).rotate([rotate, 0]);
+      p.fitExtent(extent, {
         type: "MultiPoint",
         coordinates: [
           [w0, s0],
@@ -78,8 +99,8 @@ export const GeoMap: React.FC<Props> = ({
           [w0, n0],
           [e0, s0],
         ],
-      },
-    );
+      });
+    }
     p.clipExtent([
       [-width, -height],
       [2 * width, 2 * height],
@@ -91,7 +112,17 @@ export const GeoMap: React.FC<Props> = ({
       gratPath:
         path(geoGraticule().step([graticuleStep, graticuleStep])()) ?? "",
     };
-  }, [fit, detail, projection, rotate, width, height, graticuleStep]);
+  }, [
+    fit,
+    detail,
+    projection,
+    rotate,
+    width,
+    height,
+    graticuleStep,
+    center,
+    radiusKm,
+  ]);
 
   const project = (pt: LonLat): [number, number] =>
     (proj(pt) as [number, number] | null) ?? [0, 0];
@@ -105,6 +136,13 @@ export const GeoMap: React.FC<Props> = ({
     project,
     line: (coords) =>
       geoPath(proj)({ type: "LineString", coordinates: coords }) ?? "",
+    circle: (c, km) =>
+      geoPath(proj)(
+        geoCircle()
+          .center(c)
+          .radius(km / KM_PER_DEG)
+          .precision(1)(),
+      ) ?? "",
     k: v.w / width,
   };
 

@@ -1,0 +1,137 @@
+{
+  "fps": 30,
+  "transitionFrames": 10,
+  "durationInFrames": 1982,
+  "scenes": [
+    {
+      "id": "t-hook",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 140,
+      "lines": [
+        {
+          "id": "w1",
+          "text": "¿Y si cavaras un túnel que atraviese la Tierra… y saltaras dentro?",
+          "from": 3,
+          "durationInFrames": 124
+        }
+      ]
+    },
+    {
+      "id": "t-real",
+      "chapter": null,
+      "from": 130,
+      "durationInFrames": 450,
+      "lines": [
+        {
+          "id": "w2",
+          "text": "12.742 kilómetros, de polo a polo.",
+          "from": 14,
+          "durationInFrames": 101
+        },
+        {
+          "id": "w3",
+          "text": "Spoiler: el agujero más profundo jamás excavado mide 12 km.",
+          "from": 121,
+          "durationInFrames": 152
+        },
+        {
+          "id": "w4",
+          "text": "Ni el 0,1 % del camino.",
+          "from": 278,
+          "durationInFrames": 57
+        },
+        {
+          "id": "w5",
+          "text": "Pero imaginemos que existe… y que no hay aire.",
+          "from": 341,
+          "durationInFrames": 94
+        }
+      ]
+    },
+    {
+      "id": "t-caida",
+      "chapter": null,
+      "from": 570,
+      "durationInFrames": 764,
+      "lines": [
+        {
+          "id": "w6",
+          "text": "Saltas.",
+          "from": 14,
+          "durationInFrames": 21
+        },
+        {
+          "id": "w7",
+          "text": "En menos de dos minutos ya vas más rápido que una bala.",
+          "from": 49,
+          "durationInFrames": 119
+        },
+        {
+          "id": "w8",
+          "text": "Cruzas el manto… el núcleo de hierro líquido… a más de 5.000 °C.",
+          "from": 173,
+          "durationInFrames": 157
+        },
+        {
+          "id": "w9",
+          "text": "En el centro vas a unos 35.000 km/h… y la gravedad tira de ti hacia todos lados a la vez.",
+          "from": 336,
+          "durationInFrames": 219
+        },
+        {
+          "id": "w10",
+          "text": "Sigues de largo, frenando… hasta asomarte al otro lado del planeta.",
+          "from": 560,
+          "durationInFrames": 125
+        },
+        {
+          "id": "w11",
+          "text": "38 minutos después.",
+          "from": 690,
+          "durationInFrames": 57
+        }
+      ]
+    },
+    {
+      "id": "t-giro",
+      "chapter": null,
+      "from": 1324,
+      "durationInFrames": 343,
+      "lines": [
+        {
+          "id": "w12",
+          "text": "Si no te agarras del borde… caes otra vez. Ida y vuelta, para siempre.",
+          "from": 14,
+          "durationInFrames": 153
+        },
+        {
+          "id": "w13",
+          "text": "Con aire, el rozamiento te frenaría… hasta dejarte atrapado en el centro.",
+          "from": 174,
+          "durationInFrames": 157
+        }
+      ]
+    },
+    {
+      "id": "t-final",
+      "chapter": null,
+      "from": 1657,
+      "durationInFrames": 325,
+      "lines": [
+        {
+          "id": "w14",
+          "text": "Lo más loco: en un planeta ideal, cualquier túnel recto tardaría lo mismo. Unos 42 minutos.",
+          "from": 14,
+          "durationInFrames": 222
+        },
+        {
+          "id": "w15",
+          "text": "¿Adónde saldrías tú?",
+          "from": 242,
+          "durationInFrames": 41
+        }
+      ]
+    }
+  ]
+}

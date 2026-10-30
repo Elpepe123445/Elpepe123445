@@ -6,6 +6,7 @@ import {
   plan,
 } from "./videos/eratostenes/Video";
 import { EratostenesShort, shortPlan } from "./videos/eratostenes-short/Video";
+import { TsarVideo, tsarPlan } from "./videos/tsar/Video";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -25,6 +26,14 @@ export const RemotionRoot: React.FC = () => (
       height={1920}
       fps={shortPlan.fps}
       durationInFrames={shortPlan.durationInFrames}
+    />
+    <Composition
+      id="TsarBomba"
+      component={TsarVideo}
+      width={1080}
+      height={1920}
+      fps={tsarPlan.fps}
+      durationInFrames={tsarPlan.durationInFrames}
     />
     <Folder name="Eratostenes-Escenas">
       {plan.scenes.map((s) => (

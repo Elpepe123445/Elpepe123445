@@ -171,6 +171,14 @@ SCORE = {
     # Short vertical (eratostenes-short): más pulso, clímax en la última frase.
     "angulo": {"chords": [DM9, AM7], "amp": 0.9, "arp": 0.14, "pulse": 0.3},
     "medida": {"chords": [BB9, DMAJ], "amp": 1.0, "pulse": 0.35, "climax": "s6", "bells": 0.08},
+    # Tsar Bomba: tono sobrio. "dark" evita las campanas brillantes en el clímax (no celebrar una explosión).
+    "z-hook": {"chords": [DM9], "amp": 0.85, "pulse": 0.3},
+    "z-lugar": {"chords": [GM9, EB], "amp": 0.85},
+    "z-caida": {"chords": [DM9, EB], "amp": 0.9, "pulse": 0.45},
+    "z-boom": {"chords": [EB, DM9], "amp": 1.0, "climax": "z5", "dark": True},
+    "z-alcance": {"chords": [AM7, DM9], "amp": 0.8},
+    "z-escala": {"chords": [GM9, EB], "amp": 0.85, "pulse": 0.25},
+    "z-legado": {"chords": [FMAJ7, DM9], "amp": 0.75, "bells": 0.05},
 }
 
 
@@ -213,8 +221,9 @@ def compose(plan: dict) -> np.ndarray:
                 pulse(out, t, spec["pulse"])
         if "climax" in spec:
             climax = cues[spec["climax"]]
-            for k, n in enumerate([62, 66, 69, 74, 78]):
-                bell(out, n, climax + 0.08 * k, 0.12, 0.2 + 0.15 * k)
+            if not spec.get("dark"):
+                for k, n in enumerate([62, 66, 69, 74, 78]):
+                    bell(out, n, climax + 0.08 * k, 0.12, 0.2 + 0.15 * k)
             pulse(out, climax, 0.9)
 
     # Dinámica general: entrada y salida suaves (más cortas en clips breves).
