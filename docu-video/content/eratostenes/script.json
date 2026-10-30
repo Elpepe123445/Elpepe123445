@@ -1,0 +1,280 @@
+{
+  "id": "eratostenes",
+  "title": "La sombra que midió el mundo",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 1.0,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "lexicon": {
+      "Alejandría": "Alejandríia"
+    }
+  },
+  "defaults": {
+    "pauseAfter": 0.3,
+    "padStart": 0.5,
+    "padEnd": 0.55,
+    "transitionFrames": 20
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "padStart": 1.2,
+      "lines": [
+        {
+          "id": "hook-1",
+          "text": "¿Cuánto mide la Tierra?",
+          "pauseAfter": 0.7
+        },
+        {
+          "id": "hook-2",
+          "text": "Hoy, los satélites lo miden con enorme precisión."
+        },
+        {
+          "id": "hook-3",
+          "text": "Pero hace más de 2.200 años, un hombre lo calculó…",
+          "say": "Pero hace más de dos mil doscientos años, un hombre lo calculó",
+          "pauseAfter": 0.25
+        },
+        {
+          "id": "hook-4",
+          "text": "sin salir de Egipto.",
+          "pauseAfter": 1.0
+        },
+        {
+          "id": "hook-5",
+          "text": "Solo necesitó una vara, una sombra… y una idea.",
+          "say": "Solo necesitó una vara, una sombra, y una idea."
+        }
+      ],
+      "padEnd": 2.6
+    },
+    {
+      "id": "alejandria",
+      "lines": [
+        {
+          "id": "alex-1",
+          "text": "Alejandría, siglo III antes de Cristo.",
+          "say": "Alejandría, siglo tercero, antes de Cristo."
+        },
+        {
+          "id": "alex-2",
+          "text": "La gran ciudad del mundo griego, con su faro gigantesco y su legendaria biblioteca."
+        },
+        {
+          "id": "alex-3",
+          "text": "Al frente de esa biblioteca estaba Eratóstenes de Cirene."
+        },
+        {
+          "id": "alex-4",
+          "text": "Matemático, astrónomo, poeta… y uno de los padres de la geografía.",
+          "say": "Matemático, astrónomo, poeta, y uno de los padres de la geografía."
+        },
+        {
+          "id": "alex-5",
+          "text": "Según una tradición antigua, lo apodaban «Beta»: el segundo mejor… en casi todo.",
+          "say": "Según una tradición antigua, lo apodaban Beta: el segundo mejor, en casi todo.",
+          "pauseAfter": 0.5
+        }
+      ]
+    },
+    {
+      "id": "mapa",
+      "chapter": "I · La pista",
+      "lines": [
+        {
+          "id": "map-1",
+          "text": "Eratóstenes conocía un detalle curioso sobre Siena, una ciudad del sur de Egipto, cerca de la actual Asuán."
+        },
+        {
+          "id": "map-2",
+          "text": "Al mediodía del solsticio de verano, el día más largo del año, el Sol quedaba justo sobre las cabezas."
+        }
+      ]
+    },
+    {
+      "id": "sombras",
+      "lines": [
+        {
+          "id": "sh-1",
+          "text": "Las varas verticales no proyectaban sombra, y la luz llegaba hasta el fondo de los pozos."
+        },
+        {
+          "id": "sh-2",
+          "text": "Pero en Alejandría, ese mismo día y a la misma hora, una vara sí proyectaba una pequeña sombra."
+        },
+        {
+          "id": "sh-3",
+          "text": "¿Cómo podía el mismo Sol producir sombras distintas?",
+          "pauseAfter": 0.9
+        }
+      ]
+    },
+    {
+      "id": "rayos",
+      "chapter": "II · La luz",
+      "lines": [
+        {
+          "id": "ray-1",
+          "text": "La clave estaba en la luz."
+        },
+        {
+          "id": "ray-2",
+          "text": "El Sol está tan lejos que sus rayos llegan a la Tierra prácticamente paralelos."
+        },
+        {
+          "id": "ray-3",
+          "text": "Si la Tierra fuera plana, dos varas recibirían la luz igual, y tendrían la misma sombra."
+        },
+        {
+          "id": "ray-4",
+          "text": "Pero sobre una superficie curva, cada vara apunta en una dirección distinta… y las sombras cambian.",
+          "say": "Pero sobre una superficie curva, cada vara apunta en una dirección distinta, y las sombras cambian."
+        },
+        {
+          "id": "ray-5",
+          "text": "Que la Tierra era una esfera, los griegos ya lo sabían. Eratóstenes quería algo más audaz: medirla.",
+          "pauseAfter": 0.6
+        }
+      ]
+    },
+    {
+      "id": "geometria",
+      "chapter": "III · El ángulo",
+      "lines": [
+        {
+          "id": "geo-1",
+          "text": "Eratóstenes midió la sombra de Alejandría: el ángulo era un cincuentavo de círculo."
+        },
+        {
+          "id": "geo-2",
+          "text": "Lo que hoy llamamos 7,2 grados.",
+          "say": "Lo que hoy llamamos siete coma dos grados."
+        },
+        {
+          "id": "geo-3",
+          "text": "La clave era un punto que nadie puede ver: el centro de la Tierra."
+        },
+        {
+          "id": "geo-4",
+          "text": "Si prolongamos las dos varas hacia abajo, se cruzan allí, formando exactamente el mismo ángulo."
+        },
+        {
+          "id": "geo-5",
+          "text": "Es geometría básica: una recta que corta dos paralelas forma ángulos iguales."
+        }
+      ]
+    },
+    {
+      "id": "calculo",
+      "chapter": "IV · La medida",
+      "lines": [
+        {
+          "id": "calc-1",
+          "text": "Así que el arco entre Alejandría y Siena es un cincuentavo de la vuelta al planeta."
+        },
+        {
+          "id": "calc-2",
+          "text": "Solo faltaba conocer esa distancia."
+        },
+        {
+          "id": "calc-3",
+          "text": "Según los relatos antiguos, eran unos 5.000 estadios, la unidad de longitud de los griegos.",
+          "say": "Según los relatos antiguos, eran unos cinco mil estadios, la unidad de longitud de los griegos."
+        },
+        {
+          "id": "calc-4",
+          "text": "Cinco mil, por cincuenta…",
+          "pauseAfter": 0.8
+        },
+        {
+          "id": "calc-5",
+          "text": "250.000 estadios. La circunferencia de la Tierra.",
+          "say": "doscientos cincuenta mil estadios. La circunferencia de la Tierra.",
+          "pauseAfter": 0.6
+        }
+      ]
+    },
+    {
+      "id": "comparacion",
+      "chapter": "V · ¿Acertó?",
+      "lines": [
+        {
+          "id": "cmp-1",
+          "text": "¿Qué tan cerca estuvo?",
+          "pauseAfter": 0.5
+        },
+        {
+          "id": "cmp-2",
+          "text": "Aquí aparece un misterio: no sabemos con certeza cuánto medía su estadio."
+        },
+        {
+          "id": "cmp-3",
+          "text": "Si medía unos 157 metros, su resultado equivale a unos 39.400 kilómetros.",
+          "say": "Si medía unos ciento cincuenta y siete metros, su resultado equivale a unos treinta y nueve mil cuatrocientos kilómetros."
+        },
+        {
+          "id": "cmp-4",
+          "text": "La medición moderna, de polo a polo, es de unos 40.000. Un error menor al 2 %.",
+          "say": "La medición moderna, de polo a polo, es de unos cuarenta mil. Un error menor al dos por ciento."
+        },
+        {
+          "id": "cmp-5",
+          "text": "Si el estadio era más largo, el error podría acercarse al 16 %.",
+          "say": "Si el estadio era más largo, el error podría acercarse al dieciséis por ciento."
+        },
+        {
+          "id": "cmp-6",
+          "text": "Y aunque Siena no estaba exactamente al sur de Alejandría, el razonamiento era impecable."
+        }
+      ]
+    },
+    {
+      "id": "legado",
+      "chapter": "VI · El legado",
+      "lines": [
+        {
+          "id": "leg-2",
+          "text": "Siglos después, Cristóbal Colón confió en cálculos de una Tierra más pequeña… y creyó que Asia estaba mucho más cerca de Europa.",
+          "say": "Siglos después, Cristóbal Colón confió en cálculos de una Tierra más pequeña, y creyó que Asia estaba mucho más cerca de Europa."
+        },
+        {
+          "id": "leg-3",
+          "text": "Y en 1791, Francia definió el metro a partir del propio planeta: la diezmillonésima parte de la distancia del polo norte al ecuador.",
+          "say": "Y en mil setecientos noventa y uno, Francia definió el metro a partir del propio planeta: la diezmillonésima parte de la distancia del polo norte al ecuador."
+        },
+        {
+          "id": "leg-4",
+          "text": "Por eso, la vuelta a la Tierra de polo a polo mide casi exactamente 40.000 kilómetros.",
+          "say": "Por eso, la vuelta a la Tierra de polo a polo mide casi exactamente cuarenta mil kilómetros.",
+          "pauseAfter": 0.6
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "padEnd": 3.8,
+      "lines": [
+        {
+          "id": "end-1",
+          "text": "Eratóstenes nunca vio la Tierra desde el espacio.",
+          "pauseAfter": 0.5
+        },
+        {
+          "id": "end-2",
+          "text": "No le hizo falta.",
+          "pauseAfter": 0.6
+        },
+        {
+          "id": "end-3",
+          "text": "Le bastó observar con atención algo que todos veían cada día: una sombra.",
+          "pauseAfter": 0.8
+        },
+        {
+          "id": "end-4",
+          "text": "La próxima vez que veas la tuya al mediodía, recuerda que en ella cabe la medida de un planeta."
+        }
+      ]
+    }
+  ]
+}

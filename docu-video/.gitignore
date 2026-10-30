@@ -1,0 +1,15 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Ignore the output video from Git but not videos you import into src/.
+out
+
+.cache
+__pycache__
+
+# Audio generado (se regenera con npm run audio)
+public/*/voice/
+public/*/sfx/
+public/*/music.wav
