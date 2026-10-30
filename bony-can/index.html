@@ -209,6 +209,14 @@ h2::after { content: ""; display: block; width: 92px; height: 12px; margin-top: 
 .size { position: relative }
 .size::after { content: ""; position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; border-radius: 50%; background: var(--marca-azul) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 13px no-repeat; transform: scale(0); transition: transform .2s cubic-bezier(.3, 1.6, .5, 1) }
 .choice input:checked + .size::after { transform: scale(1) }
+.size .bark { position: absolute; left: 50%; top: -16px; padding: 4px 11px; border-radius: 999px; background: var(--marca-azul); color: #fff; font-family: var(--display); font-weight: 600; font-size: 14px; white-space: nowrap; pointer-events: none; opacity: 0; transform: translate(-50%, 6px) scale(.6); box-shadow: 0 3px 0 #1f4fb3 }
+.size[data-s="l"] .bark { font-size: 16px }
+.size[data-s="xl"] .bark { font-size: 18px; letter-spacing: .02em }
+.size.barking .bark { animation: barkPop 1.1s cubic-bezier(.3, 1.6, .5, 1) forwards }
+.size.barking .ico svg { animation: barkShake .38s ease-in-out }
+@keyframes barkPop { 0% { opacity: 0; transform: translate(-50%, 6px) scale(.6) } 18% { opacity: 1; transform: translate(-50%, -6px) scale(1.06) } 75% { opacity: 1; transform: translate(-50%, -8px) scale(1) } 100% { opacity: 0; transform: translate(-50%, -14px) scale(.95) } }
+@keyframes barkShake { 25% { rotate: -9deg } 60% { rotate: 7deg } }
+@keyframes barkFade { 15%, 75% { opacity: 1 } 100% { opacity: 0 } }
 .choice input:checked + .size .ico { color: var(--chicle) }
 .choice input:checked + .size .ico svg { animation: hop .45s cubic-bezier(.3, 1.6, .5, 1) }
 @keyframes hop { 40% { translate: 0 -8px } }
@@ -437,6 +445,8 @@ html:has(.lightbox[open]) { overflow: hidden }
   .lb-prev, .lb-next { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: none }
 }
 @media (prefers-reduced-motion: reduce) {
+  .size.barking .bark { animation: barkFade 1.1s forwards; transform: translate(-50%, -8px) }
+  .size.barking .ico svg { animation: none }
   .sub.split .wd { animation: none }
   .ribbon-track, h1.split .ch, .bony-bubble.pop span { animation: none }
   .lightbox[open] img, .lightbox[open]::backdrop { animation: none }
@@ -568,12 +578,12 @@ html:has(.lightbox[open]) { overflow: hidden }
           </fieldset>
 
           <fieldset>
-            <legend>Tamaño</legend>
+            <legend>Tamaño <small>escucha su ladrido</small></legend>
             <div class="sizes">
-              <label class="choice rv"><input type="radio" name="size" value="Pequeño" /><span class="size" data-s="s"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Pequeño</strong><em>como un shih tzu</em></span></label>
-              <label class="choice rv"><input type="radio" name="size" value="Mediano" /><span class="size" data-s="m"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Mediano</strong><em>como un beagle</em></span></label>
-              <label class="choice rv"><input type="radio" name="size" value="Grande" /><span class="size" data-s="l"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Grande</strong><em>como un labrador</em></span></label>
-              <label class="choice rv"><input type="radio" name="size" value="Gigante" /><span class="size" data-s="xl"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Gigante</strong><em>como un gran danés</em></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Pequeño" /><span class="size" data-s="s"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Pequeño</strong><em>como un shih tzu</em><span class="bark" aria-hidden="true">¡Yip, yip!</span></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Mediano" /><span class="size" data-s="m"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Mediano</strong><em>como un beagle</em><span class="bark" aria-hidden="true">¡Guau, guau!</span></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Grande" /><span class="size" data-s="l"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Grande</strong><em>como un labrador</em><span class="bark" aria-hidden="true">¡Guau!</span></span></label>
+              <label class="choice rv"><input type="radio" name="size" value="Gigante" /><span class="size" data-s="xl"><span class="ico"><svg aria-hidden="true"><use href="#i-dog" /></svg></span><strong>Gigante</strong><em>como un gran danés</em><span class="bark" aria-hidden="true">¡GUAU!</span></span></label>
             </div>
           </fieldset>
 
@@ -760,6 +770,79 @@ html:has(.lightbox[open]) { overflow: hidden }
     waBtn.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   }
   form.addEventListener("input", update);
+
+  // Ladrido según el tamaño elegido. Sintetizado con Web Audio, sin archivos.
+  // Respeta el botón de sonido del inicio.
+  const BARKS = {
+    "Pequeño": { f: 640, dur: 0.09, n: 2, gap: 0.13, formant: 2300, noise: 0.35, growl: 0 },
+    "Mediano": { f: 400, dur: 0.13, n: 2, gap: 0.2, formant: 1500, noise: 0.3, growl: 0 },
+    "Grande": { f: 230, dur: 0.19, n: 2, gap: 0.28, formant: 950, noise: 0.25, growl: 28 },
+    "Gigante": { f: 140, dur: 0.3, n: 1, gap: 0, formant: 620, noise: 0.22, growl: 34 },
+  };
+  function barkInto(a, p, start) {
+    for (let k = 0; k < p.n; k++) {
+      const t = start + k * p.gap, end = t + p.dur;
+      const o = a.createOscillator();
+      o.type = "sawtooth";
+      o.frequency.setValueAtTime(p.f * 0.8, t);
+      o.frequency.exponentialRampToValueAtTime(p.f * 1.25, t + p.dur * 0.2);
+      o.frequency.exponentialRampToValueAtTime(p.f * 0.55, end);
+      const len = Math.ceil(a.sampleRate * p.dur);
+      const buf = a.createBuffer(1, len, a.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+      const noise = a.createBufferSource();
+      noise.buffer = buf;
+      const noiseGain = a.createGain();
+      noiseGain.gain.value = p.noise;
+      const mouth = a.createBiquadFilter();
+      mouth.type = "bandpass"; mouth.frequency.value = p.formant; mouth.Q.value = 1.4;
+      const tone = a.createBiquadFilter();
+      tone.type = "lowpass"; tone.frequency.value = p.formant * 2.2;
+      const body = a.createGain();
+      body.gain.value = 0.25;
+      const g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.35, t + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.12, t + p.dur * 0.5);
+      g.gain.exponentialRampToValueAtTime(0.0001, end);
+      o.connect(mouth);
+      noise.connect(noiseGain).connect(mouth);
+      o.connect(body).connect(tone);
+      mouth.connect(tone).connect(g).connect(a.destination);
+      if (p.growl) {
+        const lfo = a.createOscillator(), depth = a.createGain();
+        lfo.frequency.value = p.growl;
+        depth.gain.value = 0.08;
+        lfo.connect(depth).connect(g.gain);
+        lfo.start(t); lfo.stop(end + 0.02);
+      }
+      o.start(t); noise.start(t);
+      o.stop(end + 0.02); noise.stop(end + 0.02);
+    }
+  }
+  let barkCtx = null;
+  function bark(size) {
+    const p = BARKS[size];
+    const soundBtn = document.getElementById("soundBtn");
+    if (!p || (soundBtn && soundBtn.getAttribute("aria-pressed") === "false")) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    barkCtx = barkCtx || new AC();
+    if (barkCtx.state === "suspended") barkCtx.resume();
+    barkInto(barkCtx, p, barkCtx.currentTime + 0.02);
+  }
+  form.querySelectorAll('input[name="size"]').forEach((input) => {
+    input.addEventListener("click", () => {
+      bark(input.value);
+      const tile = input.nextElementSibling;
+      tile.classList.remove("barking");
+      void tile.offsetWidth;
+      tile.classList.add("barking");
+      clearTimeout(tile._barkTimer);
+      tile._barkTimer = setTimeout(() => tile.classList.remove("barking"), 1200);
+    });
+  });
   form.addEventListener("change", update);
   form.addEventListener("submit", (e) => e.preventDefault());
   waBtn.addEventListener("click", () => {
