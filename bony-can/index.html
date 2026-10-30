@@ -364,6 +364,20 @@ html:has(.lightbox[open]) { overflow: hidden }
 .rv-on .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i, 0) * 70ms) }
 .rv-on .rv.in { opacity: 1; transform: none }
 
+/* ---------- TÍTULOS Y SUBTÍTULOS ANIMADOS ---------- */
+.sub.split .wd { display: inline-block; animation: blurIn .7s ease backwards; animation-delay: calc(var(--i) * 35ms + .9s) }
+@keyframes blurIn { from { opacity: 0; filter: blur(8px); transform: translateY(6px) } }
+.rv-on h2 .wd, .rv-on .slogan .wd { display: inline-block; opacity: 0; transform: translateY(.55em) rotate(5deg); transition: opacity .5s ease, transform .6s cubic-bezier(.3, 1.5, .5, 1); transition-delay: calc(var(--i) * 70ms) }
+.rv-on .title-in .wd { opacity: 1; transform: none }
+.rv-on h2::after { clip-path: inset(0 100% 0 0); transition: clip-path .8s cubic-bezier(.2, .7, .2, 1) .45s }
+.rv-on h2.title-in::after { clip-path: inset(0 0 0 0) }
+.rv-on .subtitle { opacity: 0; filter: blur(8px); transform: translateY(10px); transition: opacity .8s ease .4s, filter .8s ease .4s, transform .8s cubic-bezier(.2, .7, .2, 1) .4s }
+.rv-on .title-in + .subtitle { opacity: 1; filter: none; transform: none }
+.rv-on .step legend::before { transform: scale(0) rotate(-90deg); transition: transform .55s cubic-bezier(.3, 1.6, .5, 1) .1s }
+.rv-on .step.in legend::before { transform: none }
+.rv-on .visit h3, .rv-on .foot h3 { background: linear-gradient(90deg, var(--patito), var(--patito)) no-repeat 0 100% / 0 3px; padding-bottom: 4px; transition: background-size .6s cubic-bezier(.2, .7, .2, 1) .3s }
+.rv-on .in h3 { background-size: 42px 3px }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1100px) {
   .nav-inner, .hero-inner { padding-left: 40px; padding-right: 40px }
@@ -398,7 +412,7 @@ html:has(.lightbox[open]) { overflow: hidden }
   .shop-photo { max-width: 460px }
   .gallery::before { width: 220px; height: 200px; right: -110px; top: -90px }
   .ribbon-wrap { height: 84px }
-  .ribbon-group { font-size: 18px; gap: 18px; padding-right: 18px }
+  .ribbon-group { font-size: 19px; gap: 18px; padding-right: 18px }
   .ribbon-group svg { width: 18px; height: 18px }
   .gallery::after { width: 180px; height: 160px; left: -100px; bottom: -90px }
   .foot-cols { gap: 32px }
@@ -422,6 +436,7 @@ html:has(.lightbox[open]) { overflow: hidden }
   .lb-prev, .lb-next { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); transform: none }
 }
 @media (prefers-reduced-motion: reduce) {
+  .sub.split .wd { animation: none }
   .ribbon-track, h1.split .ch, .bony-bubble.pop span { animation: none }
   .lightbox[open] img, .lightbox[open]::backdrop { animation: none }
   .gallery, .gallery::before, .gallery::after { animation: none }
@@ -490,7 +505,7 @@ html:has(.lightbox[open]) { overflow: hidden }
           <a class="btn-try" href="#servicios">Reservar cita</a>
           <a class="btn-ghost" href="#ubicacion">Cómo llegar</a>
         </div>
-        <p class="hint reveal d4" id="hint"><svg aria-hidden="true"><use href="#i-paw" /></svg><span>Toca a Bony y revienta las burbujas.</span></p>
+        <p class="hint reveal d4" id="hint"><svg aria-hidden="true"><use href="#i-paw" /></svg><span>Toca a Bony y a sus amigos.</span></p>
       </div>
     </div>
     <button class="sound-btn" id="soundBtn" aria-pressed="true" aria-label="Sonidos activados" hidden>
@@ -505,7 +520,7 @@ html:has(.lightbox[open]) { overflow: hidden }
 
   <section class="gallery" id="fotos" aria-labelledby="gallery-title">
     <div class="wrap gallery-head">
-      <div class="rv">
+      <div>
         <h2 id="gallery-title">Así salen de Bony Can</h2>
         <p>Fotos reales de nuestros clientes después de su baño y corte. Toca una para verla completa.</p>
       </div>
@@ -538,7 +553,7 @@ html:has(.lightbox[open]) { overflow: hidden }
 
   <section class="book" id="servicios" aria-labelledby="book-title">
     <div class="wrap">
-      <div class="book-head rv">
+      <div class="book-head">
         <h2 id="book-title">Arma la cita de tu perro</h2>
         <p>Elige lo que necesita y te dejamos el mensaje listo para WhatsApp. Te respondemos con el precio y el horario disponible.</p>
       </div>
@@ -623,7 +638,7 @@ html:has(.lightbox[open]) { overflow: hidden }
       <figure class="shop-photo rv">
         <img src="img/boutique.webp" alt="Estante de la boutique de Bony Can con ropa para perros, shampoos, juguetes, mantitas y una transportadora" width="820" height="1158" loading="lazy" decoding="async" />
       </figure>
-      <div class="shop-copy rv">
+      <div class="shop-copy">
         <h2 id="shop-title">También somos boutique</h2>
         <p>Ropita, juguetes y todo para engreírlo en casa. Pregunta por tallas y modelos cuando vengas o por WhatsApp.</p>
         <ul class="shop-list">
@@ -751,6 +766,25 @@ html:has(.lightbox[open]) { overflow: hidden }
   });
   update();
 
+  // Separa un texto en palabras animables; los lectores de pantalla leen la frase completa
+  function splitWords(el) {
+    if (!el) return;
+    const label = el.textContent.replace(/\s+/g, " ").trim();
+    const visual = document.createElement("span");
+    visual.setAttribute("aria-hidden", "true");
+    label.split(" ").forEach((w, i) => {
+      const s = document.createElement("span");
+      s.className = "wd";
+      s.style.setProperty("--i", i);
+      s.textContent = w;
+      visual.append(s, " ");
+    });
+    const sr = document.createElement("span");
+    sr.className = "sr-only";
+    sr.textContent = label;
+    el.replaceChildren(sr, visual);
+  }
+
   // Titular: separa letras para la animación, sin cambiar lo que leen los lectores de pantalla
   const h1 = document.querySelector(".hero h1");
   if (h1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -781,6 +815,9 @@ html:has(.lightbox[open]) { overflow: hidden }
     h1.replaceChildren(sr, visual);
     h1.classList.remove("reveal", "d1");
     h1.classList.add("split");
+    splitWords(document.querySelector(".hero .sub"));
+    document.querySelector(".hero .sub").classList.remove("reveal", "d2");
+    document.querySelector(".hero .sub").classList.add("split");
   }
 
   // Galería: flechas y visor de fotos
@@ -875,6 +912,20 @@ html:has(.lightbox[open]) { overflow: hidden }
       el.style.setProperty("--i", Math.min(sibs.indexOf(el), 8));
       io.observe(el);
     });
+    // Pasos del formulario: el número aparece girando
+    document.querySelectorAll(".book-form fieldset").forEach((f) => { f.classList.add("step"); io.observe(f); });
+    // Títulos de sección palabra por palabra, subrayado que se dibuja y subtítulo que se enfoca
+    const titleIO = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("title-in"); titleIO.unobserve(e.target); }
+    }, { threshold: 0.4 });
+    document.querySelectorAll("main h2, .follow-block .slogan").forEach((el) => {
+      splitWords(el);
+      const next = el.nextElementSibling;
+      if (next && next.matches("p")) next.classList.add("subtitle");
+      titleIO.observe(el);
+    });
+    // Los h3 del contacto se subrayan cuando aparece su bloque
+    document.querySelectorAll(".foot-cols > div").forEach((d) => { d.classList.add("rv"); io.observe(d); });
   }
 
   // Botón flotante de WhatsApp: aparece cuando el hero ya no está a la vista.
@@ -1028,8 +1079,6 @@ const pupilMat = glossy(0x0b0605, { polygonOffset: true, polygonOffsetFactor: -2
 const glintMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
 const blushMat = new THREE.MeshBasicMaterial({ color: 0xff8fb2, transparent: true, opacity: 0.5, depthWrite: false });
 const rimFur = rimMaterial(0x9ff7ee, 3.0, 0.42);
-const duckMat = new THREE.MeshPhysicalMaterial({ color: 0xffc94a, roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.15 });
-const beakMat = new THREE.MeshPhysicalMaterial({ color: 0xff8a3d, roughness: 0.3, clearcoat: 0.6 });
 const foamMat = new THREE.MeshPhysicalMaterial({
   color: 0xf2fbfb, roughness: 0.32, clearcoat: 0.7, clearcoatRoughness: 0.2,
   sheen: 0.6, sheenColor: new THREE.Color(0xbff6f0),
@@ -1213,27 +1262,127 @@ for (let i = 0; i < 22; i++) {
   const z = Math.sin(a) * rr * 0.62 - 0.05;
   foamData.push({ x: Math.cos(a) * rr, z, y: (z > 0.3 ? -1.36 : -1.2) + rnd() * 0.1, s: 0.2 + rnd() * 0.16, ph: rnd() * 6.28 });
 }
+for (const [x, z, sz] of [[-1.62, -0.32, 0.3], [-1.86, -0.5, 0.24], [-1.42, -0.12, 0.26]]) {
+  foamData.push({ x, z, y: -1.28 + rnd() * 0.06, s: sz, ph: rnd() * 6.28 });
+}
 const foam = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 32, 20), foamMat, foamData.length);
 foam.frustumCulled = false;
 bath.add(foam);
 
-// Patito de hule
-const duck = new THREE.Group();
-duck.position.set(1.22, -1.0, 0.5);
-duck.rotation.y = -2.2;
-bath.add(duck);
-const duckBody = new THREE.Group();
-duck.add(duckBody);
-part(duckBody, SPHERE, duckMat, { s: [0.26, 0.19, 0.2] });
-part(duckBody, SPHERE, duckMat, { p: [-0.22, 0.1, 0], s: [0.09, 0.08, 0.07], r: [0, 0, -0.6] });
-part(duckBody, SPHERE, duckMat, { p: [0.13, 0.2, 0], s: [0.14, 0.14, 0.14] });
-part(duckBody, SPHERE, beakMat, { p: [0.27, 0.18, 0], s: [0.09, 0.035, 0.075] });
-for (const s of [-1, 1]) {
-  part(duckBody, SPHERE, noseMat, { p: [0.21, 0.25, s * 0.085], s: [0.022, 0.022, 0.022] });
-  part(duckBody, SPHERE, duckMat, { p: [-0.02, 0.03, s * 0.18], s: [0.12, 0.08, 0.03] });
+
+// ---------- Amigos de Bony: Nieve (husky) y Michi (gato) ----------
+const huskyGray = fur(0x5d6873, 0xaeb9c4);
+const snow = fur(0xf6f8fa, 0xffffff);
+const catBlue = fur(0x8fa3bd, 0xd2deec); // gris azulado, como el gato del logo
+const catCream = fur(0xf4ece0, 0xffffff);
+const earPink = new THREE.MeshPhysicalMaterial({ color: 0xf6a5bd, roughness: 0.5, sheen: 0.6, sheenColor: new THREE.Color(0xffd6e2) });
+const whiskerMat = new THREE.MeshBasicMaterial({ color: 0xeef2f6 });
+const huskyIris = glossy(0x6cb8ff, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+const catIris = glossy(0xc4dc4a, { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+
+function placeOn(head, A, B, C, obj, x, y, lift = 0) {
+  const z = C * Math.sqrt(Math.max(0, 1 - (x / A) ** 2 - (y / B) ** 2));
+  const n = new THREE.Vector3(x / (A * A), y / (B * B), z / (C * C)).normalize();
+  obj.position.set(x, y, z).addScaledVector(n, lift);
+  obj.quaternion.setFromUnitVectors(Z, n);
+  head.add(obj);
+  return obj;
 }
-const duckProxy = part(duck, LOW, hidden, { p: [0.05, 0.08, 0], s: [0.36, 0.32, 0.3] });
-const duckState = { y: 0, vy: 0, spin: 0, jumping: false };
+function petEyes(head, A, B, C, x, y, r, irisMat, slit) {
+  const ball = new THREE.SphereGeometry(r, 32, 24);
+  const iris = new THREE.SphereGeometry(r * 1.015, 32, 12, 0, Math.PI * 2, 0, 0.85);
+  const pupil = new THREE.SphereGeometry(r * 1.03, 32, 10, 0, Math.PI * 2, 0, slit ? 0.62 : 0.42);
+  const g = r / 0.2;
+  return [-1, 1].map((side) => {
+    const socket = placeOn(head, A, B, C, new THREE.Group(), side * x, y, -r * 0.35);
+    const lid = new THREE.Group();
+    socket.add(lid);
+    lid.add(new THREE.Mesh(ball, eyeWhite));
+    const pivot = new THREE.Group();
+    lid.add(pivot);
+    part(pivot, iris, irisMat, { r: [Math.PI / 2, 0, 0] });
+    part(pivot, pupil, pupilMat, { r: [Math.PI / 2, 0, 0], s: slit ? [0.42, 1, 1] : [1, 1, 1] });
+    part(lid, glintGeo, glintMat, { p: [-0.06 * g, 0.07 * g, 0.18 * g], s: [g, g, g] });
+    return { lid, pivot };
+  });
+}
+function earCone(parent, side, pos, rz, outer, inner, size) {
+  const pivot = new THREE.Group();
+  pivot.position.set(side * pos[0], pos[1], pos[2]);
+  pivot.rotation.set(-0.12, 0, -side * rz);
+  parent.add(pivot);
+  part(pivot, new THREE.ConeGeometry(size[0], size[1], 24), outer, { p: [0, size[1] * 0.42, 0], s: [1, 1, 0.5] });
+  part(pivot, new THREE.ConeGeometry(size[0] * 0.6, size[1] * 0.7, 24), inner, { p: [0, size[1] * 0.36, size[0] * 0.18], s: [1, 1, 0.35] });
+  return pivot;
+}
+
+// Nieve, el husky: asoma desde la espuma a la izquierda
+const husky = new THREE.Group();
+husky.position.set(-1.45, -0.85, -0.4);
+husky.rotation.y = 0.4;
+husky.scale.setScalar(0.56);
+bath.add(husky);
+part(husky, SPHERE, huskyGray, { p: [0, -0.62, -0.05], s: [0.6, 0.5, 0.55] });
+const hHead = new THREE.Group();
+hHead.position.set(0, 0.4, 0);
+husky.add(hHead);
+part(hHead, SPHERE, huskyGray, { s: [1.0, 0.92, 0.95], rim: rimFur });
+part(hHead, SPHERE, snow, { p: [0, -0.22, 0.38], s: [0.8, 0.6, 0.62] });
+part(hHead, SPHERE, snow, { p: [0, 0.25, 0.78], s: [0.15, 0.32, 0.18] });
+for (const side of [-1, 1]) part(hHead, SPHERE, snow, { p: [side * 0.32, 0.36, 0.8], s: [0.11, 0.07, 0.06] });
+part(hHead, SPHERE, snow, { p: [0, -0.3, 0.78], s: [0.42, 0.3, 0.46] });
+part(hHead, SPHERE, noseMat, { p: [0, -0.2, 1.19], s: [0.14, 0.1, 0.09] });
+part(hHead, arcGeo, mouthMat, { p: [-0.06, -0.33, 1.2], r: [0, 0, Math.PI], s: [0.85, 0.85, 0.85] });
+part(hHead, arcGeo, mouthMat, { p: [0.06, -0.33, 1.2], r: [0, 0, Math.PI], s: [0.85, 0.85, 0.85] });
+const hTongue = new THREE.Group();
+hTongue.position.set(0, -0.38, 1.16);
+hTongue.rotation.x = -0.3;
+hHead.add(hTongue);
+part(hTongue, new THREE.CapsuleGeometry(0.065, 0.1, 6, 16), tongueMat, { p: [0, -0.09, 0.02], s: [1, 1, 0.5] });
+const huskyEyes = petEyes(hHead, 1.0, 0.92, 0.95, 0.33, 0.12, 0.15, huskyIris, false);
+const huskyEars = [-1, 1].map((side) => earCone(hHead, side, [0.5, 0.66, -0.05], 0.28, huskyGray, snow, [0.28, 0.62]));
+for (const side of [-1, 1]) {
+  part(husky, SPHERE, snow, { p: [side * 0.42, -1.1, 0.6], s: [0.2, 0.22, 0.16], rim: rimFur });
+}
+const huskyProxy = part(husky, LOW, hidden, { p: [0, 0.2, 0.2], s: [1.25, 1.3, 1.0] });
+
+// Michi, el gato: sentado en el borde, bien seco
+const cat = new THREE.Group();
+cat.position.set(1.5, -0.46, -0.3);
+cat.rotation.y = -0.4;
+cat.scale.setScalar(0.5);
+bath.add(cat);
+part(cat, SPHERE, catBlue, { p: [0, -0.5, -0.05], s: [0.55, 0.62, 0.5], rim: rimFur });
+part(cat, SPHERE, catCream, { p: [0, -0.42, 0.3], s: [0.32, 0.42, 0.22] });
+for (const side of [-1, 1]) {
+  part(cat, new THREE.CapsuleGeometry(0.11, 0.38, 6, 12), catBlue, { p: [side * 0.2, -0.85, 0.26] });
+  part(cat, SPHERE, catCream, { p: [side * 0.2, -1.07, 0.34], s: [0.13, 0.09, 0.15] });
+}
+const cHead = new THREE.Group();
+cHead.position.set(0, 0.3, 0.06);
+cat.add(cHead);
+part(cHead, SPHERE, catBlue, { s: [0.82, 0.72, 0.76], rim: rimFur });
+for (const side of [-1, 1]) part(cHead, SPHERE, catCream, { p: [side * 0.13, -0.24, 0.64], s: [0.17, 0.13, 0.14] });
+part(cHead, SPHERE, catCream, { p: [0, -0.36, 0.6], s: [0.12, 0.08, 0.1] });
+part(cHead, SPHERE, earPink, { p: [0, -0.13, 0.74], s: [0.075, 0.05, 0.04] });
+const catEyes = petEyes(cHead, 0.82, 0.72, 0.76, 0.3, 0.07, 0.16, catIris, true);
+const catEars = [-1, 1].map((side) => earCone(cHead, side, [0.42, 0.46, -0.02], 0.4, catBlue, earPink, [0.25, 0.46]));
+for (const side of [-1, 1]) for (const k of [-1, 0, 1]) {
+  part(cHead, new THREE.CylinderGeometry(0.007, 0.007, 0.5, 6), whiskerMat, { p: [side * 0.42, -0.22 + k * 0.045, 0.66], r: [0, 0, Math.PI / 2 + side * k * 0.14] });
+}
+const cTail = new THREE.Group();
+cTail.position.set(0.32, -0.92, -0.36);
+cat.add(cTail);
+const tailCurve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0.33, 0.1, -0.05), new THREE.Vector3(0.52, 0.48, 0), new THREE.Vector3(0.44, 0.88, 0.05), new THREE.Vector3(0.24, 1.02, 0.08)]);
+part(cTail, new THREE.TubeGeometry(tailCurve, 40, 0.08, 10, false), catBlue);
+part(cTail, SPHERE, catBlue, { p: [0.24, 1.02, 0.08], s: [0.08, 0.08, 0.08] });
+const catProxy = part(cat, LOW, hidden, { p: [0, -0.1, 0.05], s: [0.9, 1.35, 0.8] });
+
+const pets = [
+  { name: "husky", head: hHead, eyes: huskyEyes, ears: huskyEars, baseYaw: 0.15, lx: 0, ly: 0, blinkAt: 2.7, blinkStart: -9, act: 0 },
+  { name: "cat", head: cHead, eyes: catEyes, ears: catEars, baseYaw: -0.1, lx: 0, ly: 0, blinkAt: 4.1, blinkStart: -9, act: 0 },
+];
+const catJump = { y: 0, vy: 0, on: false };
 
 // Brillo de fondo y reflejo bajo el baño
 const haze = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: 0x3fd8c8, opacity: 0.07, blending: THREE.AdditiveBlending, depthWrite: false }));
@@ -1242,7 +1391,7 @@ haze.position.set(0, 0.1, -3);
 scene.add(haze);
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: glowTex, color: 0x5fe6da, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false }));
 floor.position.set(0, -1.75, -0.6);
-floor.scale.set(3.8, 0.5, 1);
+floor.scale.set(4.8, 0.55, 1);
 scene.add(floor);
 
 // ---------- Burbujas (instanciadas, con película iridiscente) ----------
@@ -1346,24 +1495,46 @@ function plip() {
   o.start(t);
   o.stop(t + 0.1);
 }
-function squeak() {
+function meow() {
   const a = audio();
   if (!a) return;
-  const t0 = a.currentTime;
-  for (const d of [0, 0.17]) {
-    const t = t0 + d, o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain();
-    o.type = "sawtooth";
-    f.type = "bandpass"; f.frequency.value = 2200; f.Q.value = 3;
-    o.frequency.setValueAtTime(950, t);
-    o.frequency.linearRampToValueAtTime(1600, t + 0.06);
-    o.frequency.linearRampToValueAtTime(1250, t + 0.13);
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.16, t + 0.015);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
-    o.connect(f).connect(g).connect(a.destination);
-    o.start(t);
-    o.stop(t + 0.16);
-  }
+  const t = a.currentTime, o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain(), lfo = a.createOscillator(), lg = a.createGain();
+  o.type = "sawtooth";
+  f.type = "bandpass"; f.Q.value = 5;
+  o.frequency.setValueAtTime(480, t);
+  o.frequency.linearRampToValueAtTime(760, t + 0.18);
+  o.frequency.linearRampToValueAtTime(520, t + 0.5);
+  f.frequency.setValueAtTime(900, t);
+  f.frequency.linearRampToValueAtTime(1800, t + 0.2);
+  f.frequency.linearRampToValueAtTime(1000, t + 0.5);
+  lfo.frequency.value = 7; lg.gain.value = 10;
+  lfo.connect(lg).connect(o.frequency);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.14, t + 0.06);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.55);
+  o.connect(f).connect(g).connect(a.destination);
+  o.start(t); lfo.start(t);
+  o.stop(t + 0.6); lfo.stop(t + 0.6);
+}
+function howl() {
+  const a = audio();
+  if (!a) return;
+  const t = a.currentTime, o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain(), lfo = a.createOscillator(), lg = a.createGain();
+  o.type = "triangle";
+  f.type = "lowpass"; f.frequency.value = 1400;
+  o.frequency.setValueAtTime(330, t);
+  o.frequency.exponentialRampToValueAtTime(620, t + 0.45);
+  o.frequency.setValueAtTime(620, t + 0.9);
+  o.frequency.exponentialRampToValueAtTime(420, t + 1.4);
+  lfo.frequency.value = 5.5; lg.gain.value = 9;
+  lfo.connect(lg).connect(o.frequency);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.13, t + 0.2);
+  g.gain.setValueAtTime(0.13, t + 1.0);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 1.45);
+  o.connect(f).connect(g).connect(a.destination);
+  o.start(t); lfo.start(t);
+  o.stop(t + 1.5); lfo.stop(t + 1.5);
 }
 function splash() {
   const a = audio();
@@ -1413,7 +1584,7 @@ function layout() {
     anchor.y = H * 0.5 + 8;
   }
   camera.aspect = W / H;
-  camera.position.set(0, 0, (3.4 * H) / (robotPx * 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
+  camera.position.set(0, 0, ((isMobile ? 3.9 : 3.6) * H) / (robotPx * 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
   camera.setViewOffset(W, H, W / 2 - anchor.x, H / 2 - anchor.y, W, H);
   camera.updateProjectionMatrix();
   loader.style.left = `${anchor.x}px`;
@@ -1423,7 +1594,7 @@ function layout() {
 
 // Globo de diálogo de Bony (en celular se oculta por falta de espacio)
 const bubble = document.getElementById("bonyBubble");
-const bubbleLines = ["¡Hola! Soy Bony", "¡Tócame y me baño!", "Revienta las burbujas", "¿Le toca baño al tuyo?"];
+const bubbleLines = ["¡Hola! Soy Bony", "Ellos son Nieve y Michi", "¡Tócanos!", "Revienta las burbujas", "¿Le toca baño al tuyo?"];
 let bubbleIdx = 0, bubbleHold = 0;
 function placeBubble() {
   if (isMobile || !bubble) return;
@@ -1479,22 +1650,37 @@ function bathBony() {
   splash();
   say("¡Quedé regio!");
   bubbleHold = performance.now() + 3500;
+  setTimeout(() => catHop(false), 260); // a Michi lo salpican y salta
   if (!bathed) {
     bathed = true;
     hint.querySelector("span").innerHTML = '¡Quedó regio! Ahora <a href="#servicios">arma la cita del tuyo</a>.';
   }
 }
-function jumpDuck() {
-  if (duckState.jumping) return;
-  duckState.jumping = true;
-  duckState.vy = 2.6;
-  squeak();
+function catHop(withSound) {
+  if (catJump.on) return;
+  catJump.on = true;
+  catJump.vy = 2.4;
+  pets[1].act = 1;
+  if (withSound) meow();
+}
+function petCat() {
+  catHop(true);
+  say("A Michi no le gusta el agua");
+  bubbleHold = performance.now() + 3200;
+}
+function petHusky() {
+  if (pets[0].act > 0.2) return;
+  pets[0].act = 1.6;
+  howl();
+  say("¡Auuu! Nieve está feliz");
+  bubbleHold = performance.now() + 3200;
 }
 canvas.addEventListener("click", (e) => {
   gestured = true;
   readPointer(e.clientX, e.clientY);
   raycaster.setFromCamera(ndc, camera);
-  if (raycaster.intersectObject(duckProxy, false).length) return jumpDuck();
+  if (raycaster.intersectObject(catProxy, false).length) return petCat();
+  if (raycaster.intersectObject(huskyProxy, false).length) return petHusky();
   if (raycaster.intersectObjects([headProxy, bodyProxy], false).length) return bathBony();
   for (const b of bub) if (raycaster.ray.distanceSqToPoint(b.p) < (b.r * 1.3) ** 2 && popBubble(b)) break;
 });
@@ -1529,8 +1715,8 @@ function frame() {
     if (pointerInHero) {
       raycaster.setFromCamera(ndc, camera);
       hovering = raycaster.intersectObjects([headProxy, bodyProxy], false).length > 0;
-      const overDuck = raycaster.intersectObject(duckProxy, false).length > 0;
-      canvas.style.cursor = hovering || overDuck ? "pointer" : "";
+      const overPet = raycaster.intersectObjects([catProxy, huskyProxy], false).length > 0;
+      canvas.style.cursor = hovering || overPet ? "pointer" : "";
       for (const b of bub) if (raycaster.ray.distanceSqToPoint(b.p) < b.r * b.r) popBubble(b);
     } else {
       hovering = false;
@@ -1615,15 +1801,43 @@ function frame() {
   }
   foam.instanceMatrix.needsUpdate = true;
 
-  // Patito
-  if (duckState.jumping) {
-    duckState.vy -= 9.8 * dt;
-    duckState.y += duckState.vy * dt;
-    duckState.spin += dt * 9;
-    if (duckState.y <= 0) { duckState.y = 0; duckState.jumping = false; duckState.spin = 0; }
+  // Nieve y Michi: miran al cursor con algo de retraso, parpadean y reaccionan
+  const kp = 1 - Math.pow(0.006, dt);
+  for (const p of pets) {
+    p.lx += (look.x - p.lx) * kp;
+    p.ly += (look.y - p.ly) * kp;
+    p.act = Math.max(0, p.act - dt);
+    if (t > p.blinkAt) { p.blinkStart = t; p.blinkAt = t + 2.8 + Math.random() * 4; }
+    const pb = (t - p.blinkStart) / 0.3;
+    const lidOpen = pb >= 0 && pb < 1 ? Math.abs(pb - 0.5) * 2 * 0.92 + 0.08 : 1;
+    for (const e of p.eyes) {
+      e.pivot.rotation.y = clamp(p.lx * 0.4, -0.4, 0.4);
+      e.pivot.rotation.x = clamp(p.ly * 0.34, -0.34, 0.34);
+      e.lid.scale.y = lidOpen;
+    }
   }
-  duck.position.y = -1.0 + Math.sin(t * 1.7 + 1) * 0.03 * M + duckState.y;
-  duckBody.rotation.set(0, duckState.jumping ? duckState.spin : 0, Math.sin(t * 1.3) * 0.08 * M);
+  const howlK = Math.sin(Math.min(1, pets[0].act / 1.6) * Math.PI);
+  hHead.rotation.y = pets[0].baseYaw + pets[0].lx * 0.45;
+  hHead.rotation.x = pets[0].ly * 0.3 - howlK * 0.55;
+  hHead.rotation.z = Math.sin(t * 1.3 + 1) * 0.04 * M;
+  hTongue.visible = howlK < 0.3;
+  hTongue.scale.y = 1 + Math.sin(t * 7) * 0.12 * M;
+  for (const [i, e] of pets[0].ears.entries()) e.rotation.x = -0.12 - howlK * 0.25 + Math.sin(t * 2 + i) * 0.03 * M;
+
+  if (catJump.on) {
+    catJump.vy -= 9.8 * dt;
+    catJump.y += catJump.vy * dt;
+    if (catJump.y <= 0) { catJump.y = 0; catJump.on = false; }
+  }
+  cat.position.y = -0.46 + catJump.y;
+  cHead.rotation.y = pets[1].baseYaw + pets[1].lx * 0.5;
+  cHead.rotation.x = pets[1].ly * 0.32;
+  cHead.rotation.z = Math.sin(t * 0.9) * 0.05 * M;
+  cTail.rotation.z = Math.sin(t * 1.4) * 0.18 * M + Math.sin(t * 14) * 0.25 * pets[1].act;
+  const twitch = Math.max(0, Math.sin(t * 0.7) - 0.96) * 12;
+  catEars[1].rotation.z = 0.4 * -1 - twitch * 0.25 * M;
+  catEars[0].rotation.x = -0.12 - pets[1].act * 0.5;
+  catEars[1].rotation.x = -0.12 - pets[1].act * 0.5;
 
   // Burbujas
   for (const b of bub) {
@@ -1655,7 +1869,7 @@ function frame() {
   bubbles.instanceMatrix.needsUpdate = true;
   aAlpha.needsUpdate = true;
 
-  floor.scale.set(3.8 - bob * 3, 0.5 - bob * 0.4, 1);
+  floor.scale.set(4.8 - bob * 3, 0.55 - bob * 0.4, 1);
   floor.material.opacity = clamp(0.55 + (0.07 - bob) * 1.5, 0, 1);
 
   composer.render();
