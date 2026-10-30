@@ -71,7 +71,8 @@ def main(video: str) -> None:
     lines = [line for scene in script["scenes"] for line in scene["lines"]]
     clips: dict[str, np.ndarray] = {}
     rate = voice.config.sample_rate
-    lexicon = vcfg.get("lexicon", {})  # respellings para palabras que la voz pronuncia mal
+    # Respellings para lo que la voz pronuncia mal (p. ej. el hiato "ía" → "íia"; ver README).
+    lexicon = vcfg.get("lexicon", {})
     for line in lines:
         text = line.get("say", line["text"])
         for word, respelled in lexicon.items():

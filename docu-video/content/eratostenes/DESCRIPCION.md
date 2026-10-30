@@ -10,11 +10,11 @@ qué tan cerca estuvo y por qué su resultado sigue rodeado de un pequeño miste
 00:20 Alejandría y su bibliotecario
 00:46 I · La pista
 01:01 Las sombras de Siena y Alejandría
-01:21 II · La luz
-01:52 III · El ángulo
-02:19 IV · La medida
+01:20 II · La luz
+01:51 III · El ángulo
+02:18 IV · La medida
 02:42 V · ¿Acertó?
-03:18 VI · El legado
+03:17 VI · El legado
 03:43 Cierre
 
 **Fuentes**

@@ -7,7 +7,8 @@
     "noiseScale": 0.6,
     "noiseW": 0.75,
     "lexicon": {
-      "Alejandría": "Alejandríia"
+      "Alejandría": "Alejandríia",
+      "ía": "íia"
     }
   },
   "defaults": {
@@ -59,7 +60,7 @@
         },
         {
           "id": "alex-2",
-          "text": "La gran ciudad del mundo griego, con su faro gigantesco y su legendaria biblioteca."
+          "text": "La gran ciudad del mundo helenístico, con su faro gigantesco y su legendaria biblioteca."
         },
         {
           "id": "alex-3",
@@ -133,7 +134,7 @@
         },
         {
           "id": "ray-5",
-          "text": "Que la Tierra era una esfera, los griegos ya lo sabían. Eratóstenes quería algo más audaz: medirla.",
+          "text": "Que la Tierra era una esfera, en la antigua Grecia ya lo sabían. Eratóstenes quería algo más audaz: medirla.",
           "pauseAfter": 0.6
         }
       ]
@@ -179,8 +180,8 @@
         },
         {
           "id": "calc-3",
-          "text": "Según los relatos antiguos, eran unos 5.000 estadios, la unidad de longitud de los griegos.",
-          "say": "Según los relatos antiguos, eran unos cinco mil estadios, la unidad de longitud de los griegos."
+          "text": "Según los relatos antiguos, eran unos 5.000 estadios, una antigua unidad de longitud.",
+          "say": "Según los relatos antiguos, eran unos cinco mil estadios, una antigua unidad de longitud."
         },
         {
           "id": "calc-4",

@@ -72,5 +72,7 @@ Si cambias el guion o la voz, `npm run audio` recalcula todo y las animaciones s
 
 - El contenedor no tiene GPU: `remotion.config.ts` usa `swangle` (WebGL por software) para Three.js.
 - Las fuentes (Cinzel, Inter; licencia OFL) están en `public/fonts` para no depender de la red.
-- La voz `es_MX-claude-high` pronuncia mal «Alejandría»; se corrige con `voice.lexicon` en `script.json`.
+- La voz `es_MX-claude-high` pronuncia mal el hiato «-ía» (día → «dila») y la palabra «griego»; `voice.lexicon` en
+  `script.json` reescribe «ía» → «íia» solo para la síntesis, y el guion evita «griego». Comprueba cada voz nueva
+  transcribiendo sus clips con faster-whisper **sin** pista del guion.
 - El audio generado (`public/*/voice`, `music.wav`, `sfx`) no se versiona: se regenera con `npm run audio`.
