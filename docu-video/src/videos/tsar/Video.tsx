@@ -75,8 +75,8 @@ const sfx = (): SfxCue[] => {
       name: "riser",
       volume: 0.35,
     },
-    { at: boom.from - 6, name: "boom", volume: 0.9 },
-    { at: boom.from + 10, name: "boom", volume: 0.5 },
+    { at: boom.from - 6, name: "boom", volume: 0.55 },
+    { at: boom.from + 10, name: "boom", volume: 0.3 },
     {
       at: scene("z-lugar").from + cues("z-lugar").word("z2", "1961"),
       name: "tick",

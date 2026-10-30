@@ -77,8 +77,8 @@
       "lines": [
         {
           "id": "z7",
-          "text": "El destello se vio a 1.000 km. Rompió ventanas a 900.",
-          "say": "El destello se vio a mil kilómetros. Rompió ventanas a novecientos."
+          "text": "Su destello se vio a 1.000 km… y rompió ventanas a 900.",
+          "say": "Su destello se vio a mil kilómetros, y rompió ventanas a novecientos."
         },
         {
           "id": "z8",
