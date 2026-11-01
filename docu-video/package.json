@@ -40,7 +40,7 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
     "audio": "P=${PYTHON:-python3}; V=${VIDEO:-eratostenes}; $P scripts/tts.py $V && $P scripts/align.py $V && $P scripts/plan.py $V && $P scripts/music.py $V",
-    "render": "remotion render ${VIDEO:-Eratostenes} out/${VIDEO:-eratostenes}.mp4"
+    "render": "remotion render ${VIDEO:-Eratostenes} out/${OUT:-eratostenes}.mp4 --codec=h264 --crf=18 && scripts/master.sh out/${OUT:-eratostenes}.mp4"
   },
   "allowScripts": {
     "esbuild": false
