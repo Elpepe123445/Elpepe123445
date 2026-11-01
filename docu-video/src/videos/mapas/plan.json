@@ -1,0 +1,123 @@
+{
+  "fps": 30,
+  "transitionFrames": 10,
+  "durationInFrames": 1707,
+  "scenes": [
+    {
+      "id": "g-hook",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 117,
+      "lines": [
+        {
+          "id": "g1",
+          "text": "Este es el mapa que viste toda tu vida… y te miente.",
+          "from": 3,
+          "durationInFrames": 102
+        }
+      ]
+    },
+    {
+      "id": "g-tamano",
+      "chapter": null,
+      "from": 107,
+      "durationInFrames": 244,
+      "lines": [
+        {
+          "id": "g2",
+          "text": "En este mapa, Groenlandia parece tan grande como África.",
+          "from": 14,
+          "durationInFrames": 121
+        },
+        {
+          "id": "g3",
+          "text": "Pero África es catorce veces más grande.",
+          "from": 141,
+          "durationInFrames": 91
+        }
+      ]
+    },
+    {
+      "id": "g-mercator",
+      "chapter": null,
+      "from": 341,
+      "durationInFrames": 293,
+      "lines": [
+        {
+          "id": "g4",
+          "text": "La culpa es de Mercator: en 1569 dibujó un mapa perfecto para navegar… a cambio de estirar todo cerca de los polos.",
+          "from": 14,
+          "durationInFrames": 266
+        }
+      ]
+    },
+    {
+      "id": "g-mover",
+      "chapter": null,
+      "from": 624,
+      "durationInFrames": 160,
+      "lines": [
+        {
+          "id": "g5",
+          "text": "Ahora llevemos a Groenlandia al ecuador… y mira cómo se encoge.",
+          "from": 14,
+          "durationInFrames": 134
+        }
+      ]
+    },
+    {
+      "id": "g-rusia",
+      "chapter": null,
+      "from": 774,
+      "durationInFrames": 369,
+      "lines": [
+        {
+          "id": "g6",
+          "text": "Con Rusia pasa lo mismo: se ve enorme, pero África es casi el doble.",
+          "from": 14,
+          "durationInFrames": 179
+        },
+        {
+          "id": "g6b",
+          "text": "Y la Antártida ni siquiera cabe: en este mapa, el polo sur está en el infinito.",
+          "from": 199,
+          "durationInFrames": 159
+        }
+      ]
+    },
+    {
+      "id": "g-africa",
+      "chapter": null,
+      "from": 1133,
+      "durationInFrames": 238,
+      "lines": [
+        {
+          "id": "g7",
+          "text": "En África caben Estados Unidos, China, India y toda la Unión Europea… y todavía sobra espacio.",
+          "from": 14,
+          "durationInFrames": 211
+        }
+      ]
+    },
+    {
+      "id": "g-final",
+      "chapter": null,
+      "from": 1361,
+      "durationInFrames": 346,
+      "lines": [
+        {
+          "id": "g8",
+          "text": "¿Y por qué no lo arreglan? Porque es imposible aplanar una esfera sin deformarla.",
+          "from": 14,
+          "durationInFrames": 147
+        },
+        {
+          "id": "g9",
+          "text": "Todo mapa plano miente un poco. ¿Qué país crees que sale más estirado?",
+          "from": 167,
+          "durationInFrames": 143
+        }
+      ]
+    }
+  ]
+}

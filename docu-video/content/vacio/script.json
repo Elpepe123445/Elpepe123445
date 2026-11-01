@@ -1,0 +1,102 @@
+{
+  "id": "vacio",
+  "title": "Eres 99,9999 % vacío",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 0.93,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "lexicon": {
+      "ía": "íia",
+      "ío": "íio"
+    }
+  },
+  "defaults": {
+    "pauseAfter": 0.2,
+    "padStart": 0.15,
+    "padEnd": 0.2,
+    "transitionFrames": 10
+  },
+  "scenes": [
+    {
+      "id": "v-hook",
+      "padStart": 0.1,
+      "lines": [
+        {
+          "id": "v1",
+          "text": "Si quitáramos el espacio vacío de todos los humanos… cabríamos en un cubito de azúcar.",
+          "say": "Si quitáramos el espacio vacío de todos los humanos, cabríamos en un cubito de azúcar.",
+          "pauseAfter": 0.35
+        },
+        {
+          "id": "v2",
+          "text": "Suena imposible. Acerquémonos."
+        }
+      ]
+    },
+    {
+      "id": "v-zoom",
+      "lines": [
+        {
+          "id": "v3",
+          "text": "Tu piel está hecha de células. Las células, de moléculas. Y las moléculas, de átomos."
+        },
+        {
+          "id": "v4",
+          "text": "Cada átomo tiene un núcleo diminuto… y electrones a su alrededor.",
+          "say": "Cada átomo tiene un núcleo diminuto, y electrones a su alrededor."
+        }
+      ]
+    },
+    {
+      "id": "v-estadio",
+      "lines": [
+        {
+          "id": "v5",
+          "text": "¿Qué tan diminuto? Si el núcleo fuera una canica… el átomo sería más grande que un estadio.",
+          "say": "¿Qué tan diminuto? Si el núcleo fuera una canica, el átomo sería más grande que un estadio."
+        },
+        {
+          "id": "v6",
+          "text": "Y en medio… nada. Más del 99,9999 % es vacío.",
+          "say": "Y en medio, nada. Más del noventa y nueve coma nueve nueve nueve nueve por ciento es vacío."
+        }
+      ]
+    },
+    {
+      "id": "v-tocar",
+      "lines": [
+        {
+          "id": "v7",
+          "text": "Entonces, ¿por qué no atraviesas tu silla? Porque tus electrones y los suyos se repelen.",
+          "say": "Entonces, ¿por qué no atraviesas tu silla? Porque tus electrones y los suyos se repelen."
+        },
+        {
+          "id": "v8",
+          "text": "Nunca tocas nada de verdad: lo que sientes es una fuerza."
+        }
+      ]
+    },
+    {
+      "id": "v-estrella",
+      "lines": [
+        {
+          "id": "v9",
+          "text": "Y aplastar la materia así sí ocurre: en una estrella de neutrones, una cucharadita pesa unos mil millones de toneladas.",
+          "say": "Y aplastar la materia así sí ocurre: en una estrella de neutrones, una cucharadita pesa unos mil millones de toneladas."
+        }
+      ]
+    },
+    {
+      "id": "v-cierre",
+      "padEnd": 1.0,
+      "lines": [
+        {
+          "id": "v10",
+          "text": "Así que la próxima vez que te sientas vacío… literalmente, tienes razón.",
+          "say": "Así que la próxima vez que te sientas vacío, literalmente, tienes razón."
+        }
+      ]
+    }
+  ]
+}

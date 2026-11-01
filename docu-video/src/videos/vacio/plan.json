@@ -1,0 +1,115 @@
+{
+  "fps": 30,
+  "transitionFrames": 10,
+  "durationInFrames": 1709,
+  "scenes": [
+    {
+      "id": "v-hook",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 264,
+      "lines": [
+        {
+          "id": "v1",
+          "text": "Si quitáramos el espacio vacío de todos los humanos… cabríamos en un cubito de azúcar.",
+          "from": 3,
+          "durationInFrames": 162
+        },
+        {
+          "id": "v2",
+          "text": "Suena imposible. Acerquémonos.",
+          "from": 176,
+          "durationInFrames": 76
+        }
+      ]
+    },
+    {
+      "id": "v-zoom",
+      "chapter": null,
+      "from": 254,
+      "durationInFrames": 354,
+      "lines": [
+        {
+          "id": "v3",
+          "text": "Tu piel está hecha de células. Las células, de moléculas. Y las moléculas, de átomos.",
+          "from": 14,
+          "durationInFrames": 179
+        },
+        {
+          "id": "v4",
+          "text": "Cada átomo tiene un núcleo diminuto… y electrones a su alrededor.",
+          "from": 199,
+          "durationInFrames": 143
+        }
+      ]
+    },
+    {
+      "id": "v-estadio",
+      "chapter": null,
+      "from": 598,
+      "durationInFrames": 396,
+      "lines": [
+        {
+          "id": "v5",
+          "text": "¿Qué tan diminuto? Si el núcleo fuera una canica… el átomo sería más grande que un estadio.",
+          "from": 14,
+          "durationInFrames": 188
+        },
+        {
+          "id": "v6",
+          "text": "Y en medio… nada. Más del 99,9999 % es vacío.",
+          "from": 208,
+          "durationInFrames": 176
+        }
+      ]
+    },
+    {
+      "id": "v-tocar",
+      "chapter": null,
+      "from": 984,
+      "durationInFrames": 295,
+      "lines": [
+        {
+          "id": "v7",
+          "text": "Entonces, ¿por qué no atraviesas tu silla? Porque tus electrones y los suyos se repelen.",
+          "from": 14,
+          "durationInFrames": 154
+        },
+        {
+          "id": "v8",
+          "text": "Nunca tocas nada de verdad: lo que sientes es una fuerza.",
+          "from": 174,
+          "durationInFrames": 109
+        }
+      ]
+    },
+    {
+      "id": "v-estrella",
+      "chapter": null,
+      "from": 1269,
+      "durationInFrames": 250,
+      "lines": [
+        {
+          "id": "v9",
+          "text": "Y aplastar la materia así sí ocurre: en una estrella de neutrones, una cucharadita pesa unos mil millones de toneladas.",
+          "from": 14,
+          "durationInFrames": 224
+        }
+      ]
+    },
+    {
+      "id": "v-cierre",
+      "chapter": null,
+      "from": 1509,
+      "durationInFrames": 200,
+      "lines": [
+        {
+          "id": "v10",
+          "text": "Así que la próxima vez que te sientas vacío… literalmente, tienes razón.",
+          "from": 14,
+          "durationInFrames": 150
+        }
+      ]
+    }
+  ]
+}

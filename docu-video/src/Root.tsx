@@ -7,6 +7,9 @@ import {
 } from "./videos/eratostenes/Video";
 import { EratostenesShort, shortPlan } from "./videos/eratostenes-short/Video";
 import { TsarVideo, tsarPlan } from "./videos/tsar/Video";
+import { VacioVideo, vacioPlan } from "./videos/vacio/Video";
+import { MapasVideo, mapasPlan } from "./videos/mapas/Video";
+import { TiempoVideo, tiempoPlan } from "./videos/tiempo/Video";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -34,6 +37,30 @@ export const RemotionRoot: React.FC = () => (
       height={1920}
       fps={tsarPlan.fps}
       durationInFrames={tsarPlan.durationInFrames}
+    />
+    <Composition
+      id="Vacio"
+      component={VacioVideo}
+      width={1080}
+      height={1920}
+      fps={vacioPlan.fps}
+      durationInFrames={vacioPlan.durationInFrames}
+    />
+    <Composition
+      id="Mapas"
+      component={MapasVideo}
+      width={1080}
+      height={1920}
+      fps={mapasPlan.fps}
+      durationInFrames={mapasPlan.durationInFrames}
+    />
+    <Composition
+      id="Tiempo"
+      component={TiempoVideo}
+      width={1080}
+      height={1920}
+      fps={tiempoPlan.fps}
+      durationInFrames={tiempoPlan.durationInFrames}
     />
     <Folder name="Eratostenes-Escenas">
       {plan.scenes.map((s) => (

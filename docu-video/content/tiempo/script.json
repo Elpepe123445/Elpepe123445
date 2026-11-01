@@ -1,0 +1,108 @@
+{
+  "id": "tiempo",
+  "title": "La historia es más rara de lo que crees",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 0.93,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "takes": 4,
+    "lexicon": {
+      "ía": "íia",
+      "ío": "íio",
+      "Jack": "Yak"
+    }
+  },
+  "defaults": {
+    "pauseAfter": 0.25,
+    "padStart": 0.15,
+    "padEnd": 0.25,
+    "transitionFrames": 10
+  },
+  "scenes": [
+    {
+      "id": "t-cleo",
+      "padStart": 0.1,
+      "lines": [
+        {
+          "id": "h1",
+          "text": "Cleopatra vivió más cerca de la llegada a la Luna… que de la construcción de la Gran Pirámide.",
+          "say": "Cleopatra vivió más cerca de la llegada a la Luna, que de la construcción de la Gran Pirámide."
+        },
+        {
+          "id": "h2",
+          "text": "Cuando ella nació, la pirámide ya tenía casi 2.500 años.",
+          "say": "Cuando ella nació, la pirámide ya tenía casi dos mil quinientos años."
+        }
+      ]
+    },
+    {
+      "id": "t-mamut",
+      "lines": [
+        {
+          "id": "h3",
+          "text": "Y mientras se construían las pirámides, todavía quedaban mamuts vivos en una isla del Ártico."
+        }
+      ]
+    },
+    {
+      "id": "t-arbol",
+      "lines": [
+        {
+          "id": "h3b",
+          "text": "Y en California hay un pino que ya estaba vivo cuando se levantó la pirámide: tiene más de 4.800 años.",
+          "say": "Y en California hay un pino que ya estaba vivo cuando se levantó la pirámide: tiene más de cuatro mil ochocientos años."
+        }
+      ]
+    },
+    {
+      "id": "t-oxford",
+      "lines": [
+        {
+          "id": "h4",
+          "text": "En Oxford ya se daban clases antes de que se fundara Tenochtitlan, la capital azteca."
+        }
+      ]
+    },
+    {
+      "id": "t-nintendo",
+      "lines": [
+        {
+          "id": "h5",
+          "text": "Nintendo nació en 1889, un año después de los crímenes de Jack el Destripador.",
+          "say": "Nintendo nació en mil ochocientos ochenta y nueve, un año después de los crímenes de Jack el Destripador."
+        }
+      ]
+    },
+    {
+      "id": "t-dinos",
+      "lines": [
+        {
+          "id": "h6",
+          "text": "El tiranosaurio vivió más cerca de nosotros… que del estegosaurio.",
+          "say": "El tiranosaurio vivió más cerca de nosotros, que del estegosaurio."
+        }
+      ]
+    },
+    {
+      "id": "t-tiburon",
+      "lines": [
+        {
+          "id": "h7",
+          "text": "Y los tiburones son más antiguos que los árboles: unos 450 millones de años contra unos 385.",
+          "say": "Y los tiburones son más antiguos que los árboles: unos cuatrocientos cincuenta millones de años, contra unos trescientos ochenta y cinco."
+        }
+      ]
+    },
+    {
+      "id": "t-final",
+      "padEnd": 1.0,
+      "lines": [
+        {
+          "id": "h8",
+          "text": "El tiempo es mucho más largo de lo que parece. ¿Cuál te sorprendió más?"
+        }
+      ]
+    }
+  ]
+}

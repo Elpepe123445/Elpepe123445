@@ -179,6 +179,30 @@ SCORE = {
     "z-alcance": {"chords": [AM7, DM9], "amp": 0.8},
     "z-escala": {"chords": [GM9, EB], "amp": 0.85, "pulse": 0.25},
     "z-legado": {"chords": [FMAJ7, DM9], "amp": 0.75, "bells": 0.05},
+    # Vacío (3D): asombro, brillo y pulso suave.
+    "v-hook": {"chords": [DM9], "amp": 0.85, "bells": 0.1},
+    "v-zoom": {"chords": [BB9, F], "amp": 0.9, "arp": 0.12},
+    "v-estadio": {"chords": [F, DM9], "amp": 0.9, "bells": 0.07},
+    "v-tocar": {"chords": [GM9, EB], "amp": 0.85, "pulse": 0.3},
+    "v-estrella": {"chords": [EB, BB9], "amp": 1.0, "pulse": 0.35, "bells": 0.06},
+    "v-cierre": {"chords": [DM9, DMAJ], "amp": 0.85, "bells": 0.09},
+    # Mapas (papel): ligero y curioso, arpa pulsada.
+    "g-hook": {"chords": [F], "amp": 0.8, "harp": 0.12},
+    "g-tamano": {"chords": [F, C], "amp": 0.85, "arp": 0.1},
+    "g-mercator": {"chords": [BB9, F], "amp": 0.85, "harp": 0.1},
+    "g-mover": {"chords": [DM9, BB9], "amp": 0.9, "arp": 0.12},
+    "g-rusia": {"chords": [GM9, C, AM7], "amp": 0.85, "arp": 0.1},
+    "g-africa": {"chords": [F, C], "amp": 0.95, "harp": 0.12},
+    "g-final": {"chords": [FMAJ7, F], "amp": 0.8, "bells": 0.08},
+    # Tiempo (plastilina): juguetón, arpa y campanas.
+    "t-cleo": {"chords": [F, C], "amp": 0.85, "harp": 0.12},
+    "t-mamut": {"chords": [DM9], "amp": 0.8, "arp": 0.1},
+    "t-arbol": {"chords": [BB9, F], "amp": 0.8, "bells": 0.07},
+    "t-oxford": {"chords": [C, F], "amp": 0.85, "harp": 0.1},
+    "t-nintendo": {"chords": [AM7], "amp": 0.8, "arp": 0.12},
+    "t-dinos": {"chords": [GM9, DM9], "amp": 0.9, "pulse": 0.25},
+    "t-tiburon": {"chords": [BB9, C], "amp": 0.9, "arp": 0.1},
+    "t-final": {"chords": [F, FMAJ7], "amp": 0.85, "bells": 0.09},
 }
 
 

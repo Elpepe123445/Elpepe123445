@@ -52,6 +52,26 @@ def trim_silence(samples: np.ndarray, rate: int, threshold_db: float = -45) -> n
     return out
 
 
+def _words(text: str) -> list[str]:
+    import re
+    import unicodedata
+
+    text = unicodedata.normalize("NFD", text.lower())
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
+    return re.findall(r"[a-zñ]+", text)
+
+
+def take_score(judge, data: np.ndarray, rate: int, expected: str) -> float:
+    """Parecido (0–1) entre lo que Whisper entiende de la toma y el texto esperado (ignora cifras)."""
+    import difflib
+
+    audio = data.astype(np.float32) / 32768
+    idx = np.linspace(0, len(audio) - 1, int(len(audio) * 16000 / rate)).astype(int)
+    segs, _ = judge.transcribe(audio[idx], language="es", beam_size=5)
+    heard = _words(" ".join(s.text for s in segs))
+    return difflib.SequenceMatcher(None, _words(expected), heard).ratio()
+
+
 def main(video: str) -> None:
     script = json.loads((ROOT / "content" / video / "script.json").read_text())
     vcfg = script["voice"]
@@ -73,16 +93,34 @@ def main(video: str) -> None:
     rate = voice.config.sample_rate
     # Respellings para lo que la voz pronuncia mal (p. ej. el hiato "ía" → "íia"; ver README).
     lexicon = vcfg.get("lexicon", {})
+    # "takes" > 1: Piper varía en cada síntesis; se generan varias tomas y se queda la que
+    # faster-whisper transcribe (sin pistas) más parecida al texto. Pronunciación verificada, no supuesta.
+    takes = int(vcfg.get("takes", 1))
+    judge = None
+    if takes > 1:
+        from faster_whisper import WhisperModel
+
+        judge = WhisperModel("small", device="cpu", compute_type="int8")
     for line in lines:
-        text = line.get("say", line["text"])
+        spoken = line.get("say", line["text"])
+        text = spoken
         for word, respelled in lexicon.items():
             text = text.replace(word, respelled)
-        raw = raw_dir / f"{line['id']}.wav"
-        with wave.open(str(raw), "wb") as w:
-            voice.synthesize_wav(text, w, syn_config=syn)
-        with wave.open(str(raw), "rb") as w:
-            data = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16)
-        clips[line["id"]] = trim_silence(data, rate)
+        best, best_score = None, -1.0
+        for k in range(takes):
+            raw = raw_dir / f"{line['id']}.take{k}.wav"
+            with wave.open(str(raw), "wb") as w:
+                voice.synthesize_wav(text, w, syn_config=syn)
+            with wave.open(str(raw), "rb") as w:
+                data = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16)
+            score = 1.0 if judge is None else take_score(judge, data, rate, spoken)
+            if score > best_score:
+                best, best_score = data, score
+            if best_score >= 0.97:
+                break
+        if judge is not None:
+            print(f"{line['id']:>6}: mejor toma {best_score:.2f}")
+        clips[line["id"]] = trim_silence(best, rate)
 
     # 2) Ganancia común para todas las líneas (mantiene la dinámica natural entre frases)
     peak = max(float(np.abs(c).max()) for c in clips.values()) / 32768

@@ -1,0 +1,105 @@
+{
+  "id": "mapas",
+  "title": "El mapa que te miente",
+  "voice": {
+    "model": "es_MX-claude-high",
+    "lengthScale": 0.95,
+    "noiseScale": 0.6,
+    "noiseW": 0.75,
+    "lexicon": {
+      "ía": "íia",
+      "ío": "íio",
+      "Groenlandia": "Gro-enlandia"
+    },
+    "takes": 5
+  },
+  "defaults": {
+    "pauseAfter": 0.2,
+    "padStart": 0.15,
+    "padEnd": 0.2,
+    "transitionFrames": 10
+  },
+  "scenes": [
+    {
+      "id": "g-hook",
+      "padStart": 0.1,
+      "lines": [
+        {
+          "id": "g1",
+          "text": "Este es el mapa que viste toda tu vida… y te miente.",
+          "say": "Este es el mapa que viste toda tu vida, y te miente."
+        }
+      ]
+    },
+    {
+      "id": "g-tamano",
+      "lines": [
+        {
+          "id": "g2",
+          "text": "En este mapa, Groenlandia parece tan grande como África."
+        },
+        {
+          "id": "g3",
+          "text": "Pero África es catorce veces más grande."
+        }
+      ]
+    },
+    {
+      "id": "g-mercator",
+      "lines": [
+        {
+          "id": "g4",
+          "text": "La culpa es de Mercator: en 1569 dibujó un mapa perfecto para navegar… a cambio de estirar todo cerca de los polos.",
+          "say": "La culpa es de Mercator: en mil quinientos sesenta y nueve dibujó un mapa perfecto para navegar, a cambio de estirar todo cerca de los polos."
+        }
+      ]
+    },
+    {
+      "id": "g-mover",
+      "lines": [
+        {
+          "id": "g5",
+          "text": "Ahora llevemos a Groenlandia al ecuador… y mira cómo se encoge.",
+          "say": "Ahora, llevemos a Groenlandia al ecuador, y mira cómo se encoge."
+        }
+      ]
+    },
+    {
+      "id": "g-rusia",
+      "lines": [
+        {
+          "id": "g6",
+          "text": "Con Rusia pasa lo mismo: se ve enorme, pero África es casi el doble."
+        },
+        {
+          "id": "g6b",
+          "text": "Y la Antártida ni siquiera cabe: en este mapa, el polo sur está en el infinito."
+        }
+      ]
+    },
+    {
+      "id": "g-africa",
+      "lines": [
+        {
+          "id": "g7",
+          "text": "En África caben Estados Unidos, China, India y toda la Unión Europea… y todavía sobra espacio.",
+          "say": "En África caben Estados Unidos, China, India y toda la Unión Europea, y todavía sobra espacio."
+        }
+      ]
+    },
+    {
+      "id": "g-final",
+      "padEnd": 1.0,
+      "lines": [
+        {
+          "id": "g8",
+          "text": "¿Y por qué no lo arreglan? Porque es imposible aplanar una esfera sin deformarla."
+        },
+        {
+          "id": "g9",
+          "text": "Todo mapa plano miente un poco. ¿Qué país crees que sale más estirado?"
+        }
+      ]
+    }
+  ]
+}
