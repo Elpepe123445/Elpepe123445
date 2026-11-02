@@ -12,6 +12,7 @@ import { MapasVideo, mapasPlan } from "./videos/mapas/Video";
 import { TiempoVideo, tiempoPlan } from "./videos/tiempo/Video";
 import { GlobuloVideo, globuloPlan } from "./videos/globulo/Video";
 import { AgujeroVideo, agujeroPlan } from "./videos/agujero/Video";
+import { PompeyaVideo, pompeyaPlan } from "./videos/pompeya/Video";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -79,6 +80,14 @@ export const RemotionRoot: React.FC = () => (
       height={1920}
       fps={agujeroPlan.fps}
       durationInFrames={agujeroPlan.durationInFrames}
+    />
+    <Composition
+      id="Pompeya"
+      component={PompeyaVideo}
+      width={1080}
+      height={1920}
+      fps={pompeyaPlan.fps}
+      durationInFrames={pompeyaPlan.durationInFrames}
     />
     <Folder name="Eratostenes-Escenas">
       {plan.scenes.map((s) => (

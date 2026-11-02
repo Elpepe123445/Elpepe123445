@@ -24,7 +24,7 @@ export const useRbcGeometry = () =>
     const c2 = 2.003;
     const c4 = -1.123;
     const pts: THREE.Vector2[] = [];
-    const n = 40;
+    const n = 16;
     for (let i = 0; i <= n; i++) {
       const r = Math.sin((i / n) * (Math.PI / 2)) * 0.999;
       const z = 0.5 * Math.sqrt(1 - r * r) * (c0 + c2 * r * r + c4 * r ** 4);
@@ -35,7 +35,7 @@ export const useRbcGeometry = () =>
       const z = 0.5 * Math.sqrt(1 - r * r) * (c0 + c2 * r * r + c4 * r ** 4);
       pts.push(new THREE.Vector2(r, -z));
     }
-    const g = new THREE.LatheGeometry(pts, 64);
+    const g = new THREE.LatheGeometry(pts, 32);
     g.computeVertexNormals();
     return g;
   }, []);
@@ -136,7 +136,7 @@ export const Vessel: React.FC<{
   opacity?: number;
 }> = ({ path, radius, color = R.wall, opacity = 1 }) => {
   const geo = useMemo(
-    () => new THREE.TubeGeometry(path, 400, radius, 48, false),
+    () => new THREE.TubeGeometry(path, 220, radius, 28, false),
     [path, radius],
   );
   const tex = useWallTexture(color, "#3A0010");
@@ -188,8 +188,6 @@ export const FlowingCells: React.FC<{
         roughness: 0.3,
         clearcoat: 0.8,
         clearcoatRoughness: 0.25,
-        sheen: 1,
-        sheenColor: new THREE.Color("#FFB3BF"),
       }),
       count,
     );

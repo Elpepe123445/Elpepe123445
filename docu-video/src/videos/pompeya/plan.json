@@ -1,0 +1,115 @@
+{
+ "fps": 30,
+ "transitionFrames": 12,
+ "durationInFrames": 1706,
+ "scenes": [
+  {
+   "id": "p-calle",
+   "chapter": null,
+   "from": 0,
+   "durationInFrames": 372,
+   "lines": [
+    {
+     "id": "p1",
+     "text": "Es mediodía en Pompeya, año 79. La montaña que tenemos encima, el Vesubio, acaba de rugir.",
+     "from": 6,
+     "durationInFrames": 191
+    },
+    {
+     "id": "p2",
+     "text": "Una columna de humo sube hasta unos 30 kilómetros. Desde aquí parece un pino gigante.",
+     "from": 204,
+     "durationInFrames": 154
+    }
+   ]
+  },
+  {
+   "id": "p-lluvia",
+   "chapter": null,
+   "from": 360,
+   "durationInFrames": 302,
+   "lines": [
+    {
+     "id": "p3",
+     "text": "Empieza a llover piedra pómez. Ligera, caliente… y no para durante horas.",
+     "from": 16,
+     "durationInFrames": 128
+    },
+    {
+     "id": "p4",
+     "text": "Los tejados crujen bajo el peso. Muchos huyen. Otros se encierran a esperar.",
+     "from": 152,
+     "durationInFrames": 136
+    }
+   ]
+  },
+  {
+   "id": "p-nube",
+   "chapter": null,
+   "from": 650,
+   "durationInFrames": 305,
+   "lines": [
+    {
+     "id": "p5",
+     "text": "Al amanecer del día siguiente, la columna colapsa: una nube ardiente baja por la ladera a toda velocidad.",
+     "from": 16,
+     "durationInFrames": 184
+    },
+    {
+     "id": "p6",
+     "text": "Cientos de grados. No hay dónde esconderse.",
+     "from": 208,
+     "durationInFrames": 73
+    }
+   ]
+  },
+  {
+   "id": "p-ceniza",
+   "chapter": null,
+   "from": 943,
+   "durationInFrames": 175,
+   "lines": [
+    {
+     "id": "p7",
+     "text": "La ceniza lo cubre todo… y la ciudad desaparece durante casi diecisiete siglos.",
+     "from": 16,
+     "durationInFrames": 145
+    }
+   ]
+  },
+  {
+   "id": "p-yeso",
+   "chapter": null,
+   "from": 1106,
+   "durationInFrames": 371,
+   "lines": [
+    {
+     "id": "p8",
+     "text": "En 1863, un arqueólogo rellenó con yeso los huecos que dejaron nuestros cuerpos en la ceniza.",
+     "from": 16,
+     "durationInFrames": 206
+    },
+    {
+     "id": "p9",
+     "text": "Por eso hoy puedes vernos, en la postura exacta de nuestro último momento.",
+     "from": 230,
+     "durationInFrames": 127
+    }
+   ]
+  },
+  {
+   "id": "p-final",
+   "chapter": null,
+   "from": 1465,
+   "durationInFrames": 241,
+   "lines": [
+    {
+     "id": "p10",
+     "text": "Y una inscripción de carbón sugiere que todo pasó en octubre… no en agosto, como se creyó durante siglos.",
+     "from": 16,
+     "durationInFrames": 181
+    }
+   ]
+  }
+ ]
+}

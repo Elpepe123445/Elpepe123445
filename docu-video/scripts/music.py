@@ -217,6 +217,13 @@ SCORE = {
     "b-fuera": {"chords": [GM9], "amp": 0.8},
     "b-dentro": {"chords": [EB, DM9], "amp": 0.85, "pulse": 0.2},
     "b-final": {"chords": [DM9], "amp": 0.7},
+    # POV: Pompeya
+    "p-calle": {"chords": [DM9, BB9], "amp": 0.85, "harp": 0.08},
+    "p-lluvia": {"chords": [GM9, EB], "amp": 0.9, "pulse": 0.22, "dark": True},
+    "p-nube": {"chords": [EB, DM9], "amp": 1.0, "pulse": 0.35, "dark": True},
+    "p-ceniza": {"chords": [DM9], "amp": 0.6, "dark": True},
+    "p-yeso": {"chords": [BB9, GM9], "amp": 0.75, "bells": 0.05},
+    "p-final": {"chords": [F, DM9], "amp": 0.8, "bells": 0.07},
 }
 
 

@@ -24,6 +24,8 @@ import {
 } from "./models";
 
 const FONT = "Inter, DejaVu Sans, sans-serif";
+/** Resolución interna del 3D (el HUD y los subtítulos siguen a 1080x1920). */
+const DPR = Number(process.env.REMOTION_DPR ?? 0.7);
 
 /** Tarjeta de dato grande, estilo "cristal" sobre la escena. */
 const Fact: React.FC<{
@@ -121,7 +123,7 @@ export const RHeart: React.FC = () => {
   const count = c.word("r2", "billones");
   return (
     <AbsoluteFill style={{ background: R.bg }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={cam.camera}
         target={cam.target}
         fov={64 + b * 6}
@@ -139,7 +141,7 @@ export const RHeart: React.FC = () => {
         <Vessel path={path} radius={3.2} />
         <FlowingCells
           path={path}
-          count={320}
+          count={200}
           radius={3.2}
           progress={u * 1.15}
           frame={frame}
@@ -208,7 +210,7 @@ export const RHemo: React.FC = () => {
           "radial-gradient(ellipse at 50% 40%, #5A0718 0%, #1A0208 75%)",
       }}
     >
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={[Math.sin(frame / 40) * 0.6, 0, z]}
         target={[0, 0, z - 6]}
         fov={58}
@@ -219,7 +221,7 @@ export const RHemo: React.FC = () => {
       >
         <Bokeh
           frame={frame}
-          count={300}
+          count={200}
           spread={20}
           color="#FF8FA0"
           size={0.18}
@@ -341,7 +343,7 @@ export const RLung: React.FC = () => {
     .getStyle();
   return (
     <AbsoluteFill style={{ background: "#1C0610" }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={cam.camera}
         target={cam.target}
         fov={66}
@@ -443,7 +445,7 @@ export const RCapillary: React.FC = () => {
   );
   return (
     <AbsoluteFill style={{ background: "#1C0610" }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={cam.camera}
         target={cam.target}
         fov={70}
@@ -560,7 +562,7 @@ export const RLife: React.FC = () => {
   const pop = spring({ frame: frame - medula, fps, config: { damping: 12 } });
   return (
     <AbsoluteFill style={{ background: "#14020A" }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={cam.camera}
         target={cam.target}
         fov={66 + (frame < r9 ? 8 : 0)}
@@ -578,7 +580,7 @@ export const RLife: React.FC = () => {
         <Vessel path={path} radius={3} />
         <FlowingCells
           path={path}
-          count={260}
+          count={180}
           radius={3}
           progress={u * 1.05}
           frame={frame}
@@ -670,7 +672,7 @@ export const RFinal: React.FC = () => {
   const t = prog(frame, end, 14);
   return (
     <AbsoluteFill style={{ background: R.bg }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={cam.camera}
         target={cam.target}
         fov={62}
@@ -688,7 +690,7 @@ export const RFinal: React.FC = () => {
         <Vessel path={path} radius={3.2} />
         <FlowingCells
           path={path}
-          count={300}
+          count={200}
           radius={3.2}
           progress={u * 1.2 + frame * 0.0006}
           frame={frame}

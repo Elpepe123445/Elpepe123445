@@ -41,6 +41,15 @@ export type StageProps = {
   rimColor?: string;
   fog?: { color: string; near: number; far: number };
   opacity?: number;
+  /** Resolución interna del lienzo WebGL (1 = nativa). <1 acelera el render por software. */
+  dpr?: number;
+  antialias?: boolean;
+  /** Luz de relleno inferior (por defecto violeta) y luz ambiente. */
+  fillColor?: string;
+  fillIntensity?: number;
+  ambient?: number;
+  keyIntensity?: number;
+  keyPosition?: [number, number, number];
   children: React.ReactNode;
 };
 
@@ -54,6 +63,13 @@ export const Stage: React.FC<StageProps> = ({
   rimColor = "#7FC8FF",
   fog,
   opacity = 1,
+  dpr = 1,
+  antialias = true,
+  fillColor = "#B48CFF",
+  fillIntensity = 6,
+  ambient = 0.15,
+  keyIntensity = 2.2,
+  keyPosition = [4, 6, 5],
   children,
 }) => {
   const { width, height } = useVideoConfig();
@@ -62,8 +78,9 @@ export const Stage: React.FC<StageProps> = ({
       width={width}
       height={height}
       style={{ position: "absolute", inset: 0, opacity }}
+      dpr={dpr}
       gl={{
-        antialias: true,
+        antialias,
         toneMapping: THREE.ACESFilmicToneMapping,
         outputColorSpace: THREE.SRGBColorSpace,
       }}
@@ -72,8 +89,12 @@ export const Stage: React.FC<StageProps> = ({
       <CameraRig position={camera} target={target} fov={fov} />
       <StudioEnvironment intensity={env} />
       {fog ? <fog attach="fog" args={[fog.color, fog.near, fog.far]} /> : null}
-      <ambientLight intensity={0.15} />
-      <directionalLight position={[4, 6, 5]} intensity={2.2} color={keyColor} />
+      <ambientLight intensity={ambient} />
+      <directionalLight
+        position={keyPosition}
+        intensity={keyIntensity}
+        color={keyColor}
+      />
       <directionalLight
         position={[-6, 2, -4]}
         intensity={2.4}
@@ -81,9 +102,9 @@ export const Stage: React.FC<StageProps> = ({
       />
       <pointLight
         position={[0, -4, 3]}
-        intensity={6}
+        intensity={fillIntensity}
         distance={20}
-        color="#B48CFF"
+        color={fillColor}
       />
       {children}
     </ThreeCanvas>
