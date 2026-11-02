@@ -1,0 +1,97 @@
+{
+  "id": "globulo",
+  "title": "POV: eres un glóbulo rojo",
+  "voice": {
+    "engine": "kokoro",
+    "voice": "em_alex",
+    "speed": 1.0,
+    "takes": 1
+  },
+  "defaults": {
+    "pauseAfter": 0.22,
+    "padStart": 0.15,
+    "padEnd": 0.2,
+    "transitionFrames": 10
+  },
+  "scenes": [
+    {
+      "id": "r-corazon",
+      "padStart": 0.1,
+      "lines": [
+        {
+          "id": "r1",
+          "text": "Acabo de salir disparado de tu corazón. Soy un glóbulo rojo… y este es mi trabajo.",
+          "say": "Acabo de salir disparado de tu corazón. Soy un glóbulo rojo... y este es mi trabajo."
+        },
+        {
+          "id": "r2",
+          "text": "Somos unos 25 billones. Más de cuatro de cada cinco células de tu cuerpo son como yo.",
+          "say": "Somos unos veinticinco billones. Más de cuatro de cada cinco células de tu cuerpo son como yo."
+        }
+      ]
+    },
+    {
+      "id": "r-hemo",
+      "lines": [
+        {
+          "id": "r3",
+          "text": "No tengo núcleo. Lo expulsé al nacer, para dejar sitio a lo único que importa: hemoglobina."
+        },
+        {
+          "id": "r4",
+          "text": "Llevo unos 270 millones de moléculas. Y cada una puede cargar cuatro oxígenos.",
+          "say": "Llevo unos doscientos setenta millones de moléculas. Y cada una puede cargar cuatro oxígenos."
+        }
+      ]
+    },
+    {
+      "id": "r-pulmon",
+      "lines": [
+        {
+          "id": "r5",
+          "text": "Primera parada: tus pulmones. Respiras… y me lleno de oxígeno.",
+          "say": "Primera parada: tus pulmones. Respiras... y me lleno de oxígeno."
+        }
+      ]
+    },
+    {
+      "id": "r-capilar",
+      "lines": [
+        {
+          "id": "r6",
+          "text": "Ahora lo difícil: los capilares. Son más estrechos que yo, así que me doblo y paso en fila.",
+          "say": "Ahora lo difícil: los capilares. Son más estrechos que yo, así que me doblo y paso en fila."
+        },
+        {
+          "id": "r7",
+          "text": "Entrego el oxígeno a tus músculos, me llevo parte del dióxido de carbono… y de vuelta al corazón.",
+          "say": "Entrego el oxígeno a tus músculos, me llevo parte del dióxido de carbono... y de vuelta al corazón."
+        }
+      ]
+    },
+    {
+      "id": "r-vida",
+      "lines": [
+        {
+          "id": "r8",
+          "text": "Toda la vuelta me lleva más o menos un minuto. Y la repetiré más de cien mil veces."
+        },
+        {
+          "id": "r9",
+          "text": "En unos cuatro meses, tu bazo me reciclará. Pero tranquilo: mientras ves esto, tu médula ya fabricó más de cien millones de reemplazos.",
+          "say": "En unos cuatro meses, tu bazo me reciclará. Pero tranquilo: mientras ves esto, tu médula ya fabricó más de cien millones de reemplazos."
+        }
+      ]
+    },
+    {
+      "id": "r-final",
+      "padEnd": 1.0,
+      "lines": [
+        {
+          "id": "r10",
+          "text": "Así que respira hondo. Yo me encargo del resto."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "agujero",
+  "title": "POV: caes en un agujero negro",
+  "voice": { "engine": "kokoro", "voice": "em_alex", "speed": 1.0 },
+  "defaults": { "pauseAfter": 0.25, "padStart": 0.15, "padEnd": 0.2, "transitionFrames": 12 },
+  "scenes": [
+    { "id": "b-llegada", "padStart": 0.2, "lines": [
+      { "id": "b1", "text": "Estoy cayendo hacia Sagitario A*, el agujero negro del centro de nuestra galaxia.", "say": "Estoy cayendo hacia Sagitario A asterisco, el agujero negro del centro de nuestra galaxia." },
+      { "id": "b2", "text": "Tiene la masa de unos cuatro millones de soles… y aun así cabría dentro de la órbita de Mercurio.", "say": "Tiene la masa de unos cuatro millones de soles... y aun así, cabría dentro de la órbita de Mercurio." } ] },
+    { "id": "b-lente", "lines": [
+      { "id": "b3", "text": "Su gravedad curva la luz: las estrellas de detrás se deforman en arcos a mi alrededor." } ] },
+    { "id": "b-fideo", "lines": [
+      { "id": "b4", "text": "Si fuera un agujero negro pequeño, ya estaría estirado como un fideo. Se llama espaguetización." },
+      { "id": "b5", "text": "Pero en uno tan grande, cruzo el horizonte de sucesos… y no siento nada.", "say": "Pero en uno tan grande, cruzo el horizonte de sucesos... y no siento nada.", "pauseAfter": 0.5 } ] },
+    { "id": "b-fuera", "lines": [
+      { "id": "b6", "text": "Quien me mire desde lejos nunca me verá entrar: me verá frenar, enrojecer y apagarme en el borde." } ] },
+    { "id": "b-dentro", "lines": [
+      { "id": "b7", "text": "Yo, en cambio, sigo cayendo. Miro atrás… y todo el universo se encoge en un círculo de luz.", "say": "Yo, en cambio, sigo cayendo. Miro atrás... y todo el universo se encoge en un círculo de luz." },
+      { "id": "b8", "text": "Aquí dentro, ningún camino lleva afuera. El centro ya no es un lugar: es mi futuro." } ] },
+    { "id": "b-final", "padEnd": 1.4, "lines": [
+      { "id": "b9", "text": "Me queda, como mucho, alrededor de un minuto. Y nadie sabrá nunca lo que vi.", "say": "Me queda, como mucho, alrededor de un minuto. Y nadie sabrá nunca... lo que vi." } ] }
+  ]
+}

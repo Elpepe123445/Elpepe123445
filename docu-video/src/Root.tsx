@@ -10,6 +10,8 @@ import { TsarVideo, tsarPlan } from "./videos/tsar/Video";
 import { VacioVideo, vacioPlan } from "./videos/vacio/Video";
 import { MapasVideo, mapasPlan } from "./videos/mapas/Video";
 import { TiempoVideo, tiempoPlan } from "./videos/tiempo/Video";
+import { GlobuloVideo, globuloPlan } from "./videos/globulo/Video";
+import { AgujeroVideo, agujeroPlan } from "./videos/agujero/Video";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -61,6 +63,22 @@ export const RemotionRoot: React.FC = () => (
       height={1920}
       fps={tiempoPlan.fps}
       durationInFrames={tiempoPlan.durationInFrames}
+    />
+    <Composition
+      id="Globulo"
+      component={GlobuloVideo}
+      width={1080}
+      height={1920}
+      fps={globuloPlan.fps}
+      durationInFrames={globuloPlan.durationInFrames}
+    />
+    <Composition
+      id="Agujero"
+      component={AgujeroVideo}
+      width={1080}
+      height={1920}
+      fps={agujeroPlan.fps}
+      durationInFrames={agujeroPlan.durationInFrames}
     />
     <Folder name="Eratostenes-Escenas">
       {plan.scenes.map((s) => (

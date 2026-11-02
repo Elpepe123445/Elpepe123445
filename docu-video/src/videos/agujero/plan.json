@@ -1,0 +1,109 @@
+{
+  "fps": 30,
+  "transitionFrames": 12,
+  "durationInFrames": 1537,
+  "scenes": [
+    {
+      "id": "b-llegada",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 346,
+      "lines": [
+        {
+          "id": "b1",
+          "text": "Estoy cayendo hacia Sagitario A*, el agujero negro del centro de nuestra galaxia.",
+          "from": 6,
+          "durationInFrames": 158
+        },
+        {
+          "id": "b2",
+          "text": "Tiene la masa de unos cuatro millones de soles… y aun así cabría dentro de la órbita de Mercurio.",
+          "from": 171,
+          "durationInFrames": 162
+        }
+      ]
+    },
+    {
+      "id": "b-lente",
+      "chapter": null,
+      "from": 334,
+      "durationInFrames": 180,
+      "lines": [
+        {
+          "id": "b3",
+          "text": "Su gravedad curva la luz: las estrellas de detrás se deforman en arcos a mi alrededor.",
+          "from": 16,
+          "durationInFrames": 150
+        }
+      ]
+    },
+    {
+      "id": "b-fideo",
+      "chapter": null,
+      "from": 502,
+      "durationInFrames": 338,
+      "lines": [
+        {
+          "id": "b4",
+          "text": "Si fuera un agujero negro pequeño, ya estaría estirado como un fideo. Se llama espaguetización.",
+          "from": 16,
+          "durationInFrames": 167
+        },
+        {
+          "id": "b5",
+          "text": "Pero en uno tan grande, cruzo el horizonte de sucesos… y no siento nada.",
+          "from": 191,
+          "durationInFrames": 127
+        }
+      ]
+    },
+    {
+      "id": "b-fuera",
+      "chapter": null,
+      "from": 828,
+      "durationInFrames": 199,
+      "lines": [
+        {
+          "id": "b6",
+          "text": "Quien me mire desde lejos nunca me verá entrar: me verá frenar, enrojecer y apagarme en el borde.",
+          "from": 16,
+          "durationInFrames": 169
+        }
+      ]
+    },
+    {
+      "id": "b-dentro",
+      "chapter": null,
+      "from": 1015,
+      "durationInFrames": 335,
+      "lines": [
+        {
+          "id": "b7",
+          "text": "Yo, en cambio, sigo cayendo. Miro atrás… y todo el universo se encoge en un círculo de luz.",
+          "from": 16,
+          "durationInFrames": 155
+        },
+        {
+          "id": "b8",
+          "text": "Aquí dentro, ningún camino lleva afuera. El centro ya no es un lugar: es mi futuro.",
+          "from": 178,
+          "durationInFrames": 143
+        }
+      ]
+    },
+    {
+      "id": "b-final",
+      "chapter": null,
+      "from": 1338,
+      "durationInFrames": 199,
+      "lines": [
+        {
+          "id": "b9",
+          "text": "Me queda, como mucho, alrededor de un minuto. Y nadie sabrá nunca lo que vi.",
+          "from": 16,
+          "durationInFrames": 133
+        }
+      ]
+    }
+  ]
+}

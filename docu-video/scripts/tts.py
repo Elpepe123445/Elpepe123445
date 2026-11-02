@@ -6,6 +6,7 @@ Crea  public/<video>/voice/<lineId>.wav
       src/videos/<video>/voice-timings.json   (duración real de cada línea)
 """
 
+import io
 import json
 import subprocess
 import sys
@@ -72,15 +73,51 @@ def take_score(judge, data: np.ndarray, rate: int, expected: str) -> float:
     return difflib.SequenceMatcher(None, _words(expected), heard).ratio()
 
 
-def main(video: str) -> None:
-    script = json.loads((ROOT / "content" / video / "script.json").read_text())
-    vcfg = script["voice"]
+KOKORO_URL = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0"
+
+
+def make_synth(vcfg: dict):
+    """Devuelve (sintetizar(texto) -> int16, frecuencia). Motores: "piper" (por defecto) o "kokoro"."""
+    if vcfg.get("engine") == "kokoro":
+        # Kokoro-82M (Apache-2.0): prosodia más natural; voces masculinas em_alex / em_santa.
+        from kokoro_onnx import Kokoro
+
+        kdir = ROOT / ".cache" / "kokoro"
+        kdir.mkdir(parents=True, exist_ok=True)
+        for name in ("kokoro-v1.0.onnx", "voices-v1.0.bin"):
+            if not (kdir / name).exists():
+                print(f"Descargando {name}")
+                urllib.request.urlretrieve(f"{KOKORO_URL}/{name}", kdir / name)
+        kokoro = Kokoro(str(kdir / "kokoro-v1.0.onnx"), str(kdir / "voices-v1.0.bin"))
+
+        def synth(text: str) -> np.ndarray:
+            samples, _ = kokoro.create(text, voice=vcfg.get("voice", "em_alex"), speed=vcfg.get("speed", 1.0), lang="es")
+            return (np.clip(samples, -1, 1) * 32767).astype(np.int16)
+
+        return synth, 24000
+
     voice = PiperVoice.load(ensure_voice(vcfg["model"]))
     syn = SynthesisConfig(
         length_scale=vcfg.get("lengthScale"),
         noise_scale=vcfg.get("noiseScale"),
         noise_w_scale=vcfg.get("noiseW"),
     )
+
+    def synth(text: str) -> np.ndarray:
+        buf = io.BytesIO()
+        with wave.open(buf, "wb") as w:
+            voice.synthesize_wav(text, w, syn_config=syn)
+        buf.seek(0)
+        with wave.open(buf, "rb") as w:
+            return np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16)
+
+    return synth, voice.config.sample_rate
+
+
+def main(video: str) -> None:
+    script = json.loads((ROOT / "content" / video / "script.json").read_text())
+    vcfg = script["voice"]
+    synth, rate = make_synth(vcfg)
 
     out_dir = ROOT / "public" / video / "voice"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -90,7 +127,6 @@ def main(video: str) -> None:
     # 1) Síntesis cruda
     lines = [line for scene in script["scenes"] for line in scene["lines"]]
     clips: dict[str, np.ndarray] = {}
-    rate = voice.config.sample_rate
     # Respellings para lo que la voz pronuncia mal (p. ej. el hiato "ía" → "íia"; ver README).
     lexicon = vcfg.get("lexicon", {})
     # "takes" > 1: Piper varía en cada síntesis; se generan varias tomas y se queda la que
@@ -107,12 +143,8 @@ def main(video: str) -> None:
         for word, respelled in lexicon.items():
             text = text.replace(word, respelled)
         best, best_score = None, -1.0
-        for k in range(takes):
-            raw = raw_dir / f"{line['id']}.take{k}.wav"
-            with wave.open(str(raw), "wb") as w:
-                voice.synthesize_wav(text, w, syn_config=syn)
-            with wave.open(str(raw), "rb") as w:
-                data = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16)
+        for _ in range(takes):
+            data = synth(text)
             score = 1.0 if judge is None else take_score(judge, data, rate, spoken)
             if score > best_score:
                 best, best_score = data, score

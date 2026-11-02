@@ -13,3 +13,5 @@ Config.setOverwriteOutput(true);
 Config.setDefaultPremountInSeconds(2);
 // El contenedor no tiene GPU: WebGL (Three.js) se renderiza por software con SwiftShader vía ANGLE.
 Config.setChromiumOpenGlRenderer("swangle");
+// Las escenas 3D por software pueden tardar varios segundos por fotograma: margen amplio.
+Config.setDelayRenderTimeoutInMilliseconds(180000);

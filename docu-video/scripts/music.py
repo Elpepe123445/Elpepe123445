@@ -203,6 +203,20 @@ SCORE = {
     "t-dinos": {"chords": [GM9, DM9], "amp": 0.9, "pulse": 0.25},
     "t-tiburon": {"chords": [BB9, C], "amp": 0.9, "arp": 0.1},
     "t-final": {"chords": [F, FMAJ7], "amp": 0.85, "bells": 0.09},
+    # POV glóbulo rojo: pulso constante (latido) y pads cálidos.
+    "r-corazon": {"chords": [DM9], "amp": 0.9, "pulse": 0.25},
+    "r-hemo": {"chords": [BB9, F], "amp": 0.85, "arp": 0.1},
+    "r-pulmon": {"chords": [F], "amp": 0.9, "bells": 0.08},
+    "r-capilar": {"chords": [GM9, DM9], "amp": 0.85, "pulse": 0.2},
+    "r-vida": {"chords": [BB9, C, F], "amp": 0.9, "arp": 0.1},
+    "r-final": {"chords": [F, FMAJ7], "amp": 0.85, "bells": 0.09},
+    # POV agujero negro: drones graves, tensión creciente, silencio final.
+    "b-llegada": {"chords": [DM9], "amp": 0.9, "bells": 0.05},
+    "b-lente": {"chords": [BB9], "amp": 0.9, "bells": 0.07},
+    "b-fideo": {"chords": [EB, DM9], "amp": 0.95, "pulse": 0.3},
+    "b-fuera": {"chords": [GM9], "amp": 0.8},
+    "b-dentro": {"chords": [EB, DM9], "amp": 0.85, "pulse": 0.2},
+    "b-final": {"chords": [DM9], "amp": 0.7},
 }
 
 

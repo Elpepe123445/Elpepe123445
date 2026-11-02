@@ -1,0 +1,24 @@
+{
+  "id": "pompeya",
+  "title": "POV: vives en Pompeya en el año 79",
+  "voice": { "engine": "kokoro", "voice": "em_alex", "speed": 1.0 },
+  "defaults": { "pauseAfter": 0.25, "padStart": 0.15, "padEnd": 0.2, "transitionFrames": 12 },
+  "scenes": [
+    { "id": "p-calle", "padStart": 0.2, "lines": [
+      { "id": "p1", "text": "Es mediodía en Pompeya, año 79. La montaña que tenemos encima, el Vesubio, acaba de rugir.", "say": "Es mediodía en Pompeya, año setenta y nueve. La montaña que tenemos encima, el Vesubio, acaba de rugir." },
+      { "id": "p2", "text": "Una columna de humo sube más de 30 kilómetros. Desde aquí parece un pino gigante.", "say": "Una columna de humo sube más de treinta kilómetros. Desde aquí parece un pino gigante." } ] },
+    { "id": "p-lluvia", "lines": [
+      { "id": "p3", "text": "Empieza a llover piedra pómez. Ligera, caliente… y no para durante horas.", "say": "Empieza a llover piedra pómez. Ligera, caliente... y no para durante horas." },
+      { "id": "p4", "text": "Los tejados crujen bajo el peso. Muchos huyen. Otros se encierran a esperar." } ] },
+    { "id": "p-nube", "lines": [
+      { "id": "p5", "text": "Al amanecer, la columna colapsa: una nube ardiente baja por la ladera a toda velocidad." },
+      { "id": "p6", "text": "Cientos de grados. No hay dónde esconderse.", "pauseAfter": 0.6 } ] },
+    { "id": "p-ceniza", "lines": [
+      { "id": "p7", "text": "La ceniza lo cubre todo… y la ciudad desaparece durante casi diecisiete siglos.", "say": "La ceniza lo cubre todo... y la ciudad desaparece durante casi diecisiete siglos." } ] },
+    { "id": "p-yeso", "lines": [
+      { "id": "p8", "text": "En 1863, un arqueólogo rellenó con yeso los huecos que dejaron nuestros cuerpos en la ceniza.", "say": "En mil ochocientos sesenta y tres, un arqueólogo rellenó con yeso los huecos que dejaron nuestros cuerpos en la ceniza." },
+      { "id": "p9", "text": "Por eso hoy puedes vernos, en la postura exacta de nuestro último momento." } ] },
+    { "id": "p-final", "padEnd": 1.2, "lines": [
+      { "id": "p10", "text": "Y una inscripción de carbón sugiere que todo pasó en octubre… no en agosto, como se creyó durante siglos.", "say": "Y una inscripción de carbón sugiere que todo pasó en octubre... no en agosto, como se creyó durante siglos." } ] }
+  ]
+}
