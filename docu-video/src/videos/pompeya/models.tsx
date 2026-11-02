@@ -2,6 +2,7 @@ import { useThree } from "@react-three/fiber";
 import React, { useMemo } from "react";
 import { random } from "remotion";
 import * as THREE from "three";
+import { useGlowTexture } from "../../components/three/Stage";
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 export const P = {
@@ -687,6 +688,7 @@ export const AshFall: React.FC<{
   color?: string;
   opacity?: number;
 }> = ({ frame, center, color = "#CFCAC4", opacity = 0.8 }) => {
+  const dot = useGlowTexture();
   const geo = useMemo(() => {
     const n = 1400;
     const pos = new Float32Array(n * 3);
@@ -705,8 +707,9 @@ export const AshFall: React.FC<{
       {[0, 20].map((o) => (
         <points key={o} geometry={geo} position={[0, o - dy, 0]}>
           <pointsMaterial
+            map={dot}
             color={color}
-            size={0.11}
+            size={0.14}
             sizeAttenuation
             transparent
             opacity={opacity}
@@ -852,7 +855,7 @@ export const InscribedWall: React.FC<{ reveal: number; glow?: number }> = ({
   }, []);
   const ctx = canvas.getContext("2d")!;
   ctx.drawImage(bg, 0, 0);
-  ctx.font = "700 96px Cinzel, serif";
+  ctx.font = "700 80px Cinzel, serif";
   ctx.textBaseline = "middle";
   // «XVI K» en la primera línea y «NOV» en la segunda
   const lines = ["XVI K", "NOV"];
@@ -861,7 +864,7 @@ export const InscribedWall: React.FC<{ reveal: number; glow?: number }> = ({
     const ws = [...ln].map((ch) => ctx.measureText(ch).width + 6);
     let gx = (canvas.width - ws.reduce((a, b) => a + b, 0)) / 2;
     [...ln].forEach((ch, k) => {
-      glyphs.push({ ch, x: gx, y: 430 + li * 120, w: ws[k] });
+      glyphs.push({ ch, x: gx, y: 405 + li * 100, w: ws[k] });
       gx += ws[k];
     });
   });

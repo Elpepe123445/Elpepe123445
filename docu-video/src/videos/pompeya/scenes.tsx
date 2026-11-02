@@ -505,7 +505,7 @@ export const PFinal: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 1220,
+          top: 1320,
           left: 0,
           right: 0,
           display: "flex",
@@ -542,7 +542,7 @@ export const PFinal: React.FC = () => {
         </div>
       </div>
       <FactCard
-        top={560}
+        top={1150}
         o={visible(frame, oct - 4, endT + 6, 10)}
         big="= 17 de octubre"
         small="«16 días antes de las calendas de noviembre»"
@@ -552,14 +552,14 @@ export const PFinal: React.FC = () => {
       <AbsoluteFill
         style={{
           background:
-            "linear-gradient(180deg, rgba(8,6,5,0.85) 0%, rgba(8,6,5,0.55) 45%, rgba(8,6,5,0.2) 100%)",
+            "linear-gradient(0deg, rgba(8,6,5,0.9) 0%, rgba(8,6,5,0.6) 45%, rgba(8,6,5,0.15) 100%)",
           opacity: prog(frame, endT + 6, 20),
         }}
       />
       <div
         style={{
           position: "absolute",
-          top: 560,
+          top: 1130,
           left: 0,
           right: 0,
           textAlign: "center",

@@ -621,7 +621,7 @@ export const RLife: React.FC = () => {
       <Fact
         top={520}
         o={visible(frame, c.start("r8"), r9, 10)}
-        big={`00:${String(seconds).padStart(2, "0")}`}
+        big={`${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`}
         small={
           frame > c.word("r8", "repetire")
             ? "× más de 100.000 vueltas"

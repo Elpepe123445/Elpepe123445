@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   AbsoluteFill,
   interpolate,
+  random,
   spring,
   useCurrentFrame,
   useVideoConfig,
@@ -15,6 +16,8 @@ import { Astronaut, B, BlackHole, StarSky } from "./models";
 
 const FONT = "Inter, DejaVu Sans, sans-serif";
 const TITLE = "caes en un agujero negro";
+/** Resolución interna del 3D (HUD y subtítulos siguen a 1080x1920). */
+const DPR = Number(process.env.REMOTION_DPR ?? 0.7);
 
 const Fact: React.FC<{
   top: number;
@@ -39,7 +42,7 @@ const Fact: React.FC<{
         padding: "22px 40px",
         borderRadius: 28,
         background:
-          "linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04))",
+          "linear-gradient(160deg, rgba(8,8,16,0.72), rgba(8,8,16,0.5))",
         border: "1.5px solid rgba(255,255,255,0.22)",
         boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
         textAlign: "center",
@@ -92,7 +95,7 @@ export const BArrive: React.FC = () => {
   );
   return (
     <AbsoluteFill style={{ background: B.bg }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={[Math.sin(frame / 90) * 0.8, 1.2, z]}
         target={[0, 0, 0]}
         fov={46}
@@ -151,7 +154,7 @@ export const BLens: React.FC = () => {
   const arcs = prog(frame, c.word("b3", "curva") - 6, 30);
   return (
     <AbsoluteFill style={{ background: B.bg }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={[
           0,
           0.5,
@@ -198,29 +201,31 @@ export const BSpaghetti: React.FC = () => {
   const stretch =
     prog(frame, c.word("b4", "estirado") - 10, 50, inOut) *
     (1 - prog(frame, b5 - 6, 10));
-  const cross = prog(frame, c.word("b5", "cruzo") - 6, 50, inOut);
   const nada = c.word("b5", "nada");
+  const cross = prog(frame, b5 - 4, nada - b5 + 4, inOut);
+  const dark = prog(frame, nada - 6, 18, inOut);
   const small = frame < b5 - 4;
   return (
     <AbsoluteFill style={{ background: B.bg }}>
       {small ? (
-        <Stage camera={[0, 0.6, 7]} target={[0, 0.6, 0]} fov={45} env={0.6}>
+        <Stage dpr={DPR} antialias={false} camera={[0, 0.6, 7]} target={[0, 0.6, 0]} fov={45} env={0.6}>
           <StarSky frame={frame} />
           <group position={[0, -2.6, -3]} scale={0.6}>
             <BlackHole time={frame / 20} diskIntensity={0.7} />
           </group>
           <group
-            position={[0, 0.6 - stretch * 0.6, 0]}
+            position={[0, -0.5 - stretch * 0.3, 0]}
             rotation={[0.1, frame * 0.01, 0]}
+            scale={[0.6, 0.6 * (1 - stretch * 0.55), 0.6]}
           >
-            <Astronaut stretch={stretch} />
+            <Astronaut stretch={stretch} tint="#E9ECF2" />
           </group>
         </Stage>
       ) : (
-        <Stage
-          camera={[0, 0.2, mix(8, 0.2, cross)]}
-          target={[0, 0, -2]}
-          fov={mix(50, 80, cross)}
+        <Stage dpr={DPR} antialias={false}
+          camera={[0, mix(0.6, 0.15, cross), mix(9, 1.55, cross)]}
+          target={[0, mix(0.3, 0, cross), -2]}
+          fov={mix(48, 78, cross)}
           env={0.2}
         >
           <StarSky frame={frame} />
@@ -232,7 +237,7 @@ export const BSpaghetti: React.FC = () => {
       <AbsoluteFill
         style={{
           background: "#000",
-          opacity: cross > 0.8 ? (cross - 0.8) * 4 : 0,
+          opacity: dark,
         }}
       />
       <Fact
@@ -266,7 +271,7 @@ export const BSpaghetti: React.FC = () => {
           },
           {
             label: "ESTADO",
-            text: cross > 0.95 ? "dentro" : "fuera",
+            text: dark > 0.5 ? "dentro" : "fuera",
             color: "#FFFFFF",
           },
         ]}
@@ -288,7 +293,7 @@ export const BOutside: React.FC = () => {
     .getStyle();
   return (
     <AbsoluteFill style={{ background: B.bg }}>
-      <Stage camera={[3.2, 1.0, 6.5]} target={[0, 0.8, 0]} fov={42} env={0.5}>
+      <Stage dpr={DPR} antialias={false} camera={[3.2, 1.0, 6.5]} target={[0, 0.8, 0]} fov={42} env={0.5}>
         <StarSky frame={frame} />
         <group rotation={[0, 0, 0.12]}>
           <BlackHole time={(frame + 900) / 30} />
@@ -348,13 +353,29 @@ export const BOutside: React.FC = () => {
 export const BInside: React.FC = () => {
   const frame = useCurrentFrame();
   const c = useCues();
-  const look = prog(frame, c.word("b7", "atras") - 10, 30, inOut);
-  const shrink = prog(frame, c.word("b7", "encoge") - 6, 70, inOut);
   const b8 = c.start("b8");
-  const lines = prog(frame, b8, 30);
+  const look =
+    prog(frame, c.word("b7", "atras") - 10, 30, inOut) *
+    (1 - prog(frame, b8 - 4, 30, inOut));
+  const shrink = prog(frame, c.word("b7", "encoge") - 6, 70, inOut);
+  const lines = 1 - look;
+  const stars = useMemo(() => {
+    const n = 700;
+    const pos = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) {
+      const r = Math.sqrt(random(`dr${i}`)) * 0.97;
+      const a = random(`da${i}`) * Math.PI * 2;
+      pos[i * 3] = Math.cos(a) * r;
+      pos[i * 3 + 1] = Math.sin(a) * r;
+      pos[i * 3 + 2] = 0.01;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    return g;
+  }, []);
   return (
     <AbsoluteFill style={{ background: "#000000" }}>
-      <Stage
+      <Stage dpr={DPR} antialias={false}
         camera={[0, 0, 0]}
         target={[
           Math.sin(look * Math.PI) * 8,
@@ -364,12 +385,40 @@ export const BInside: React.FC = () => {
         fov={70}
         env={0.1}
       >
-        <group position={[0, 2.6, 10]} scale={mix(4, 0.9, shrink)}>
+        <group
+          position={[0, 0.2, 10]}
+          rotation={[0, Math.PI, frame * 0.002]}
+          scale={mix(4, 1.1, shrink)}
+        >
+          <Glow size={3.4} color="#7FA8FF" opacity={0.55 * look} />
           <mesh>
             <circleGeometry args={[1, 96]} />
-            <meshBasicMaterial color="#BFD8FF" transparent opacity={look} />
+            <meshBasicMaterial
+              color="#0E1D44"
+              transparent
+              opacity={0.95 * look}
+            />
           </mesh>
-          <Glow size={3.6} color="#9FC8FF" opacity={0.8 * look} />
+          <points geometry={stars}>
+            <pointsMaterial
+              color="#EAF2FF"
+              size={0.035}
+              sizeAttenuation
+              transparent
+              opacity={look}
+              blending={THREE.AdditiveBlending}
+              depthWrite={false}
+            />
+          </points>
+          <mesh position={[0, 0, 0.02]}>
+            <torusGeometry args={[1, 0.018, 8, 160]} />
+            <meshBasicMaterial
+              color="#DCEBFF"
+              transparent
+              opacity={look}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
         </group>
         {lines > 0
           ? new Array(36).fill(0).map((_, i) => {
