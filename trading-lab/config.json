@@ -1,0 +1,29 @@
+{
+  "symbols": ["SPY", "QQQ", "AAPL", "MSFT", "GLD"],
+  "data_start": "2018-01-01",
+  "commission_per_trade": 0.0,
+  "slippage_bps": 5,
+  "train_fraction": 0.6,
+  "risk": {
+    "max_position_pct": 10,
+    "max_total_exposure_pct": 50,
+    "max_daily_loss_pct": 2,
+    "max_drawdown_pct": 10,
+    "max_orders_per_day": 10,
+    "min_cash_reserve_pct": 20
+  },
+  "paper_allocations": [
+    {"strategy": "ma_crossover",       "symbol": "SPY",  "params": {"fast": 20, "slow": 100}},
+    {"strategy": "rsi_mean_reversion", "symbol": "QQQ",  "params": {"period": 14, "oversold": 30, "exit_level": 55, "trend_filter": 200}},
+    {"strategy": "macd_trend",         "symbol": "AAPL", "params": {"fast": 12, "slow": 26, "signal": 9, "require_positive": 1}},
+    {"strategy": "momentum",           "symbol": "MSFT", "params": {"lookback": 126, "threshold": 0.0}},
+    {"strategy": "breakout",           "symbol": "GLD",  "params": {"entry_window": 55, "exit_window": 20}}
+  ],
+  "strategy_grids": {
+    "ma_crossover":       {"fast": [10, 20, 50], "slow": [100, 150, 200]},
+    "rsi_mean_reversion": {"period": [7, 14], "oversold": [25, 30, 35], "exit_level": [50, 60]},
+    "macd_trend":         {"fast": [8, 12], "slow": [26, 35], "require_positive": [0, 1]},
+    "momentum":           {"lookback": [63, 126, 252], "threshold": [0.0, 0.05]},
+    "breakout":           {"entry_window": [20, 55, 100], "exit_window": [10, 20]}
+  }
+}
