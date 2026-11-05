@@ -22,6 +22,9 @@ from trading_lab.storage import Store
 
 RISK = RiskLimits(max_position_pct=10, max_total_exposure_pct=50, max_daily_loss_pct=2,
                   max_drawdown_pct=10, max_orders_per_day=10, min_cash_reserve_pct=20)
+LAB_RISK = RiskLimits(max_position_pct=3, max_total_exposure_pct=10, max_daily_loss_pct=1,
+                      max_drawdown_pct=3, max_orders_per_day=10, min_cash_reserve_pct=20,
+                      position_stop_loss_pct=8, stop_cooldown_days=5)
 
 
 def synthetic(n=800, seed=1):
@@ -217,11 +220,14 @@ class TestRisk(unittest.TestCase):
 
 
 class FakeClient:
-    """Imita la API de Alpaca paper para probar el ciclo sin red."""
+    """Imita la API de Alpaca paper (con estado) para probar el ciclo sin red."""
 
     def __init__(self, df, account_number="PA123"):
         self.df, self.acct_no, self.submitted, self.verified = df, account_number, [], False
         self.reject = False
+        self.positions, self.open_orders, self.cancelled = [], [], []
+        self.show_open = True
+        self.calendar_last = str(df.index[-1].date())
 
     def verify_paper(self):
         a = {"account_number": self.acct_no, "status": "ACTIVE", "equity": "100000", "cash": "100000",
@@ -231,11 +237,20 @@ class FakeClient:
         return a
 
     def get_clock(self): return {"is_open": False}
-    def get_positions(self): return []
-    def get_orders(self, status="open", limit=100): return []
+    def get_calendar(self, start, end): return [{"date": self.calendar_last, "open": "09:30", "close": "16:00"}]
+    def get_positions(self): return self.positions
+    def get_orders(self, status="open", limit=100): return list(self.open_orders) if self.show_open else []
+
+    def cancel_order(self, oid):
+        assert self.verified
+        self.cancelled.append(oid)
+        self.open_orders = [o for o in self.open_orders if o["id"] != oid]
 
     def get_order_by_client_id(self, coid):
-        return next((o for o in self.submitted if o["client_order_id"] == coid), None)
+        for o in self.submitted:
+            if o["client_order_id"] == coid:
+                return {**o, "status": "canceled" if o["id"] in self.cancelled else o["status"]}
+        return None
 
     def get_bars(self, symbol, start, **kw):
         return [{"t": d.strftime("%Y-%m-%dT05:00:00Z"), "o": r.open, "h": r.high, "l": r.low, "c": r.close, "v": r.volume}
@@ -245,33 +260,98 @@ class FakeClient:
         assert self.verified
         if self.reject:
             raise AlpacaError(403, "insufficient buying power")
-        o = {"id": f"id{len(self.submitted)}", "status": "accepted", "client_order_id": client_order_id, "symbol": symbol}
+        o = {"id": f"id{len(self.submitted)}", "status": "accepted", "client_order_id": client_order_id,
+             "symbol": symbol, "side": side, "qty": str(qty)}
         self.submitted.append(o)
+        self.open_orders.append(o)
         return o
 
 
 class TestPaperTrader(unittest.TestCase):
-    def make(self, client):
-        df = client.df
-        # Fuerza señal de compra: precio con tendencia alcista clara
+    def make(self, client, risk=LAB_RISK):
         cfg = Config(symbols=["SPY"], data_start="2020-01-01", commission_per_trade=0, slippage_bps=5,
-                     train_fraction=0.6, risk=RISK, allocations=[Allocation("momentum", "SPY", {"lookback": 20})],
+                     train_fraction=0.6, risk=risk, allocations=[Allocation("momentum", "SPY", {"lookback": 20})],
                      strategy_grids={})
-        store = Store(Path(tempfile.mkdtemp()) / "t.sqlite3")
+        store = Store(Path(tempfile.mkdtemp()) / "t.sqlite3", journal_dir=None)
         return PaperTrader(cfg, client=client, store=store), store
 
-    def uptrend(self):
-        df = synthetic(400)
-        df[["open", "high", "low", "close"]] = df[["open", "high", "low", "close"]].mul(np.linspace(1, 2, 400), axis=0)
+    def uptrend(self, n=400, down=False):
+        df = synthetic(n)
+        f = np.linspace(2, 1, n) if down else np.linspace(1, 2, n)
+        df[["open", "high", "low", "close"]] = df[["open", "high", "low", "close"]].mul(f, axis=0)
         return df
 
-    def test_buy_once_no_duplicates(self):
+    def price(self, c):
+        return float(c.df.close.iloc[-1])
+
+    def test_buy_sized_to_lab_limits(self):
+        c = FakeClient(self.uptrend())
+        t, _ = self.make(c)
+        t.run_once()
+        self.assertEqual(len(c.submitted), 1)
+        self.assertLessEqual(int(c.submitted[0]["qty"]) * self.price(c), 3_000)  # 3 % de 100k
+
+    def test_pending_order_not_duplicated(self):
         c = FakeClient(self.uptrend())
         t, store = self.make(c)
         t.run_once(); t.run_once()
         self.assertEqual(len(c.submitted), 1)
-        self.assertEqual(c.submitted[0]["client_order_id"], client_order_id("momentum", "SPY", str(c.df.index[-1].date()), "buy"))
+        self.assertIn("pendiente", store.rows("decisions")[0]["reason"])
+
+    def test_duplicate_by_client_order_id(self):
+        c = FakeClient(self.uptrend()); c.show_open = False
+        t, store = self.make(c)
+        t.run_once(); t.run_once()
+        self.assertEqual(len(c.submitted), 1)
         self.assertTrue(any(d["action"] == "duplicate_skipped" for d in store.rows("decisions")))
+
+    def test_oversized_pending_order_cancelled_and_resized(self):
+        c = FakeClient(self.uptrend())
+        coid = client_order_id("momentum", "SPY", c.calendar_last, "buy")
+        c.verified = True; c.submit_order("SPY", 1000, "buy", coid); c.verified = False
+        t, store = self.make(c)
+        s = t.run_once()
+        self.assertEqual(c.cancelled, ["id0"])
+        self.assertEqual(s["cancelled"], [coid])
+        self.assertEqual(c.submitted[-1]["client_order_id"], coid + "-r2")
+        self.assertLessEqual(int(c.submitted[-1]["qty"]) * self.price(c), 3_000)
+
+    def test_stop_loss_and_cooldown(self):
+        c = FakeClient(self.uptrend())
+        c.positions = [{"symbol": "SPY", "qty": "10", "market_value": str(10 * self.price(c)), "unrealized_plpc": "-0.10"}]
+        t, store = self.make(c)
+        t.run_once()
+        self.assertEqual(c.submitted[-1]["side"], "sell")
+        self.assertEqual(store.rows("decisions")[0]["action"], "sell_stop_loss")
+        c.positions, c.open_orders = [], []          # la venta se ejecutó
+        t.run_once()                                  # la señal sigue en 1, pero hay enfriamiento
+        self.assertEqual(len(c.submitted), 1)
+        self.assertIn("Enfriamiento", store.rows("decisions")[0]["reason"])
+
+    def test_trim_oversized_position(self):
+        c = FakeClient(self.uptrend())
+        px = self.price(c)
+        c.positions = [{"symbol": "SPY", "qty": "100", "market_value": str(100 * px), "unrealized_plpc": "0.01"}]
+        t, store = self.make(c)
+        t.run_once()
+        o = c.submitted[-1]
+        self.assertEqual(o["side"], "sell")
+        self.assertLessEqual((100 - int(o["qty"])) * px, 3_000 + px)
+        self.assertEqual(store.rows("decisions")[0]["action"], "sell_trim")
+
+    def test_stale_data_blocks_trading(self):
+        c = FakeClient(self.uptrend()); c.calendar_last = str((c.df.index[-1] + pd.Timedelta(days=3)).date())
+        t, store = self.make(c)
+        t.run_once()
+        self.assertEqual(c.submitted, [])
+        self.assertEqual(store.rows("decisions")[0]["action"], "stale_data")
+
+    def test_exit_on_signal_zero(self):
+        c = FakeClient(self.uptrend(down=True))
+        c.positions = [{"symbol": "SPY", "qty": "5", "market_value": str(5 * self.price(c)), "unrealized_plpc": "-0.01"}]
+        t, store = self.make(c)
+        t.run_once()
+        self.assertEqual((c.submitted[-1]["side"], c.submitted[-1]["qty"]), ("sell", "5"))
 
     def test_blocks_non_paper_account(self):
         c = FakeClient(self.uptrend(), account_number="999")
@@ -286,6 +366,17 @@ class TestPaperTrader(unittest.TestCase):
         t, store = self.make(c)
         t.run_once()
         self.assertEqual(store.rows("orders")[0]["status"], "rejected")
+
+    def test_journal_rebuilds_db(self):
+        j = Path(tempfile.mkdtemp())
+        s1 = Store(j / "a.sqlite3", journal_dir=j)
+        s1.decision("momentum", "SPY", "2026-01-02", 1.0, 0, "buy", "test", 10.0)
+        s1.order("lab-x", "momentum", "SPY", "buy", 3, "accepted", "id1", ref_price=10.0)
+        s1.order("lab-x", status="filled", filled_qty=3, filled_avg_price=10.1)
+        s2 = Store(j / "b.sqlite3", journal_dir=j)
+        self.assertEqual(s2.rows("decisions")[0]["reason"], "test")
+        o = s2.get_order("lab-x")
+        self.assertEqual((o["status"], o["filled_avg_price"], o["ref_price"]), ("filled", 10.1, 10.0))
 
 
 if __name__ == "__main__":

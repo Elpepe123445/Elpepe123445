@@ -5,12 +5,14 @@
   "slippage_bps": 5,
   "train_fraction": 0.6,
   "risk": {
-    "max_position_pct": 10,
-    "max_total_exposure_pct": 50,
-    "max_daily_loss_pct": 2,
-    "max_drawdown_pct": 10,
+    "max_position_pct": 3,
+    "max_total_exposure_pct": 10,
+    "max_daily_loss_pct": 1,
+    "max_drawdown_pct": 3,
     "max_orders_per_day": 10,
-    "min_cash_reserve_pct": 20
+    "min_cash_reserve_pct": 20,
+    "position_stop_loss_pct": 8,
+    "stop_cooldown_days": 5
   },
   "paper_allocations": [
     {"strategy": "ma_crossover",       "symbol": "SPY",  "params": {"fast": 20, "slow": 100}},

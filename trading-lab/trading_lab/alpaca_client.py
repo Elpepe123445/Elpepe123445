@@ -108,6 +108,14 @@ class AlpacaPaperClient:
                 return None
             raise
 
+    def get_calendar(self, start: str, end: str) -> list[dict]:
+        return self._trading("GET", "/v2/calendar", params={"start": start, "end": end})
+
+    def cancel_order(self, order_id: str) -> None:
+        if not self._verified:
+            raise PaperTradingVerificationError("Entorno paper no verificado: cancelación bloqueada")
+        self._trading("DELETE", f"/v2/orders/{order_id}")
+
     def get_portfolio_history(self, period: str = "1M", timeframe: str = "1D") -> dict:
         return self._trading("GET", "/v2/account/portfolio/history", params={"period": period, "timeframe": timeframe})
 

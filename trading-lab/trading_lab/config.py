@@ -21,8 +21,12 @@ class RiskLimits:
     max_drawdown_pct: float          # si el drawdown desde el máximo lo supera, se detienen las compras
     max_orders_per_day: int
     min_cash_reserve_pct: float      # efectivo mínimo que nunca se invierte
+    position_stop_loss_pct: float = 8.0   # cierre forzado si una posición pierde este %
+    stop_cooldown_days: int = 5           # días sin reentrar en un activo tras un stop
 
     def validate(self) -> None:
+        if not 0 < self.position_stop_loss_pct <= 50:
+            raise ConfigError("risk.position_stop_loss_pct debe estar en (0, 50]")
         for name in ("max_position_pct", "max_total_exposure_pct", "max_daily_loss_pct",
                      "max_drawdown_pct", "min_cash_reserve_pct"):
             v = getattr(self, name)

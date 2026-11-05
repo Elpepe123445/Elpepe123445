@@ -50,6 +50,8 @@ export ALPACA_SECRET_KEY=...
 python -m trading_lab verify                  # comprueba la conexión y que la cuenta es paper
 python -m trading_lab backtest                # investigación completa → reports/backtest_latest.json
 python -m trading_lab paper                   # un ciclo de paper trading
+python -m trading_lab session                 # ciclo + informe de sesión → journal/sessions/
+python -m trading_lab report                  # solo el informe (sincroniza ejecuciones)
 python -m trading_lab paper --loop --interval 900   # ciclo continuo cada 15 min
 python -m trading_lab dashboard               # http://127.0.0.1:8050
 python -m unittest discover -s tests          # tests
@@ -57,6 +59,20 @@ python -m unittest discover -s tests          # tests
 
 Las estrategias, los activos, los límites de riesgo y las rejillas de parámetros se configuran en `config.json`.
 Cada símbolo se asigna a una sola estrategia para que las posiciones de distintas estrategias no se mezclen en la misma cuenta.
+
+## Fase de operación experimental
+
+Límites activos (`config.json`): un 3 % del equity por activo y un 10 % de exposición total. Se mantiene una reserva de efectivo del 20 %.
+Las compras se bloquean si la pérdida del día llega al 1 % o si el drawdown llega al 3 %.
+Cada posición tiene un stop-loss del 8 %, tras el cual hay 5 días sin poder volver a entrar en ese activo.
+No se promedia a la baja: solo se compra si no hay posición abierta en ese activo.
+
+Además, en cada ciclo:
+- se cancelan las órdenes pendientes que superan los límites;
+- se reducen las posiciones que superan en un 25 % el límite por activo;
+- no se opera si la última barra no corresponde a la última sesión cerrada según el calendario de Alpaca.
+
+El diario `journal/` (JSONL e informes de sesión) se versiona en git. Si se pierde la base SQLite, se reconstruye a partir del diario.
 
 ## Limitaciones conocidas
 

@@ -21,6 +21,8 @@ def main(argv=None) -> int:
     p = sub.add_parser("paper", help="Ejecuta el ciclo de paper trading")
     p.add_argument("--loop", action="store_true")
     p.add_argument("--interval", type=int, default=900, help="Segundos entre ciclos")
+    sub.add_parser("report", help="Informe de la sesión actual → journal/sessions/")
+    sub.add_parser("session", help="Ciclo de paper trading + informe de sesión")
     d = sub.add_parser("dashboard", help="Servidor web del dashboard")
     d.add_argument("--port", type=int, default=8050)
     d.add_argument("--host", default="127.0.0.1")
@@ -56,6 +58,17 @@ def main(argv=None) -> int:
             t.run_loop(args.interval)
         else:
             print(json.dumps(t.run_once(), indent=1, default=str))
+    elif args.cmd in ("report", "session"):
+        from .paper_trader import PaperTrader
+        from .report import write_report
+        t = PaperTrader(cfg)
+        if args.cmd == "session":
+            print(json.dumps(t.run_once(), indent=1, default=str))
+        else:
+            t.client.verify_paper()
+            t.sync_orders()
+        _, md = write_report(t.client, t.store, cfg)
+        print(md)
     elif args.cmd == "dashboard":
         from .dashboard.server import serve
         serve(args.host, args.port)
