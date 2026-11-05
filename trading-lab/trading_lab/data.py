@@ -16,9 +16,11 @@ CACHE_DIR = ROOT / "data"
 def bars_to_frame(bars: list[dict]) -> pd.DataFrame:
     if not bars:
         return pd.DataFrame(columns=["open", "high", "low", "close", "volume"])
-    df = pd.DataFrame(bars).rename(columns={"t": "time", "o": "open", "h": "high", "l": "low", "c": "close", "v": "volume"})
+    df = pd.DataFrame(bars).rename(columns={"t": "time", "o": "open", "h": "high", "l": "low", "c": "close", "v": "volume",
+                                            "vw": "vwap"})
     df["time"] = pd.to_datetime(df["time"], utc=True).dt.tz_convert("America/New_York").dt.normalize().dt.tz_localize(None)
-    df = df.set_index("time")[["open", "high", "low", "close", "volume"]].astype(float)
+    cols = ["open", "high", "low", "close", "volume"] + (["vwap"] if "vwap" in df else [])
+    df = df.set_index("time")[cols].astype(float)
     return df[~df.index.duplicated(keep="last")].sort_index()
 
 

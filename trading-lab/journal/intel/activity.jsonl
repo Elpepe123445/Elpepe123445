@@ -1,0 +1,15 @@
+{"aid": "e784457be7863310", "job": "official", "started_at": "2026-11-05T00:24:51+00:00", "finished_at": "2026-11-05T00:24:54+00:00", "status": "ok", "message": "Fed 0 comunicados, SEC 30 presentaciones"}
+{"aid": "348e65d24ae5e317", "job": "macro_calendar", "started_at": "2026-11-05T00:24:54+00:00", "finished_at": "2026-11-05T00:24:59+00:00", "status": "ok", "message": "FRED 4000 observaciones, BLS 13 eventos"}
+{"aid": "08af4acd380985de", "job": "fundamentals", "started_at": "2026-11-05T00:25:00+00:00", "finished_at": "2026-11-05T00:25:02+00:00", "status": "ok", "message": "9 empresas"}
+{"aid": "42ed9f911c614df4", "job": "official", "started_at": "2026-11-05T00:25:37+00:00", "finished_at": "2026-11-05T00:25:39+00:00", "status": "ok", "message": "Fed 20 comunicados, SEC 0 presentaciones"}
+{"aid": "1ac2efa219638382", "job": "macro_calendar", "started_at": "2026-11-05T00:25:40+00:00", "finished_at": "2026-11-05T00:25:45+00:00", "status": "ok", "message": "FRED 0 observaciones, BLS 13 eventos"}
+{"aid": "68afe7592b7d7a75", "job": "fundamentals", "started_at": "2026-11-05T00:25:45+00:00", "finished_at": "2026-11-05T00:25:48+00:00", "status": "ok", "message": "9 empresas"}
+{"aid": "8676fd2e1072ab9d", "job": "fundamentals", "started_at": "2026-11-05T00:26:02+00:00", "finished_at": "2026-11-05T00:26:05+00:00", "status": "ok", "message": "9 empresas"}
+{"aid": "104ea63796cf46d1", "job": "backfill_news", "started_at": "2026-11-05T00:26:14+00:00", "finished_at": "2026-11-05T00:28:07+00:00", "status": "ok", "message": "9418 noticias hist\u00f3ricas"}
+{"aid": "16788afbee499713", "job": "research", "started_at": "2026-11-05T00:28:14+00:00", "finished_at": "2026-11-05T00:28:24+00:00", "status": "ok", "message": "53 predicciones nuevas, 0 evaluadas"}
+{"aid": "eef88640a63974d9", "job": "learning", "started_at": "2026-11-05T00:28:51+00:00", "finished_at": "2026-11-05T00:29:03+00:00", "status": "ok", "message": "ma_crossover: sin cambios: no supera los criterios fuera de muestra; rsi_mean_reversion: sin cambios: no supera los criterios fuera de muestra; macd_trend: sin cambios: no supera los criterios fuera de muestra; momentum: sin cambios: no supera los criterios fuera de muestra; breakout: sin cambios: no supera los criterios fuera de muestra"}
+{"aid": "fdf8c7c4060f4c09", "job": "research", "started_at": "2026-11-05T00:32:45+00:00", "finished_at": "2026-11-05T00:32:55+00:00", "status": "ok", "message": "0 predicciones nuevas, 0 evaluadas"}
+{"aid": "29e91381389068a8", "job": "news", "started_at": "2026-11-05T00:32:55+00:00", "finished_at": "2026-11-05T00:32:56+00:00", "status": "ok", "message": "0 noticias nuevas, 44 contradicciones marcadas"}
+{"aid": "a6d598e4f50ca163", "job": "paper_session", "started_at": "2026-11-05T00:32:57+00:00", "finished_at": "2026-11-05T00:32:58+00:00", "status": "ok", "message": "0 \u00f3rdenes, 0 canceladas, bloqueo=None"}
+{"aid": "7850982b86b2eed1", "job": "research", "started_at": "2026-11-05T00:33:43+00:00", "status": "running"}
+{"aid": "7850982b86b2eed1", "finished_at": "2026-11-05T00:33:51+00:00", "status": "ok", "message": "0 predicciones nuevas, 0 evaluadas"}

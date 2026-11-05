@@ -37,10 +37,13 @@ def last_completed_session(calendar: list[dict], now_ny: datetime) -> str | None
 
 
 class PaperTrader:
-    def __init__(self, cfg: Config, client: AlpacaPaperClient | None = None, store: Store | None = None):
+    def __init__(self, cfg: Config, client: AlpacaPaperClient | None = None, store: Store | None = None,
+                 versions=None, intel=None):
         if not cfg.allocations:
             raise ValueError("No hay paper_allocations configuradas")
         self.cfg = cfg
+        self.versions = versions  # parámetros versionados (aprendizaje controlado); None = config.json
+        self.intel = intel        # memoria de investigación; solo se usa para VETAR entradas, nunca para comprar
         self.client = client or AlpacaPaperClient()
         self.store = store or Store()
         self.risk = RiskManager(cfg.risk)
@@ -158,11 +161,15 @@ class PaperTrader:
                     self.store.decision(strat.name, sym, sig_date, None, None, "stale_data",
                                         f"Última barra {sig_date} ≠ última sesión cerrada {last_session}: no se opera")
                     continue
-                sig = strat.signals(df, alloc.params)
+                params, version = alloc.params, "config"
+                if self.versions is not None:
+                    prod = self.versions.production(strat.name)
+                    params, version = prod["params"], prod["label"]
+                sig = strat.signals(df, params)
                 signal, price = float(sig.iloc[-1]), float(df["close"].iloc[-1])
                 pos = positions.get(sym, {})
                 held = float(pos.get("qty", 0) or 0)
-                details = {"params": {**strat.defaults, **alloc.params}}
+                details = {"params": {**strat.defaults, **params}, "version": version}
                 summary["decisions"] += 1
 
                 if sym in pending:
@@ -195,6 +202,10 @@ class PaperTrader:
                     if breaker:
                         self.store.decision(strat.name, sym, sig_date, signal, held, "blocked", breaker, price, details)
                         continue
+                    veto = self._news_veto(sym)
+                    if veto:
+                        self.store.decision(strat.name, sym, sig_date, signal, held, "blocked_by_news", veto, price, details)
+                        continue
                     rd = self.risk.size_buy(price, equity, cash, exposure, 0.0, self.store.orders_today())
                     if not rd.allowed:
                         self.store.decision(strat.name, sym, sig_date, signal, held, "rejected_by_risk", rd.reason, price, details)
@@ -215,6 +226,22 @@ class PaperTrader:
                 log.exception("Error procesando %s/%s", alloc.strategy, sym)
                 self.store.error(f"{alloc.strategy}/{sym}", f"{type(e).__name__}: {e}")
         return summary
+
+    def _news_veto(self, symbol: str) -> str | None:
+        """Solo reduce riesgo: bloquea ENTRADAS si hay un evento negativo confirmado de alto impacto (2 días).
+        Las noticias nunca generan compras ni ventas por sí mismas."""
+        if self.intel is None or not self.cfg.intel.get("news_entry_veto", True):
+            return None
+        since = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
+        rows = self.intel.query(
+            "SELECT title,event_type,source FROM items WHERE published_at>=? AND (','||primary_symbols||',') LIKE ? AND impact='high' "
+            "AND credibility IN ('fact','reported') AND (event_type IN ('accounting_bankruptcy','offering_dilution') "
+            "OR (event_type='legal_regulatory' AND sentiment<0) OR (sentiment<=-0.5 AND event_type IN ('earnings','guidance')))",
+            (since, f"%,{symbol},%"))
+        if rows:
+            r = rows[0]
+            return f"Veto por evento negativo confirmado ({r['event_type']}, {r['source']}): {r['title'][:120]}"
+        return None
 
     def _submit(self, strategy, symbol, sig_date, side, qty, price, reason, summary, action=None, details=None) -> bool:
         action = action or side

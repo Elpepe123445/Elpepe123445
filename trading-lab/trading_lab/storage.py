@@ -7,6 +7,7 @@ historial no debe perderse. Si la base de datos no existe, se reconstruye desde 
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,7 +15,7 @@ from pathlib import Path
 from .config import ROOT
 
 DB_PATH = ROOT / "data" / "lab.sqlite3"
-JOURNAL_DIR = ROOT / "journal"
+JOURNAL_DIR = Path(os.environ.get("LAB_JOURNAL_DIR", ROOT / "journal"))
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS decisions (id INTEGER PRIMARY KEY, ts TEXT, strategy TEXT, symbol TEXT,

@@ -54,7 +54,7 @@ python -m trading_lab session                 # ciclo + informe de sesión → j
 python -m trading_lab report                  # solo el informe (sincroniza ejecuciones)
 python -m trading_lab paper --loop --interval 900   # ciclo continuo cada 15 min
 python -m trading_lab dashboard               # http://127.0.0.1:8050
-python -m unittest discover -s tests          # tests
+python -m unittest discover -s tests -t .     # tests
 ```
 
 Las estrategias, los activos, los límites de riesgo y las rejillas de parámetros se configuran en `config.json`.
@@ -81,3 +81,39 @@ El diario `journal/` (JSONL e informes de sesión) se versiona en git. Si se pie
 - El estado de las órdenes en SQLite no se sincroniza tras la ejecución. El dashboard muestra el estado real consultando directamente a Alpaca.
 - El simulador de Alpaca no modela impacto de mercado, dividendos ni la posición en la cola de órdenes.
 - Una sola división train/test. Con un único período de test, los resultados dependen mucho del régimen de mercado de ese período.
+
+## Fase 2: Market Intelligence (`trading_lab/intel/`)
+
+El subpaquete `intel` investiga, guarda memoria, registra predicciones y propone cambios. **Nunca envía órdenes.**
+Las órdenes las envía solo `paper_trader.py`, con la verificación paper y los límites de riesgo.
+Las noticias solo pueden **vetar entradas** (eventos negativos confirmados de alto impacto); nunca provocan una compra ni una venta.
+
+| Fuente | Qué aporta | Frecuencia (tareas) | Frescura comprobada |
+|---|---|---|---|
+| Alpaca Market Data | Velas diarias con VWAP, screener de valores que más suben, bajan y se negocian | Diaria tras el cierre | Última barra = última sesión cerrada |
+| Alpaca News (Benzinga y otros) | Noticias por activo | Cada hora (7–21 h ET, días laborables) y cada 6 h el resto | Antigüedad de la última noticia |
+| SEC EDGAR | 8-K, 10-Q, 10-K, folletos; fundamentales XBRL | Cada 3 h / diaria | Por publicación |
+| FRED | IPC, IPC subyacente, paro, nóminas, tipos, curva, VIX, diferencial high yield | Diaria | Antigüedad máxima por serie |
+| Reserva Federal (RSS oficial) | Comunicados (FOMC, regulación) | Cada 3 h | Fecha del último comunicado |
+| BLS (calendario oficial) | Fechas de IPC, empleo, IPP… | Diaria | Que haya eventos futuros |
+
+**Tareas** (`intel/jobs.py`): `news`, `official`, `macro_calendar`, `fundamentals`, `paper_session`, `research` (informe diario, predicciones y evaluación) y `learning` (walk-forward semanal).
+`python -m trading_lab tick` ejecuta las que tocan según la memoria, así que tras una desconexión se recuperan en el siguiente tick.
+
+**Servicio persistente:**
+- GitHub Actions (`.github/workflows/trading-lab.yml`): necesita los secretos `ALPACA_API_KEY` y `ALPACA_SECRET_KEY` y que el workflow esté en la rama por defecto. La memoria se guarda en la rama `trading-lab-data`. Si hay alertas, el job falla y GitHub avisa por correo.
+- Alternativa: `deploy/trading-lab.service` (systemd) con `python -m trading_lab scheduler`.
+
+**Memoria** (`data/intel.sqlite3` y `journal/intel/`, versionado; las noticias van en gzip por mes):
+noticias y presentaciones con fuente, URL, fecha, tipo de evento, impacto, credibilidad (fact / reported / opinion / rumor), sentimiento, cluster de duplicados, contradicciones, protagonista real y reacción del precio; además series macro, fundamentales, calendario, predicciones con su resultado, informes diarios, versiones de estrategias, salud de las fuentes y actividad.
+
+**Predicciones:** modelos `strategy:<nombre>@vN`, `composite@v1` (técnico 50 %, fundamental 30 %, noticias ≤20 %) y `naive:always_up` como referencia.
+Se guardan antes de conocer el resultado y se evalúan tras 5 sesiones: acierto, retorno, exceso frente a SPY, Brier y desglose por régimen.
+En los fallos se anota la información que apareció después, los cambios de régimen y los datos que faltaban.
+
+**Aprendizaje controlado:** walk-forward (2 años de entrenamiento y 6 meses de test, deslizante) en 6 activos, más rendimiento por régimen.
+Un cambio solo se propone si mejora el Sharpe fuera de muestra ≥ 0,15, gana en ≥ 60 % de los activos, suma ≥ 30 operaciones y tiene un consenso de parámetros ≥ 40 %.
+Después pasa a *shadow* (predicciones en paralelo, sin operar). La promoción es manual por defecto (`promote <vid>`), con `revert <estrategia>` y todas las versiones conservadas.
+`learning.py` solo puede tocar parámetros de estrategias dentro de `PARAM_BOUNDS`, nunca los límites de riesgo.
+
+Comandos: `tick`, `job <nombre>`, `scheduler`, `versions`, `promote <vid>`, `revert <estrategia>`.

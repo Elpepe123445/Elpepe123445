@@ -23,6 +23,17 @@ def main(argv=None) -> int:
     p.add_argument("--interval", type=int, default=900, help="Segundos entre ciclos")
     sub.add_parser("report", help="Informe de la sesión actual → journal/sessions/")
     sub.add_parser("session", help="Ciclo de paper trading + informe de sesión")
+    sub.add_parser("tick", help="Ejecuta las tareas periódicas que tocan ahora (para cron / GitHub Actions)")
+    j = sub.add_parser("job", help="Ejecuta una tarea concreta ya")
+    j.add_argument("name", choices=["news", "backfill_news", "official", "macro_calendar", "fundamentals",
+                                    "paper_session", "research", "learning"])
+    sc = sub.add_parser("scheduler", help="Servicio persistente: tick cada N segundos")
+    sc.add_argument("--interval", type=int, default=300)
+    sub.add_parser("versions", help="Versiones de parámetros de estrategias")
+    pr = sub.add_parser("promote", help="Promueve una versión candidata a producción (paper)")
+    pr.add_argument("vid")
+    rv = sub.add_parser("revert", help="Vuelve a la versión anterior de una estrategia")
+    rv.add_argument("strategy")
     d = sub.add_parser("dashboard", help="Servidor web del dashboard")
     d.add_argument("--port", type=int, default=8050)
     d.add_argument("--host", default="127.0.0.1")
@@ -69,6 +80,26 @@ def main(argv=None) -> int:
             t.sync_orders()
         _, md = write_report(t.client, t.store, cfg)
         print(md)
+    elif args.cmd in ("tick", "job", "scheduler", "versions", "promote", "revert"):
+        from .intel.jobs import Lab
+        lab = Lab(cfg)
+        if args.cmd == "tick":
+            res = lab.tick()
+            print(json.dumps(res, indent=1, ensure_ascii=False))
+            return 2 if res["alerts"] else 0
+        if args.cmd == "job":
+            print(lab.run_job(args.name))
+        elif args.cmd == "scheduler":
+            lab.scheduler(args.interval)
+        elif args.cmd == "versions":
+            for r in lab.store.query("SELECT strategy,version,status,params,reason,vid FROM strategy_versions ORDER BY strategy,version"):
+                print(f"{r['strategy']:<20} v{r['version']:<3} {r['status']:<10} {r['params']}  {r['reason']}  [{r['vid']}]")
+        elif args.cmd == "promote":
+            lab.versions.promote(args.vid, "promoción manual")
+            print("Promovida", args.vid)
+        elif args.cmd == "revert":
+            lab.versions.revert(args.strategy)
+            print("Revertida", args.strategy)
     elif args.cmd == "dashboard":
         from .dashboard.server import serve
         serve(args.host, args.port)

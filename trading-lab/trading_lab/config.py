@@ -58,6 +58,7 @@ class Config:
     risk: RiskLimits
     allocations: list[Allocation]
     strategy_grids: dict
+    intel: dict = field(default_factory=dict)
 
     @property
     def cost_model(self) -> dict:
@@ -91,4 +92,20 @@ def load_config(path: Path | str = DEFAULT_CONFIG) -> Config:
         risk=risk,
         allocations=allocs,
         strategy_grids=raw.get("strategy_grids", {}),
+        intel=_intel(raw.get("intel", {})),
     )
+
+
+INTEL_DEFAULTS = {"watchlist": ["SPY", "QQQ"], "etfs": [], "prediction_horizon": 5, "news_entry_veto": True,
+                  "auto_promote": False, "learning_symbols": ["SPY", "QQQ"]}
+
+
+def _intel(raw: dict) -> dict:
+    out = {**INTEL_DEFAULTS, **raw}
+    # La configuración de inteligencia no puede tocar riesgo ni el entorno de ejecución.
+    bad = [k for k in out if k not in INTEL_DEFAULTS]
+    if bad:
+        raise ConfigError(f"Claves desconocidas en intel: {bad}")
+    if not 1 <= int(out["prediction_horizon"]) <= 60:
+        raise ConfigError("intel.prediction_horizon debe estar entre 1 y 60")
+    return out
