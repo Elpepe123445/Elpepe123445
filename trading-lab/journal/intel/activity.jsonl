@@ -13,3 +13,17 @@
 {"aid": "a6d598e4f50ca163", "job": "paper_session", "started_at": "2026-11-05T00:32:57+00:00", "finished_at": "2026-11-05T00:32:58+00:00", "status": "ok", "message": "0 \u00f3rdenes, 0 canceladas, bloqueo=None"}
 {"aid": "7850982b86b2eed1", "job": "research", "started_at": "2026-11-05T00:33:43+00:00", "status": "running"}
 {"aid": "7850982b86b2eed1", "finished_at": "2026-11-05T00:33:51+00:00", "status": "ok", "message": "0 predicciones nuevas, 0 evaluadas"}
+{"aid": "452cfd5019f1f8e6", "job": "news", "started_at": "2026-11-05T21:25:59+00:00", "status": "running"}
+{"aid": "452cfd5019f1f8e6", "finished_at": "2026-11-05T21:26:01+00:00", "status": "ok", "message": "115 noticias nuevas, 0 contradicciones marcadas"}
+{"aid": "facce750b2a8d204", "job": "official", "started_at": "2026-11-05T21:26:01+00:00", "status": "running"}
+{"aid": "facce750b2a8d204", "finished_at": "2026-11-05T21:26:03+00:00", "status": "ok", "message": "Fed 1 comunicados, SEC 3 presentaciones"}
+{"aid": "80f883aa71c6c9da", "job": "macro_calendar", "started_at": "2026-11-05T21:26:03+00:00", "status": "running"}
+{"aid": "80f883aa71c6c9da", "finished_at": "2026-11-05T21:26:08+00:00", "status": "ok", "message": "FRED 5 observaciones, BLS 13 eventos"}
+{"aid": "4c83a91557991514", "job": "fundamentals", "started_at": "2026-11-05T21:26:08+00:00", "status": "running"}
+{"aid": "4c83a91557991514", "finished_at": "2026-11-05T21:26:10+00:00", "status": "ok", "message": "9 empresas"}
+{"aid": "845baa172dc2392f", "job": "paper_session", "started_at": "2026-11-05T21:26:10+00:00", "status": "running"}
+{"aid": "845baa172dc2392f", "finished_at": "2026-11-05T21:26:12+00:00", "status": "ok", "message": "0 \u00f3rdenes, 0 canceladas, bloqueo=None"}
+{"aid": "cbe2edce589ea574", "job": "research", "started_at": "2026-11-05T21:26:12+00:00", "status": "running"}
+{"aid": "cbe2edce589ea574", "finished_at": "2026-11-05T21:26:18+00:00", "status": "ok", "message": "0 predicciones nuevas, 0 evaluadas"}
+{"aid": "ae1a3e95b6617c9f", "job": "research", "started_at": "2026-11-05T21:26:47+00:00", "status": "running"}
+{"aid": "ae1a3e95b6617c9f", "finished_at": "2026-11-05T21:26:55+00:00", "status": "ok", "message": "50 predicciones nuevas, 0 evaluadas"}

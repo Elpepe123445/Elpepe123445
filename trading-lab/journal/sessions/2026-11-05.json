@@ -1,0 +1,223 @@
+{
+ "session_date": "2026-11-05",
+ "generated_at": "2026-11-05T16:26:56-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99790.74,
+  "cash": 94930.11,
+  "long_market_value": 4860.63,
+  "exposure_pct": 4.87,
+  "day_pl": -209.26,
+  "day_pl_pct": -0.209
+ },
+ "positions": [
+  {
+   "symbol": "MSFT",
+   "strategy": "momentum",
+   "qty": 5.0,
+   "entry_price": 555.47,
+   "current_price": 533.01,
+   "market_value": 2665.05,
+   "unrealized_pl": -112.3,
+   "unrealized_pl_pct": -4.04,
+   "entry_reason": "Se\u00f1al momentum=1 al cierre 2026-11-04. Compra dimensionada: 5 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:14.826319595Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -3.0,
+   "fill_vs_signal_close_bps": -10.8,
+   "modeled_slippage_usd": 1.39
+  },
+  {
+   "symbol": "SPY",
+   "strategy": "ma_crossover",
+   "qty": 3.0,
+   "entry_price": 764.18,
+   "current_price": 731.86,
+   "market_value": 2195.58,
+   "unrealized_pl": -96.96,
+   "unrealized_pl_pct": -4.23,
+   "entry_reason": "Se\u00f1al ma_crossover=1 al cierre 2026-11-04. Compra dimensionada: 3 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:12.022898034Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -7.65,
+   "fill_vs_signal_close_bps": -33.3,
+   "modeled_slippage_usd": 1.15
+  }
+ ],
+ "orders_submitted": [
+  {
+   "id": 1,
+   "ts": "2026-11-04T23:55:19+00:00",
+   "client_order_id": "lab-ma_crossover-SPY-2026-11-04-buy",
+   "strategy": "ma_crossover",
+   "symbol": "SPY",
+   "side": "buy",
+   "qty": 12.0,
+   "status": "canceled",
+   "alpaca_order_id": "e04c23a4-9366-4d12-b2c5-45747db7dd48",
+   "error": "cancelada: supera l\u00edmite de riesgo",
+   "ref_price": null,
+   "reason": null,
+   "filled_qty": null,
+   "filled_avg_price": null,
+   "filled_at": null
+  },
+  {
+   "id": 2,
+   "ts": "2026-11-04T23:55:19+00:00",
+   "client_order_id": "lab-momentum-MSFT-2026-11-04-buy",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "side": "buy",
+   "qty": 17.0,
+   "status": "canceled",
+   "alpaca_order_id": "99ddae46-1bed-4dc8-88c8-d99a97590b4d",
+   "error": "cancelada: supera l\u00edmite de riesgo",
+   "ref_price": null,
+   "reason": null,
+   "filled_qty": null,
+   "filled_avg_price": null,
+   "filled_at": null
+  },
+  {
+   "id": 3,
+   "ts": "2026-11-05T00:03:45+00:00",
+   "client_order_id": "lab-ma_crossover-SPY-2026-11-04-buy-r2",
+   "strategy": "ma_crossover",
+   "symbol": "SPY",
+   "side": "buy",
+   "qty": 3.0,
+   "status": "filled",
+   "alpaca_order_id": "dc9a2102-b187-4f21-b67c-43c79cae0a0e",
+   "error": null,
+   "ref_price": 766.73,
+   "reason": "Se\u00f1al ma_crossover=1 al cierre 2026-11-04. Compra dimensionada: 3 acciones (presupuesto 3000.00 $)",
+   "filled_qty": 3.0,
+   "filled_avg_price": 764.18,
+   "filled_at": "2026-11-05T14:31:12.022898034Z"
+  },
+  {
+   "id": 4,
+   "ts": "2026-11-05T00:03:46+00:00",
+   "client_order_id": "lab-momentum-MSFT-2026-11-04-buy-r2",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "side": "buy",
+   "qty": 5.0,
+   "status": "filled",
+   "alpaca_order_id": "47870cc3-b63b-4ce3-9ed7-d9eadd5f7b1f",
+   "error": null,
+   "ref_price": 556.07,
+   "reason": "Se\u00f1al momentum=1 al cierre 2026-11-04. Compra dimensionada: 5 acciones (presupuesto 3000.00 $)",
+   "filled_qty": 5.0,
+   "filled_avg_price": 555.47,
+   "filled_at": "2026-11-05T14:31:14.826319595Z"
+  }
+ ],
+ "orders_rejected": [],
+ "decisions_not_executed": [
+  {
+   "id": 11,
+   "ts": "2026-11-05T00:03:45+00:00",
+   "strategy": null,
+   "symbol": "MSFT",
+   "signal_date": "2026-11-04",
+   "signal": null,
+   "held_qty": null,
+   "action": "cancel_oversize",
+   "reason": "Orden pendiente de 17 acc. (~9,453 $) supera el l\u00edmite por posici\u00f3n (3,000 $)",
+   "price": 556.07,
+   "details": "{}"
+  },
+  {
+   "id": 12,
+   "ts": "2026-11-05T00:03:45+00:00",
+   "strategy": null,
+   "symbol": "SPY",
+   "signal_date": "2026-11-04",
+   "signal": null,
+   "held_qty": null,
+   "action": "cancel_oversize",
+   "reason": "Orden pendiente de 12 acc. (~9,201 $) supera el l\u00edmite por posici\u00f3n (3,000 $)",
+   "price": 766.73,
+   "details": "{}"
+  }
+ ],
+ "fills": [
+  {
+   "symbol": "MSFT",
+   "side": "buy",
+   "qty": "5",
+   "filled_qty": "5",
+   "filled_avg_price": "555.47",
+   "filled_at": "2026-11-05T14:31:14.82632Z",
+   "status": "filled",
+   "client_order_id": "lab-momentum-MSFT-2026-11-04-buy-r2"
+  },
+  {
+   "symbol": "SPY",
+   "side": "buy",
+   "qty": "3",
+   "filled_qty": "3",
+   "filled_avg_price": "764.18",
+   "filled_at": "2026-11-05T14:31:12.022898Z",
+   "status": "filled",
+   "client_order_id": "lab-ma_crossover-SPY-2026-11-04-buy-r2"
+  }
+ ],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-05",
+   "close": 733.43,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-05",
+   "close": 648.05,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-05",
+   "close": 344.6,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-05",
+   "close": 536.29,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-05",
+   "close": 375.55,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}

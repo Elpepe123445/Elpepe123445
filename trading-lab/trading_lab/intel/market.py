@@ -34,10 +34,18 @@ FOLLOW_UP = {  # qué información adicional haría falta para valorar la import
 
 
 def load_universe(client, symbols: list[str], start: str = "2018-01-01", refresh: bool = False) -> dict[str, pd.DataFrame]:
+    """Barras diarias solo de sesiones CERRADAS según el calendario oficial de Alpaca."""
+    from ..paper_trader import last_completed_session
+    now_ny = datetime.now(NY)
+    try:
+        until = last_completed_session(client.get_calendar((now_ny.date() - timedelta(days=10)).isoformat(),
+                                                           now_ny.date().isoformat()), now_ny)
+    except Exception:
+        until = (now_ny.date() - timedelta(days=1)).isoformat()  # sin calendario: conservador, hasta ayer
     out = {}
     for s in dict.fromkeys(symbols):
         try:
-            df = load_history(client, s, start, refresh=refresh)
+            df = load_history(client, s, start, refresh=refresh, until=until)
             if len(df) > 60:
                 out[s] = df
         except Exception as e:
