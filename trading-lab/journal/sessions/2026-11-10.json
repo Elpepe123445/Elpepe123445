@@ -1,0 +1,106 @@
+{
+ "session_date": "2026-11-10",
+ "generated_at": "2026-11-10T08:22:52-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99917.54,
+  "cash": 94930.1,
+  "long_market_value": 4987.44,
+  "exposure_pct": 4.99,
+  "day_pl": 3.47,
+  "day_pl_pct": 0.003
+ },
+ "positions": [
+  {
+   "symbol": "MSFT",
+   "strategy": "momentum",
+   "qty": 5.0,
+   "entry_price": 555.47,
+   "current_price": 545.6646,
+   "market_value": 2728.323,
+   "unrealized_pl": -49.027,
+   "unrealized_pl_pct": -1.76,
+   "entry_reason": "Se\u00f1al momentum=1 al cierre 2026-11-04. Compra dimensionada: 5 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:14.826319595Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -3.0,
+   "fill_vs_signal_close_bps": -10.8,
+   "modeled_slippage_usd": 1.39
+  },
+  {
+   "symbol": "SPY",
+   "strategy": "ma_crossover",
+   "qty": 3.0,
+   "entry_price": 764.18,
+   "current_price": 753.04,
+   "market_value": 2259.12,
+   "unrealized_pl": -33.42,
+   "unrealized_pl_pct": -1.46,
+   "entry_reason": "Se\u00f1al ma_crossover=1 al cierre 2026-11-04. Compra dimensionada: 3 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:12.022898034Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -7.65,
+   "fill_vs_signal_close_bps": -33.3,
+   "modeled_slippage_usd": 1.15
+  }
+ ],
+ "orders_submitted": [],
+ "orders_rejected": [],
+ "decisions_not_executed": [],
+ "fills": [],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-09",
+   "close": 752.72,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-09",
+   "close": 678.77,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-09",
+   "close": 350.53,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-09",
+   "close": 545.22,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 1,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-09",
+   "close": 379.56,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}

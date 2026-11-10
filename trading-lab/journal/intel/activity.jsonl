@@ -27,3 +27,11 @@
 {"aid": "cbe2edce589ea574", "finished_at": "2026-11-05T21:26:18+00:00", "status": "ok", "message": "0 predicciones nuevas, 0 evaluadas"}
 {"aid": "ae1a3e95b6617c9f", "job": "research", "started_at": "2026-11-05T21:26:47+00:00", "status": "running"}
 {"aid": "ae1a3e95b6617c9f", "finished_at": "2026-11-05T21:26:55+00:00", "status": "ok", "message": "50 predicciones nuevas, 0 evaluadas"}
+{"aid": "ad020254b4382db4", "job": "news", "started_at": "2026-11-10T13:22:39+00:00", "status": "running"}
+{"aid": "ad020254b4382db4", "finished_at": "2026-11-10T13:22:41+00:00", "status": "ok", "message": "222 noticias nuevas, 24 contradicciones marcadas"}
+{"aid": "e95f0daafc9ac599", "job": "official", "started_at": "2026-11-10T13:22:41+00:00", "status": "running"}
+{"aid": "e95f0daafc9ac599", "finished_at": "2026-11-10T13:22:42+00:00", "status": "ok", "message": "Fed 1 comunicados, SEC 4 presentaciones"}
+{"aid": "b3b3f31030b697da", "job": "fundamentals", "started_at": "2026-11-10T13:22:42+00:00", "status": "running"}
+{"aid": "b3b3f31030b697da", "finished_at": "2026-11-10T13:22:44+00:00", "status": "ok", "message": "9 empresas"}
+{"aid": "2cec31653950f51b", "job": "paper_session", "started_at": "2026-11-10T13:22:50+00:00", "status": "running"}
+{"aid": "2cec31653950f51b", "finished_at": "2026-11-10T13:22:52+00:00", "status": "ok", "message": "0 \u00f3rdenes, 0 canceladas, bloqueo=None"}
