@@ -35,3 +35,7 @@
 {"aid": "b3b3f31030b697da", "finished_at": "2026-11-10T13:22:44+00:00", "status": "ok", "message": "9 empresas"}
 {"aid": "2cec31653950f51b", "job": "paper_session", "started_at": "2026-11-10T13:22:50+00:00", "status": "running"}
 {"aid": "2cec31653950f51b", "finished_at": "2026-11-10T13:22:52+00:00", "status": "ok", "message": "0 \u00f3rdenes, 0 canceladas, bloqueo=None"}
+{"aid": "0a8f12e653c4d093", "job": "news", "started_at": "2026-11-10T15:19:43+00:00", "status": "running"}
+{"aid": "0a8f12e653c4d093", "finished_at": "2026-11-10T15:19:44+00:00", "status": "ok", "message": "24 noticias nuevas, 0 contradicciones marcadas"}
+{"aid": "87f07b8d8e7170d7", "job": "macro_calendar", "started_at": "2026-11-10T15:19:44+00:00", "status": "running"}
+{"aid": "87f07b8d8e7170d7", "finished_at": "2026-11-10T15:19:49+00:00", "status": "ok", "message": "FRED 18 observaciones, BLS 12 eventos"}

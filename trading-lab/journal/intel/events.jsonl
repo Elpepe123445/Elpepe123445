@@ -51,3 +51,15 @@
 {"uid": "ea407e0c5d4d07e3", "kind": "earnings_estimate", "date": "2027-02-02", "title": "JPM: resultados estimados (~91 d\u00edas tras el \u00faltimo 10-Q/10-K)", "source": "sec_edgar (estimaci\u00f3n)", "url": "", "data": "{\"last_periodic\": \"2026-11-03\"}"}
 {"uid": "f8fb491cb80c14df", "kind": "earnings_estimate", "date": "2027-02-01", "title": "XOM: resultados estimados (~91 d\u00edas tras el \u00faltimo 10-Q/10-K)", "source": "sec_edgar (estimaci\u00f3n)", "url": "", "data": "{\"last_periodic\": \"2026-11-02\"}"}
 {"uid": "043edfc3ecaa9c3a", "kind": "earnings_estimate", "date": "2027-02-02", "title": "UNH: resultados estimados (~91 d\u00edas tras el \u00faltimo 10-Q/10-K)", "source": "sec_edgar (estimaci\u00f3n)", "url": "", "data": "{\"last_periodic\": \"2026-11-03\"}"}
+{"uid": "92e8d892295f8758", "kind": "economic_release", "date": "2026-11-03", "title": "Job Openings and Labor Turnover Survey (10:00 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "0481e231ae7679da", "kind": "economic_release", "date": "2026-11-05", "title": "Productivity and Costs (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "7fb0571ecc6bf20c", "kind": "economic_release", "date": "2026-11-06", "title": "Employment Situation (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "54b0d0ab92ccb344", "kind": "economic_release", "date": "2026-11-10", "title": "Real Earnings (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "a620a7c7ac43dbca", "kind": "economic_release", "date": "2026-11-10", "title": "Consumer Price Index (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "6ccfb146e7ff4a61", "kind": "economic_release", "date": "2026-11-13", "title": "Producer Price Index (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "695989fe6497c25f", "kind": "economic_release", "date": "2026-12-01", "title": "Job Openings and Labor Turnover Survey (10:00 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "276f4fa16803faf7", "kind": "economic_release", "date": "2026-12-04", "title": "Employment Situation (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "c3a2a97653bf7059", "kind": "economic_release", "date": "2026-12-08", "title": "Productivity and Costs (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "b9c77321e577cbc3", "kind": "economic_release", "date": "2026-12-10", "title": "Consumer Price Index (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "9c0188621e86b865", "kind": "economic_release", "date": "2026-12-10", "title": "Real Earnings (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
+{"uid": "597d06894c51fbb1", "kind": "economic_release", "date": "2026-12-15", "title": "Producer Price Index (08:30 ET)", "source": "bls", "url": "https://www.bls.gov/schedule/news_release/"}
