@@ -5,3 +5,4 @@
 {"table": "equity", "ts": "2026-11-05T00:32:57+00:00", "equity": 100000.0, "cash": 100000.0, "long_market_value": 0.0, "last_equity": 100000.0}
 {"table": "equity", "ts": "2026-11-05T21:26:11+00:00", "equity": 99780.96, "cash": 94930.11, "long_market_value": 4850.85, "last_equity": 100000.0}
 {"table": "equity", "ts": "2026-11-10T13:22:51+00:00", "equity": 99917.69, "cash": 94930.1, "long_market_value": 4987.59, "last_equity": 99914.07}
+{"table": "equity", "ts": "2026-11-10T21:26:38+00:00", "equity": 99852.45, "cash": 94930.1, "long_market_value": 4922.35, "last_equity": 99914.07}
