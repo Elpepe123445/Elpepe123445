@@ -1,6 +1,6 @@
 # Guion — «El lago que mató a más de 1.700 personas en una noche»
 
-Lago Nyos (Camerún, 1986) · video vertical · 12 frases · 105 palabras.
+Lago Nyos (Camerún, 1986) · video vertical · 12 frases · 106 palabras.
 Datos, citas y lo que el guion evita afirmar: [`FUENTES.md`](FUENTES.md).
 
 ## Texto para narrar
