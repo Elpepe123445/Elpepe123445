@@ -1393,7 +1393,7 @@ export const CFinal: React.FC = () => {
               marginTop: 14,
             }}
           >
-            probabilidad estimada en 2012 (P. Riley)
+            probabilidad estimada por Pete Riley (2014)
           </div>
           <div
             style={{
