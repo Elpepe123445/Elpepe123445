@@ -1,0 +1,129 @@
+{
+  "fps": 30,
+  "transitionFrames": 10,
+  "durationInFrames": 1405,
+  "scenes": [
+    {
+      "id": "c-hook",
+      "chapter": null,
+      "from": 0,
+      "durationInFrames": 248,
+      "lines": [
+        {
+          "id": "c1",
+          "text": "En 1859, el cielo se volvió rojo… y los telégrafos empezaron a echar chispas.",
+          "from": 3,
+          "durationInFrames": 181
+        },
+        {
+          "id": "c2",
+          "text": "Nadie entendía por qué.",
+          "from": 193,
+          "durationInFrames": 43
+        }
+      ]
+    },
+    {
+      "id": "c-sol",
+      "chapter": null,
+      "from": 238,
+      "durationInFrames": 232,
+      "lines": [
+        {
+          "id": "c3",
+          "text": "Horas antes, un astrónomo inglés había visto un destello blanco en el Sol.",
+          "from": 14,
+          "durationInFrames": 117
+        },
+        {
+          "id": "c4",
+          "text": "Era la mayor tormenta solar jamás registrada.",
+          "from": 138,
+          "durationInFrames": 81
+        }
+      ]
+    },
+    {
+      "id": "c-viaje",
+      "chapter": null,
+      "from": 460,
+      "durationInFrames": 209,
+      "lines": [
+        {
+          "id": "c5",
+          "text": "Una nube de plasma cruzó 150 millones de kilómetros en menos de 18 horas… y golpeó la Tierra.",
+          "from": 14,
+          "durationInFrames": 182
+        }
+      ]
+    },
+    {
+      "id": "c-aurora",
+      "chapter": null,
+      "from": 659,
+      "durationInFrames": 93,
+      "lines": [
+        {
+          "id": "c6",
+          "text": "Hubo auroras hasta en Cuba y Colombia.",
+          "from": 14,
+          "durationInFrames": 65
+        }
+      ]
+    },
+    {
+      "id": "c-telegrafo",
+      "chapter": null,
+      "from": 742,
+      "durationInFrames": 205,
+      "lines": [
+        {
+          "id": "c7",
+          "text": "Algunos telegrafistas desconectaron las baterías… y siguieron enviando mensajes con la electricidad del cielo.",
+          "from": 14,
+          "durationInFrames": 178
+        }
+      ]
+    },
+    {
+      "id": "c-hoy",
+      "chapter": null,
+      "from": 937,
+      "durationInFrames": 253,
+      "lines": [
+        {
+          "id": "c8",
+          "text": "¿Y si pasara hoy? Satélites, GPS y redes eléctricas podrían fallar.",
+          "from": 14,
+          "durationInFrames": 124
+        },
+        {
+          "id": "c9",
+          "text": "Algunos transformadores tardarían años en repararse.",
+          "from": 145,
+          "durationInFrames": 95
+        }
+      ]
+    },
+    {
+      "id": "c-final",
+      "chapter": null,
+      "from": 1180,
+      "durationInFrames": 225,
+      "lines": [
+        {
+          "id": "c10",
+          "text": "En 2012, una tormenta igual de fuerte cruzó nuestra órbita.",
+          "from": 14,
+          "durationInFrames": 113
+        },
+        {
+          "id": "c11",
+          "text": "Falló por una semana.",
+          "from": 140,
+          "durationInFrames": 39
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "carrington",
+  "title": "El día que el cielo electrificó los telégrafos",
+  "voice": { "engine": "kokoro", "voice": "em_alex", "speed": 1.1 },
+  "defaults": { "pauseAfter": 0.22, "padStart": 0.15, "padEnd": 0.2, "transitionFrames": 10 },
+  "scenes": [
+    { "id": "c-hook", "padStart": 0.1, "lines": [
+      { "id": "c1", "text": "En 1859, el cielo se volvió rojo… y los telégrafos empezaron a echar chispas.", "say": "En mil ochocientos cincuenta y nueve, el cielo se volvió rojo... y los telégrafos empezaron a echar chispas.", "pauseAfter": 0.3 },
+      { "id": "c2", "text": "Nadie entendía por qué." } ] },
+    { "id": "c-sol", "lines": [
+      { "id": "c3", "text": "Horas antes, un astrónomo inglés había visto un destello blanco en el Sol." },
+      { "id": "c4", "text": "Era la mayor tormenta solar jamás registrada." } ] },
+    { "id": "c-viaje", "lines": [
+      { "id": "c5", "text": "Una nube de plasma cruzó 150 millones de kilómetros en menos de 18 horas… y golpeó la Tierra.", "say": "Una nube de plasma cruzó ciento cincuenta millones de kilómetros en menos de dieciocho horas... y golpeó la Tierra." } ] },
+    { "id": "c-aurora", "lines": [
+      { "id": "c6", "text": "Hubo auroras hasta en Cuba y Colombia." } ] },
+    { "id": "c-telegrafo", "lines": [
+      { "id": "c7", "text": "Algunos telegrafistas desconectaron las baterías… y siguieron enviando mensajes con la electricidad del cielo.", "say": "Algunos telegrafistas desconectaron las baterías... y siguieron enviando mensajes con la electricidad del cielo." } ] },
+    { "id": "c-hoy", "lines": [
+      { "id": "c8", "text": "¿Y si pasara hoy? Satélites, GPS y redes eléctricas podrían fallar.", "say": "¿Y si pasara hoy? Satélites, ge pe ese y redes eléctricas podrían fallar." },
+      { "id": "c9", "text": "Algunos transformadores tardarían años en repararse." } ] },
+    { "id": "c-final", "padEnd": 1.3, "lines": [
+      { "id": "c10", "text": "En 2012, una tormenta igual de fuerte cruzó nuestra órbita.", "say": "En dos mil doce, una tormenta igual de fuerte cruzó nuestra órbita.", "pauseAfter": 0.45 },
+      { "id": "c11", "text": "Falló por una semana." } ] }
+  ]
+}

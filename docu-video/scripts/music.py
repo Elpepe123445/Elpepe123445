@@ -224,6 +224,14 @@ SCORE = {
     "p-ceniza": {"chords": [DM9], "amp": 0.6, "dark": True},
     "p-yeso": {"chords": [BB9, GM9], "amp": 0.75, "bells": 0.05},
     "p-final": {"chords": [F, DM9], "amp": 0.8, "bells": 0.07},
+    # Carrington (tormenta solar de 1859): misterio, tensión creciente y cierre inquietante.
+    "c-hook": {"chords": [DM9], "amp": 0.9, "bells": 0.08, "pulse": 0.2},
+    "c-sol": {"chords": [BB9, GM9], "amp": 0.9, "arp": 0.1},
+    "c-viaje": {"chords": [EB, DM9], "amp": 1.0, "pulse": 0.4, "dark": True},
+    "c-aurora": {"chords": [F], "amp": 0.9, "bells": 0.1},
+    "c-telegrafo": {"chords": [BB9, F], "amp": 0.85, "arp": 0.12},
+    "c-hoy": {"chords": [GM9, EB], "amp": 0.95, "pulse": 0.3, "dark": True},
+    "c-final": {"chords": [EB, DM9], "amp": 0.85, "pulse": 0.2, "dark": True},
 }
 
 
