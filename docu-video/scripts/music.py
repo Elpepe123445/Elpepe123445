@@ -232,6 +232,15 @@ SCORE = {
     "c-telegrafo": {"chords": [BB9, F], "amp": 0.85, "arp": 0.12},
     "c-hoy": {"chords": [GM9, EB], "amp": 0.95, "pulse": 0.3, "dark": True},
     "c-final": {"chords": [EB, DM9], "amp": 0.85, "pulse": 0.2, "dark": True},
+    # Nyos (el lago que mató en una noche): misterio nocturno, tensión, respiro de día y cierre inquietante.
+    "n-gancho": {"chords": [DM9], "amp": 0.9, "pulse": 0.25, "bells": 0.06},
+    "n-lago": {"chords": [BB9], "amp": 0.85, "arp": 0.1},
+    "n-fondo": {"chords": [GM9, EB], "amp": 0.85, "arp": 0.1},
+    "n-noche": {"chords": [EB], "amp": 1.0, "pulse": 0.4},
+    "n-nube": {"chords": [DM9, EB], "amp": 1.0, "pulse": 0.4},
+    "n-hoy": {"chords": [F], "amp": 0.85, "harp": 0.12, "bells": 0.07},
+    "n-kivu": {"chords": [GM9, EB, DM9], "amp": 0.95, "pulse": 0.3},
+    "n-pregunta": {"chords": [DM9], "amp": 0.8, "bells": 0.08},
 }
 
 
@@ -342,14 +351,39 @@ def sfx_riser() -> np.ndarray:
     return spectral_mix(np.vstack([mono, mono]), wet_gain=0.4, voice_pocket_db=0)
 
 
+def sfx_pop() -> np.ndarray:
+    """Tapón que salta: golpe corto con barrido descendente y un clic inicial."""
+    n = int(0.35 * SR)
+    t = np.arange(n) / SR
+    f = 220 + 900 * np.exp(-t * 55)
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 22)
+    click = rng.standard_normal(n) * np.exp(-t * 400) * 0.6
+    mono = (body + click) * np.minimum(1, t / 0.001)
+    return np.vstack([mono, mono])
+
+
+def sfx_hiss() -> np.ndarray:
+    """Gas que escapa: ruido agudo con ataque rápido y caída lenta."""
+    n = int(2.4 * SR)
+    t = np.arange(n) / SR
+    spec = np.fft.rfft(rng.standard_normal(n))
+    freqs = np.fft.rfftfreq(n, 1 / SR)
+    spec *= 1 / (1 + (2500 / np.maximum(freqs, 1)) ** 4)  # paso alto ≈ 2,5 kHz
+    spec *= 1 / (1 + (freqs / 11000) ** 6)  # sin el extremo más áspero
+    mono = np.fft.irfft(spec, n) * np.minimum(1, t / 0.02) * np.exp(-t * 1.6)
+    sway = 0.2 * np.sin(2 * np.pi * 0.7 * t)
+    return np.vstack([mono * (0.8 + sway), mono * (0.8 - sway)])
+
+
 def main(video: str) -> None:
     plan = json.loads((ROOT / "src" / "videos" / video / "plan.json").read_text())
     pub = ROOT / "public" / video
     write_wav(pub / "music.wav", compose(plan), peak_db=-1.0)
     for name, fn in {"whoosh": sfx_whoosh, "boom": sfx_boom, "tick": sfx_tick,
-                     "shimmer": sfx_shimmer, "riser": sfx_riser}.items():
+                     "shimmer": sfx_shimmer, "riser": sfx_riser,
+                     "pop": sfx_pop, "hiss": sfx_hiss}.items():
         write_wav(pub / "sfx" / f"{name}.wav", fn(), peak_db=-1.0)
-    print(f"música {plan['durationInFrames'] / plan['fps']:.1f} s + 5 efectos en {pub.relative_to(ROOT)}")
+    print(f"música {plan['durationInFrames'] / plan['fps']:.1f} s + 7 efectos en {pub.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

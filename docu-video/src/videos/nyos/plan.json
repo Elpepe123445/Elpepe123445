@@ -1,0 +1,149 @@
+{
+ "fps": 30,
+ "transitionFrames": 8,
+ "durationInFrames": 1196,
+ "scenes": [
+  {
+   "id": "n-gancho",
+   "chapter": null,
+   "from": 0,
+   "durationInFrames": 273,
+   "lines": [
+    {
+     "id": "n1",
+     "text": "En 1986, un lago mató a más de 1.700 personas en una noche.",
+     "from": 3,
+     "durationInFrames": 155
+    },
+    {
+     "id": "n2",
+     "text": "No fue el agua, ni el fuego.",
+     "from": 165,
+     "durationInFrames": 48
+    },
+    {
+     "id": "n3",
+     "text": "Muchos murieron dormidos.",
+     "from": 217,
+     "durationInFrames": 47
+    }
+   ]
+  },
+  {
+   "id": "n-lago",
+   "chapter": null,
+   "from": 265,
+   "durationInFrames": 107,
+   "lines": [
+    {
+     "id": "n4",
+     "text": "El lago Nyos, en Camerún, llena un cráter volcánico.",
+     "from": 11,
+     "durationInFrames": 87
+    }
+   ]
+  },
+  {
+   "id": "n-fondo",
+   "chapter": null,
+   "from": 364,
+   "durationInFrames": 130,
+   "lines": [
+    {
+     "id": "n5",
+     "text": "En el fondo guardaba dióxido de carbono, como un refresco sin abrir.",
+     "from": 11,
+     "durationInFrames": 110
+    }
+   ]
+  },
+  {
+   "id": "n-noche",
+   "chapter": null,
+   "from": 486,
+   "durationInFrames": 94,
+   "lines": [
+    {
+     "id": "n6",
+     "text": "Esa noche algo lo destapó. Nadie sabe qué.",
+     "from": 11,
+     "durationInFrames": 74
+    }
+   ]
+  },
+  {
+   "id": "n-nube",
+   "chapter": null,
+   "from": 572,
+   "durationInFrames": 205,
+   "lines": [
+    {
+     "id": "n7",
+     "text": "Una nube más pesada que el aire bajó por los valles.",
+     "from": 11,
+     "durationInFrames": 84
+    },
+    {
+     "id": "n8",
+     "text": "Asfixió a personas y animales en 25 kilómetros.",
+     "from": 99,
+     "durationInFrames": 97
+    }
+   ]
+  },
+  {
+   "id": "n-hoy",
+   "chapter": null,
+   "from": 769,
+   "durationInFrames": 89,
+   "lines": [
+    {
+     "id": "n9",
+     "text": "Hoy, unas tuberías van sacando ese gas.",
+     "from": 11,
+     "durationInFrames": 69
+    }
+   ]
+  },
+  {
+   "id": "n-kivu",
+   "chapter": null,
+   "from": 850,
+   "durationInFrames": 257,
+   "lines": [
+    {
+     "id": "n10",
+     "text": "Pero hay otro lago cargado de gas: el Kivu.",
+     "from": 11,
+     "durationInFrames": 68
+    },
+    {
+     "id": "n11",
+     "text": "Es más de mil veces mayor, y lo rodean dos millones de personas.",
+     "from": 84,
+     "durationInFrames": 106
+    },
+    {
+     "id": "n12",
+     "text": "Por ahora, no está saturado.",
+     "from": 194,
+     "durationInFrames": 50
+    }
+   ]
+  },
+  {
+   "id": "n-pregunta",
+   "chapter": null,
+   "from": 1099,
+   "durationInFrames": 97,
+   "lines": [
+    {
+     "id": "n13",
+     "text": "¿Tú vivirías ahí?",
+     "from": 11,
+     "durationInFrames": 36
+    }
+   ]
+  }
+ ]
+}

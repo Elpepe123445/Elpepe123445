@@ -1,0 +1,29 @@
+{
+  "id": "nyos",
+  "title": "El lago que mató a más de 1.700 personas en una noche",
+  "voice": { "engine": "kokoro", "voice": "em_alex", "speed": 1.12 },
+  "defaults": { "pauseAfter": 0.16, "padStart": 0.1, "padEnd": 0.14, "transitionFrames": 8 },
+  "scenes": [
+    { "id": "n-gancho", "lines": [
+      { "id": "n1", "text": "En 1986, un lago mató a más de 1.700 personas en una noche.", "say": "En mil novecientos ochenta y seis, un lago mató a más de mil setecientas personas en una noche.", "pauseAfter": 0.25 },
+      { "id": "n2", "text": "No fue el agua, ni el fuego." },
+      { "id": "n3", "text": "Muchos murieron dormidos." } ] },
+    { "id": "n-lago", "lines": [
+      { "id": "n4", "text": "El lago Nyos, en Camerún, llena un cráter volcánico.", "say": "El lago Níos, en Camerún, llena un cráter volcánico." } ] },
+    { "id": "n-fondo", "lines": [
+      { "id": "n5", "text": "En el fondo guardaba dióxido de carbono, como un refresco sin abrir." } ] },
+    { "id": "n-noche", "lines": [
+      { "id": "n6", "text": "Esa noche algo lo destapó. Nadie sabe qué." } ] },
+    { "id": "n-nube", "lines": [
+      { "id": "n7", "text": "Una nube más pesada que el aire bajó por los valles." },
+      { "id": "n8", "text": "Asfixió a personas y animales en 25 kilómetros.", "say": "Asfixió a personas y animales en veinticinco kilómetros." } ] },
+    { "id": "n-hoy", "lines": [
+      { "id": "n9", "text": "Hoy, unas tuberías van sacando ese gas." } ] },
+    { "id": "n-kivu", "lines": [
+      { "id": "n10", "text": "Pero hay otro lago cargado de gas: el Kivu." },
+      { "id": "n11", "text": "Es más de mil veces mayor, y lo rodean dos millones de personas." },
+      { "id": "n12", "text": "Por ahora, no está saturado.", "pauseAfter": 0.3 } ] },
+    { "id": "n-pregunta", "padEnd": 1.5, "lines": [
+      { "id": "n13", "text": "¿Tú vivirías ahí?" } ] }
+  ]
+}
