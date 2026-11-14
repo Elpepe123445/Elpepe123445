@@ -331,7 +331,7 @@ export const Rivers: React.FC<{ color?: string; opacity?: number }> = ({
 
 // --- Luces de las aldeas -----------------------------------------------------------------------
 
-const LIGHTS = 900;
+const LIGHTS = 1300;
 /** Aldeas: posición a lo largo del valle (0 = junto al cráter, 1 = final). */
 const CLUSTERS = [0.04, 0.15, 0.27, 0.39, 0.5, 0.62, 0.74, 0.86, 0.96];
 const valleyZ = (t: number) =>

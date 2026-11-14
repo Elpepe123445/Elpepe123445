@@ -122,11 +122,14 @@ export const NHook: React.FC = () => {
   const fuego = c.word("n2", "fuego");
   const n3 = c.start("n3");
   const push = prog(frame, 0, c.duration, inOut);
-  // La oleada apaga casi todas las luces durante la primera frase y el resto después.
-  const kill =
-    0.8 * prog(frame, mato + 2, n1End - mato, linear) +
-    0.2 * prog(frame, n1End, c.duration - n1End - 14, linear);
-  const front = mix(VALLEY_Z0 - 1, VALLEY_Z1 + 1.5, kill);
+  // La oleada baja por tramos: la parte alta en la primera frase y el resto en las dos
+  // siguientes, de modo que la última luz visible se apaga al decir «dormidos».
+  const front =
+    VALLEY_Z0 -
+    1 +
+    5.1 * prog(frame, mato + 2, n1End - mato, linear) +
+    2.7 * prog(frame, n1End, n3 - n1End, linear) +
+    3.2 * prog(frame, n3, c.duration - n3 - 12, linear);
   const pop = spring({ frame: frame - 2, fps, config: { damping: 14 } });
   const swap = spring({ frame: frame - mato, fps, config: { damping: 13 } });
   const count = Math.round(1746 * prog(frame, mato, n1End - mato, linear));
@@ -137,8 +140,8 @@ export const NHook: React.FC = () => {
     <AbsoluteFill style={{ background: N.bg }}>
       <Stage
         dpr={DPR}
-        camera={[0, mix(14.5, 13.2, push), mix(13.8, 12.8, push)]}
-        target={[0, 0, mix(-3.6, -3.2, push)]}
+        camera={[0, mix(14.5, 12.9, push), mix(13.8, 13.0, push)]}
+        target={[0, 0, mix(-3.6, -2.5, push)]}
         fov={40}
         {...NIGHT}
       >
@@ -969,7 +972,7 @@ export const NKivu: React.FC = () => {
   const pNyos = at(NYOS_LL);
   const pKivu = at(KIVU_LL);
   const globeO = 1 - prog(frame, n11 - 4, 10);
-  const grow = prog(frame, mil - 8, 28, inOut);
+  const grow = prog(frame, n11 + 2, mil + 14 - n11, inOut);
   const people = prog(frame, mill - 6, n12 - mill + 12, linear);
   const stamp = spring({
     frame: frame - sat + 2,
@@ -1056,7 +1059,7 @@ export const NKivu: React.FC = () => {
       </div>
       <FactCard
         top={150}
-        o={visible(frame, kivu - 34, n11 + 8, 8)}
+        o={visible(frame, kivu - 34, n11 + 2, 8)}
         big="Lago Kivu"
         small="entre la R. D. del Congo y Ruanda"
         color={N.amber}
@@ -1064,7 +1067,7 @@ export const NKivu: React.FC = () => {
       />
       <FactCard
         top={150}
-        o={visible(frame, mil - 2, mill - 6, 8)}
+        o={visible(frame, n11 + 4, mill - 6, 8)}
         big="≈ 1.700 veces mayor"
         small="2.700 km² frente a 1,58 km²"
         color={N.gas}
@@ -1147,7 +1150,7 @@ export const NQuestion: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 150,
+            fontSize: 138,
             color: N.white,
             opacity: Math.min(1, line1),
             translate: `0 ${(1 - line1) * 40}px`,
@@ -1158,7 +1161,7 @@ export const NQuestion: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 214,
+            fontSize: 176,
             color: N.amber,
             opacity: Math.min(1, line2),
             scale: String(0.6 + 0.4 * line2),

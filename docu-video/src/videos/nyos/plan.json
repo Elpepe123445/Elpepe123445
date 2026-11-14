@@ -1,7 +1,7 @@
 {
  "fps": 30,
  "transitionFrames": 8,
- "durationInFrames": 1196,
+ "durationInFrames": 1206,
  "scenes": [
   {
    "id": "n-gancho",
@@ -135,13 +135,13 @@
    "id": "n-pregunta",
    "chapter": null,
    "from": 1099,
-   "durationInFrames": 97,
+   "durationInFrames": 107,
    "lines": [
     {
      "id": "n13",
-     "text": "¿Tú vivirías ahí?",
+     "text": "¿Tú qué harías?",
      "from": 11,
-     "durationInFrames": 36
+     "durationInFrames": 29
     }
    ]
   }
