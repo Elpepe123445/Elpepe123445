@@ -54,12 +54,12 @@
 | Nube | «nube de ≈ 50 m de espesor · 20–50 km/h» | «about 50 metres (160 ft) thick»; «travelled downward at 20–50 kilometres per hour» | A |
 | Nube | «25 km»; «1.746 personas y 3.500 cabezas de ganado» | «suffocating people and livestock within 25 km (16 miles) of the lake» | A |
 | Hoy | «tuberías que sacan el gas · la primera en 2001 · dos más en 2011» | «the first permanent degassing pipe was installed at the lake in 2001»; «Two additional pipes were installed in 2011.» | A |
-| Hoy | «chorro de ≈ 45 m · en la prueba de 2001» | «Within seconds a 148-foot spray shot into the sunlight at 100 miles per hour»; «By January 2001, the researchers had assembled rafts and piping at the site.» | D |
+| Hoy | «chorro de ≈ 45 m · al ponerla en marcha, en 2001» | «Within seconds a 148-foot spray shot into the sunlight at 100 miles per hour»; «By January 2001, the researchers had assembled rafts and piping at the site.» | D |
 | Kivu | «Lago Kivu · entre la R. D. del Congo y Ruanda»; chincheta en 2° S, 29° E | «It lies on the border between the Democratic Republic of the Congo and Rwanda»; «2°0′S 29°0′E» | C |
 | Kivu | «≈ 1.700 veces mayor · 2.700 km² frente a 1,58 km²» | «2,700 km2 (1,040 sq mi)»; «1.58 km2 (390 acres)»; «about 1,700 times larger than Lake Nyos» | C, E, B |
 | Kivu | «≈ 2.000.000 personas viven en su cuenca» | «approximately two million people who live in the lake basin area» | C |
 | Kivu | «aún no está saturado» y sello «POR AHORA» | «Lake Kivu has not reached a high level of CO2 saturation yet» | B |
-| Kivu | «un estudio de 2018 no ve que el riesgo aumente» | «the risk of a gas eruption at Lake Kivu did not seem to be increasing over time» | A |
+| Kivu | «un estudio de 2018 no ve que el riesgo aumente» | «However, a study undertaken in 2018 and released in 2020 found flaws in the 2005 study,»; «the risk of a gas eruption at Lake Kivu did not seem to be increasing over time.» | A |
 
 Datos verificados que al final no se usan: el agua quedó roja («turned a deep red after the outgassing», A); la ola de al menos 25 m (A); la tubería llegaba a 203 m («a 5.7-inch-diameter pipe reached 666 feet to the deepest water layer», D); el precedente del lago Monoun en 1984, con 37 muertos (B, D).
 
@@ -72,6 +72,13 @@ Datos verificados que al final no se usan: el agua quedó roja («turned a deep 
 - **El corte del cráter es esquemático** y no dibuja el origen del gas, porque las fuentes dudan.
 - **La flecha de «25 km» indica el alcance**, no es una regla a escala.
 - **En la comparación con el Kivu los círculos sí guardan la proporción de superficies** (1 : 1.709), pero los lagos no son circulares. Los 2.000 puntos representan mil personas cada uno y su posición es inventada.
+
+## Diferencias entre el MP4 entregado y el código
+
+El MP4 del 14/11/2026 se renderizó antes de dos retoques que ya están en el código y saldrán en el próximo render:
+
+- El rótulo del chorro decía «en la prueba de 2001»; la fuente no habla de una prueba, sino del momento en que se puso en marcha la tubería.
+- El título «1986» tardaba unos fotogramas en aparecer; ahora está desde el primero.
 
 ## Voz
 

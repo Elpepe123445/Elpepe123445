@@ -130,7 +130,7 @@ export const NHook: React.FC = () => {
     5.1 * prog(frame, mato + 2, n1End - mato, linear) +
     2.7 * prog(frame, n1End, n3 - n1End, linear) +
     3.2 * prog(frame, n3, c.duration - n3 - 12, linear);
-  const pop = spring({ frame: frame - 2, fps, config: { damping: 14 } });
+  const pop = spring({ frame: frame + 6, fps, config: { damping: 14 } });
   const swap = spring({ frame: frame - mato, fps, config: { damping: 13 } });
   const count = Math.round(1746 * prog(frame, mato, n1End - mato, linear));
   const iconsOut = 1 - prog(frame, n3 - 4, 8);
@@ -842,7 +842,7 @@ export const NToday: React.FC = () => {
         top={372}
         o={prog(frame, tub + 4, 8)}
         big="chorro de ≈ 45 m"
-        small="en la prueba de 2001"
+        small="al ponerla en marcha, en 2001"
         color={N.amber}
         size={46}
       />
