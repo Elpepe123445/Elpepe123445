@@ -485,7 +485,7 @@ export const GasCloud: React.FC<{
         geometry={body}
         color="#E6F4FF"
         size={1.05}
-        opacity={0.06 * opacity}
+        opacity={0.085 * opacity}
       />
       <PointCloud
         geometry={wisps}

@@ -615,7 +615,7 @@ export const NNight: React.FC = () => {
           <GasCloud
             frame={frame}
             front={CRATER[1] + 1.6 * rise}
-            opacity={prog(age, 4, 26, linear)}
+            opacity={0.55 * prog(age, 4, 26, linear)}
           />
           <WaterColumn age={age} />
         </Stage>
@@ -1098,31 +1098,45 @@ export const NQuestion: React.FC = () => {
   const c = useCues();
   const start = c.start("n13");
   const end = c.end("n13");
-  const line1 = spring({
-    frame: frame - start + 3,
-    fps,
-    config: { damping: 13 },
-  });
-  const line2 = spring({
-    frame: frame - start - 9,
-    fps,
-    config: { damping: 10 },
-  });
-  const cta = spring({ frame: frame - end - 2, fps, config: { damping: 14 } });
+  const pop = (at: number, damping = 12) =>
+    spring({ frame: frame - at, fps, config: { damping } });
+  const line1 = pop(start - 3, 13);
+  const line2 = pop(start + 7, 10);
+  const stay = pop(end - 4);
+  const go = pop(end + 2);
+  const cta = pop(end + 14, 14);
   const bounce = Math.sin(frame * 0.35) * 8;
+  const pill = (bg: string, color: string, o: number, tilt: number) =>
+    ({
+      fontWeight: 900,
+      fontSize: 64,
+      letterSpacing: "0.04em",
+      color,
+      background: bg,
+      padding: "18px 40px",
+      borderRadius: 26,
+      opacity: Math.min(1, o),
+      scale: String(0.5 + 0.5 * o),
+      rotate: `${tilt}deg`,
+      boxShadow: `0 0 50px ${bg}88, 0 14px 40px rgba(0,0,0,0.6)`,
+    }) as const;
   return (
     <AbsoluteFill style={{ background: N.bg }}>
-      <KivuPlate id="nq" frame={frame} grow={1} people={1} nyos={0} />
+      <AbsoluteFill
+        style={{ scale: String(1 + 0.04 * prog(frame, 0, c.duration, linear)) }}
+      >
+        <KivuPlate id="nq" frame={frame} grow={1} people={1} nyos={0} />
+      </AbsoluteFill>
       <AbsoluteFill
         style={{
           background:
-            "radial-gradient(ellipse at 50% 42%, rgba(3,5,13,0.82) 0%, rgba(3,5,13,0.55) 55%, rgba(3,5,13,0.2) 100%)",
+            "radial-gradient(ellipse at 50% 42%, rgba(3,5,13,0.84) 0%, rgba(3,5,13,0.6) 55%, rgba(3,5,13,0.25) 100%)",
         }}
       />
       <div
         style={{
           position: "absolute",
-          top: 640,
+          top: 540,
           left: 0,
           right: 0,
           textAlign: "center",
@@ -1133,18 +1147,18 @@ export const NQuestion: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 132,
+            fontSize: 150,
             color: N.white,
             opacity: Math.min(1, line1),
             translate: `0 ${(1 - line1) * 40}px`,
             textShadow: "0 8px 0 rgba(0,0,0,0.55)",
           }}
         >
-          ¿TÚ VIVIRÍAS
+          ¿TÚ QUÉ
         </div>
         <div
           style={{
-            fontSize: 250,
+            fontSize: 214,
             color: N.amber,
             opacity: Math.min(1, line2),
             scale: String(0.6 + 0.4 * line2),
@@ -1152,8 +1166,24 @@ export const NQuestion: React.FC = () => {
               "0 0 70px rgba(255,196,107,0.7), 0 10px 0 rgba(0,0,0,0.55)",
           }}
         >
-          AHÍ?
+          HARÍAS?
         </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: 960,
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 30,
+          fontFamily: fonts.body,
+        }}
+      >
+        <div style={pill(N.teal, "#06131C", stay, -4)}>ME QUEDO</div>
+        <div style={pill(N.red, "#FFFFFF", go, 4)}>ME VOY</div>
       </div>
       <div
         style={{
@@ -1164,7 +1194,7 @@ export const NQuestion: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 22,
+          gap: 20,
           opacity: Math.min(1, cta),
           translate: `0 ${(1 - cta) * 30}px`,
           fontFamily: fonts.body,
@@ -1173,11 +1203,11 @@ export const NQuestion: React.FC = () => {
         <div
           style={{
             fontWeight: 900,
-            fontSize: 46,
+            fontSize: 44,
             letterSpacing: "0.08em",
             color: "#06131C",
             background: N.white,
-            padding: "16px 40px",
+            padding: "14px 38px",
             borderRadius: 999,
             boxShadow: "0 16px 50px rgba(0,0,0,0.6)",
           }}
@@ -1204,7 +1234,7 @@ export const NQuestion: React.FC = () => {
             fontWeight: 600,
             fontSize: 26,
             color: N.muted,
-            marginTop: 10,
+            marginTop: 8,
           }}
         >
           Fuentes: Wikipedia · Smithsonian Magazine

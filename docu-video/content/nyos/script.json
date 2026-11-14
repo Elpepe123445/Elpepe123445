@@ -23,7 +23,7 @@
       { "id": "n10", "text": "Pero hay otro lago cargado de gas: el Kivu." },
       { "id": "n11", "text": "Es más de mil veces mayor, y lo rodean dos millones de personas." },
       { "id": "n12", "text": "Por ahora, no está saturado.", "pauseAfter": 0.3 } ] },
-    { "id": "n-pregunta", "padEnd": 1.5, "lines": [
-      { "id": "n13", "text": "¿Tú vivirías ahí?" } ] }
+    { "id": "n-pregunta", "padEnd": 2.1, "lines": [
+      { "id": "n13", "text": "¿Tú qué harías?" } ] }
   ]
 }

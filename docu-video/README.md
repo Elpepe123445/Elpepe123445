@@ -49,6 +49,15 @@ scripts/                      tts, alineación, plan, música, QA
 `Subtitles`, `Starfield`/`Dust`/`FilmLook`/`CameraRig` (atmósfera y cámara), transiciones propias
 `blurDissolve` y `lightFlash`, y `Narration`/`MusicBed` (con ducking)/`SfxTrack`.
 
+**Para videos cortos en 3D** (`src/components/three`): `Stage` (cámara por fotograma, luces y planos de
+recorte), `Dots` (nubes de partículas, globo terráqueo de puntos con países resaltados y proyección de
+3D a píxeles para rótulos), `Pin` (chincheta con rótulo) y `FactCard` (tarjeta de dato). `makeShort`
+(`src/engine/ShortVideo.tsx`) monta escenas, transiciones, voz, música, efectos y subtítulos palabra a
+palabra; `captions.skip` deja sin subtítulo las frases que la escena ya muestra en grande.
+
+Efectos de sonido disponibles (los sintetiza `scripts/music.py`): `whoosh`, `boom`, `tick`, `shimmer`,
+`riser`, `pop` y `hiss`.
+
 ## Sincronía
 
 Las escenas no usan tiempos fijos: piden marcas a la narración.
