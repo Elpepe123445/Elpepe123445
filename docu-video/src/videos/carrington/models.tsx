@@ -1,15 +1,20 @@
-import { geoEquirectangular, geoPath } from "d3-geo";
 import React, { useMemo } from "react";
 import { random } from "remotion";
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
-import { feature } from "topojson-client";
-import type { Topology } from "topojson-specification";
-import land110 from "world-atlas/land-110m.json";
 import { latLon } from "../../components/Globe3D";
-import { Glow, useGlowTexture } from "../../components/three/Stage";
+import { Flare, PointCloud, usePoints } from "../../components/three/Dots";
+import { Glow } from "../../components/three/Stage";
 
-const LAND = land110 as unknown as Topology;
+// El globo de puntos y las nubes de partículas son compartidos; se reexportan para las escenas.
+export {
+  DotEarth,
+  Flare,
+  PointCloud,
+  useDotGeometry,
+  useLandDots,
+  usePoints,
+} from "../../components/three/Dots";
 
 /** Paleta del video: noche profunda, aurora roja/verde y oro solar. */
 export const S = {
@@ -24,48 +29,6 @@ export const S = {
 };
 
 type V3 = [number, number, number];
-
-/** Nube de puntos animable (posición y, opcionalmente, color por punto). */
-export const usePoints = (count: number, colors = false) =>
-  useMemo(() => {
-    const g = new THREE.BufferGeometry();
-    g.setAttribute(
-      "position",
-      new THREE.BufferAttribute(new Float32Array(count * 3), 3),
-    );
-    if (colors)
-      g.setAttribute(
-        "color",
-        new THREE.BufferAttribute(new Float32Array(count * 3).fill(1), 3),
-      );
-    return g;
-  }, [count, colors]);
-
-export const PointCloud: React.FC<{
-  geometry: THREE.BufferGeometry;
-  color?: string;
-  size: number;
-  opacity?: number;
-  vertexColors?: boolean;
-}> = ({ geometry, color = "#FFFFFF", size, opacity = 1, vertexColors }) => {
-  const tex = useGlowTexture();
-  return (
-    <points geometry={geometry} frustumCulled={false}>
-      <pointsMaterial
-        map={tex}
-        color={color}
-        size={size}
-        sizeAttenuation
-        transparent
-        opacity={opacity}
-        vertexColors={vertexColors}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-        toneMapped={false}
-      />
-    </points>
-  );
-};
 
 // --- Sol ---------------------------------------------------------------------------------------
 
@@ -166,103 +129,6 @@ export const Sun: React.FC<{
   );
 };
 
-// --- Tierra de puntos --------------------------------------------------------------------------
-
-export type LandDots = {
-  count: number;
-  positions: Float32Array;
-  lat: Float32Array;
-  lon: Float32Array;
-};
-
-/** Muestrea la tierra firme (Natural Earth) en una rejilla casi uniforme sobre la esfera. */
-export const useLandDots = (step = 1.5): LandDots =>
-  useMemo(() => {
-    const w = 720;
-    const h = 360;
-    const c = document.createElement("canvas");
-    c.width = w;
-    c.height = h;
-    const ctx = c.getContext("2d", { willReadFrequently: true })!;
-    const proj = geoEquirectangular()
-      .scale(w / (2 * Math.PI))
-      .translate([w / 2, h / 2]);
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, w, h);
-    ctx.beginPath();
-    geoPath(proj, ctx)(feature(LAND, LAND.objects.land));
-    ctx.fillStyle = "#FFF";
-    ctx.fill();
-    const img = ctx.getImageData(0, 0, w, h).data;
-    const pos: number[] = [];
-    const lats: number[] = [];
-    const lons: number[] = [];
-    for (let lat = -56; lat <= 82; lat += step) {
-      const dl = step / Math.max(0.2, Math.cos((lat * Math.PI) / 180));
-      for (let lon = -180; lon < 180; lon += dl) {
-        const x = Math.min(w - 1, Math.floor(((lon + 180) / 360) * w));
-        const y = Math.min(h - 1, Math.floor(((90 - lat) / 180) * h));
-        if (img[(y * w + x) * 4] > 128) {
-          pos.push(...latLon(lat, lon, 1));
-          lats.push(lat);
-          lons.push(lon);
-        }
-      }
-    }
-    return {
-      count: lats.length,
-      positions: new Float32Array(pos),
-      lat: new Float32Array(lats),
-      lon: new Float32Array(lons),
-    };
-  }, [step]);
-
-/** Geometría de los puntos de tierra con un color por punto que la escena puede animar. */
-export const useDotGeometry = (dots: LandDots) =>
-  useMemo(() => {
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.BufferAttribute(dots.positions, 3));
-    g.setAttribute(
-      "color",
-      new THREE.BufferAttribute(new Float32Array(dots.count * 3).fill(1), 3),
-    );
-    return g;
-  }, [dots]);
-
-/** Planeta nocturno: esfera oscura, continentes de puntos luminosos y halo atmosférico. */
-export const DotEarth: React.FC<{
-  geometry: THREE.BufferGeometry;
-  size?: number;
-  halo?: string;
-  haloOpacity?: number;
-  /** Brillo propio del océano (0 = noche cerrada). */
-  oceanGlow?: number;
-  children?: React.ReactNode;
-}> = ({
-  geometry,
-  size = 0.022,
-  halo = "#3B7BFF",
-  haloOpacity = 0.4,
-  oceanGlow = 0.22,
-  children,
-}) => (
-  <>
-    <mesh>
-      <sphereGeometry args={[0.99, 64, 64]} />
-      <meshStandardMaterial
-        color="#0B1838"
-        emissive="#0A1F5C"
-        emissiveIntensity={oceanGlow}
-        roughness={0.85}
-        metalness={0.1}
-      />
-    </mesh>
-    <PointCloud geometry={geometry} size={size} vertexColors />
-    <Glow size={2.75} color={halo} opacity={haloOpacity} />
-    {children}
-  </>
-);
-
 /** Óvalo auroral: cortina de puntos alrededor del polo, verde abajo y roja arriba. */
 export const AuroraRing: React.FC<{
   lat: number;
@@ -325,32 +191,6 @@ export const Satellite: React.FC<{ color: string; scale?: number }> = ({
     <Glow size={0.3} color={color} opacity={0.9} />
   </group>
 );
-
-// --- Destello ----------------------------------------------------------------------------------
-
-/** Halo que se dibuja siempre encima (sin prueba de profundidad): destellos sobre una superficie. */
-export const Flare: React.FC<{
-  position: V3;
-  size: number;
-  color: string;
-  opacity: number;
-}> = ({ position, size, color, opacity }) => {
-  const tex = useGlowTexture();
-  return (
-    <sprite position={position} scale={[size, size, size]} renderOrder={5}>
-      <spriteMaterial
-        map={tex}
-        color={color}
-        transparent
-        opacity={opacity}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-        depthTest={false}
-        toneMapped={false}
-      />
-    </sprite>
-  );
-};
 
 // --- Telégrafo ---------------------------------------------------------------------------------
 

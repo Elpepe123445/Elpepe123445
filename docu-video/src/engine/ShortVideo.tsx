@@ -34,7 +34,8 @@ export type ShortConfig = {
   transitions?: Record<string, () => AnyPresentation>;
   /** Efectos: recibe un ayudante para obtener fotogramas absolutos de palabras/escenas. */
   sfx?: (at: (sceneId: string) => { from: number; cues: Cues }) => SfxCue[];
-  captions: { top: number; fontSize?: number; accent: string };
+  /** `skip`: ids de frases que no llevan subtítulo (p. ej. si la escena ya muestra ese texto en grande). */
+  captions: { top: number; fontSize?: number; accent: string; skip?: string[] };
   background: string;
   music?: { under: number; open: number };
   filmGrain?: boolean;
@@ -86,7 +87,7 @@ export const makeShort = (cfg: ShortConfig): React.FC => {
       </TransitionSeries>
       {cfg.filmGrain === false ? null : <FilmLook />}
       <WordCaptions
-        lines={lines}
+        lines={lines.filter((l) => !cfg.captions.skip?.includes(l.id))}
         words={words}
         top={cfg.captions.top}
         fontSize={cfg.captions.fontSize ?? 84}

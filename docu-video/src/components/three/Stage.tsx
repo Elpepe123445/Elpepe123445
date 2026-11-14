@@ -21,11 +21,15 @@ const CameraRig: React.FC<{
   position: [number, number, number];
   target: [number, number, number];
   fov: number;
-}> = ({ position, target, fov }) => {
+  near: number;
+  far: number;
+}> = ({ position, target, fov, near, far }) => {
   const { camera } = useThree();
   camera.position.set(...position);
   camera.lookAt(...target);
   (camera as THREE.PerspectiveCamera).fov = fov;
+  camera.near = near;
+  camera.far = far;
   camera.updateProjectionMatrix();
   return null;
 };
@@ -50,6 +54,9 @@ export type StageProps = {
   ambient?: number;
   keyIntensity?: number;
   keyPosition?: [number, number, number];
+  /** Planos de recorte. En paisajes lejanos conviene subir `near` para ganar precisión de profundidad. */
+  near?: number;
+  far?: number;
   children: React.ReactNode;
 };
 
@@ -70,6 +77,8 @@ export const Stage: React.FC<StageProps> = ({
   ambient = 0.15,
   keyIntensity = 2.2,
   keyPosition = [4, 6, 5],
+  near = 0.01,
+  far = 500,
   children,
 }) => {
   const { width, height } = useVideoConfig();
@@ -84,9 +93,15 @@ export const Stage: React.FC<StageProps> = ({
         toneMapping: THREE.ACESFilmicToneMapping,
         outputColorSpace: THREE.SRGBColorSpace,
       }}
-      camera={{ fov, near: 0.01, far: 500, position: camera }}
+      camera={{ fov, near, far, position: camera }}
     >
-      <CameraRig position={camera} target={target} fov={fov} />
+      <CameraRig
+        position={camera}
+        target={target}
+        fov={fov}
+        near={near}
+        far={far}
+      />
       <StudioEnvironment intensity={env} />
       {fog ? <fog attach="fog" args={[fog.color, fog.near, fog.far]} /> : null}
       <ambientLight intensity={ambient} />

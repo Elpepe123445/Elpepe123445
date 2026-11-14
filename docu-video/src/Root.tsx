@@ -14,6 +14,7 @@ import { GlobuloVideo, globuloPlan } from "./videos/globulo/Video";
 import { AgujeroVideo, agujeroPlan } from "./videos/agujero/Video";
 import { PompeyaVideo, pompeyaPlan } from "./videos/pompeya/Video";
 import { CarringtonVideo, carringtonPlan } from "./videos/carrington/Video";
+import { NyosVideo, nyosPlan } from "./videos/nyos/Video";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -97,6 +98,14 @@ export const RemotionRoot: React.FC = () => (
       height={1920}
       fps={carringtonPlan.fps}
       durationInFrames={carringtonPlan.durationInFrames}
+    />
+    <Composition
+      id="Nyos"
+      component={NyosVideo}
+      width={1080}
+      height={1920}
+      fps={nyosPlan.fps}
+      durationInFrames={nyosPlan.durationInFrames}
     />
     <Folder name="Eratostenes-Escenas">
       {plan.scenes.map((s) => (
