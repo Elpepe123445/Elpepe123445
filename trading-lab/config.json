@@ -159,7 +159,7 @@
     ],
     "prediction_horizon": 5,
     "news_entry_veto": true,
-    "auto_promote": false,
+    "auto_promote": true,
     "learning_symbols": [
       "SPY",
       "QQQ",
