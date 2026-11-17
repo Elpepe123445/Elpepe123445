@@ -63,3 +63,15 @@
 {"aid": "bdc74ff7a4fbf6a7", "finished_at": "2026-11-16T21:26:10+00:00", "status": "ok", "message": "0 \u00f3rdenes, 0 canceladas, bloqueo=None"}
 {"aid": "35b0d2bbd5cfb5e3", "job": "research", "started_at": "2026-11-16T21:26:10+00:00", "status": "running"}
 {"aid": "35b0d2bbd5cfb5e3", "finished_at": "2026-11-16T21:26:15+00:00", "status": "ok", "message": "49 predicciones nuevas, 0 evaluadas"}
+{"aid": "181cd26cd21684c8", "job": "news", "started_at": "2026-11-17T21:25:52+00:00", "status": "running"}
+{"aid": "181cd26cd21684c8", "finished_at": "2026-11-17T21:25:52+00:00", "status": "ok", "message": "28 noticias nuevas, 2 contradicciones marcadas"}
+{"aid": "e744ad9d95bc487a", "job": "official", "started_at": "2026-11-17T21:25:52+00:00", "status": "running"}
+{"aid": "e744ad9d95bc487a", "finished_at": "2026-11-17T21:25:54+00:00", "status": "ok", "message": "Fed 0 comunicados, SEC 2 presentaciones"}
+{"aid": "d1c032b02b9a0b03", "job": "macro_calendar", "started_at": "2026-11-17T21:25:54+00:00", "status": "running"}
+{"aid": "d1c032b02b9a0b03", "finished_at": "2026-11-17T21:25:59+00:00", "status": "ok", "message": "FRED 4 observaciones, BLS 9 eventos"}
+{"aid": "00870bf58ada6867", "job": "fundamentals", "started_at": "2026-11-17T21:25:59+00:00", "status": "running"}
+{"aid": "00870bf58ada6867", "finished_at": "2026-11-17T21:26:01+00:00", "status": "ok", "message": "9 empresas"}
+{"aid": "ea9182970eb151fb", "job": "paper_session", "started_at": "2026-11-17T21:26:01+00:00", "status": "running"}
+{"aid": "ea9182970eb151fb", "finished_at": "2026-11-17T21:26:03+00:00", "status": "ok", "message": "1 \u00f3rdenes, 0 canceladas, bloqueo=None"}
+{"aid": "1102e5d688b35ab4", "job": "research", "started_at": "2026-11-17T21:26:03+00:00", "status": "running"}
+{"aid": "1102e5d688b35ab4", "finished_at": "2026-11-17T21:26:08+00:00", "status": "ok", "message": "48 predicciones nuevas, 52 evaluadas"}
