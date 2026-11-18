@@ -1,0 +1,133 @@
+{
+ "session_date": "2026-11-18",
+ "generated_at": "2026-11-18T16:26:42-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99681.79,
+  "cash": 96866.51,
+  "long_market_value": 2815.28,
+  "exposure_pct": 2.82,
+  "day_pl": -3.65,
+  "day_pl_pct": -0.004
+ },
+ "positions": [
+  {
+   "symbol": "AAPL",
+   "strategy": "macd_trend",
+   "qty": 8.0,
+   "entry_price": 354.3525,
+   "current_price": 351.91,
+   "market_value": 2815.28,
+   "unrealized_pl": -19.54,
+   "unrealized_pl_pct": -0.69,
+   "entry_reason": "Se\u00f1al macd_trend=1 al cierre 2026-11-13. Compra dimensionada: 8 acciones (presupuesto 2994.38 $)",
+   "entry_time": "2026-11-16T14:33:12.272893Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -16.38,
+   "fill_vs_signal_close_bps": -57.4,
+   "modeled_slippage_usd": 1.42
+  }
+ ],
+ "orders_submitted": [
+  {
+   "id": 7,
+   "ts": "2026-11-17T21:26:02+00:00",
+   "client_order_id": "lab-momentum-MSFT-2026-11-17-sell",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "side": "sell",
+   "qty": 5.0,
+   "status": "filled",
+   "alpaca_order_id": "7609d0ef-edb6-48c7-a23c-132a0b6fd7b1",
+   "error": null,
+   "ref_price": 506.07,
+   "reason": "STOP-LOSS: p\u00e9rdida -9.08% \u2264 -8%",
+   "filled_qty": 5.0,
+   "filled_avg_price": 505.51,
+   "filled_at": "2026-11-18T14:30:22.037243Z"
+  }
+ ],
+ "orders_rejected": [],
+ "decisions_not_executed": [
+  {
+   "id": 61,
+   "ts": "2026-11-18T21:26:42+00:00",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "signal_date": "2026-11-18",
+   "signal": 1.0,
+   "held_qty": 0.0,
+   "action": "blocked",
+   "reason": "Enfriamiento tras stop-loss del 2026-11-17",
+   "price": 508.505,
+   "details": "{\"params\": {\"lookback\": 126, \"threshold\": 0.0}, \"version\": \"v1\"}"
+  }
+ ],
+ "fills": [
+  {
+   "symbol": "MSFT",
+   "side": "sell",
+   "qty": "5",
+   "filled_qty": "5",
+   "filled_avg_price": "505.51",
+   "filled_at": "2026-11-18T14:30:22.037243Z",
+   "status": "filled",
+   "client_order_id": "lab-momentum-MSFT-2026-11-17-sell"
+  }
+ ],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-18",
+   "close": 730.33,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-18",
+   "close": 659.57,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-18",
+   "close": 352.3,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 1,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-18",
+   "close": 508.5,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-18",
+   "close": 341.22,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}
