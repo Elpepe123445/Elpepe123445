@@ -1,0 +1,124 @@
+{
+ "session_date": "2026-11-17",
+ "generated_at": "2026-11-17T16:26:02-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99669.29,
+  "cash": 94338.96,
+  "long_market_value": 5330.33,
+  "exposure_pct": 5.35,
+  "day_pl": -81.86,
+  "day_pl_pct": -0.082
+ },
+ "positions": [
+  {
+   "symbol": "AAPL",
+   "strategy": "macd_trend",
+   "qty": 8.0,
+   "entry_price": 354.3525,
+   "current_price": 350.66,
+   "market_value": 2805.28,
+   "unrealized_pl": -29.54,
+   "unrealized_pl_pct": -1.04,
+   "entry_reason": "Se\u00f1al macd_trend=1 al cierre 2026-11-13. Compra dimensionada: 8 acciones (presupuesto 2994.38 $)",
+   "entry_time": "2026-11-16T14:33:12.272893Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -16.38,
+   "fill_vs_signal_close_bps": -57.4,
+   "modeled_slippage_usd": 1.42
+  },
+  {
+   "symbol": "MSFT",
+   "strategy": "momentum",
+   "qty": 5.0,
+   "entry_price": 555.47,
+   "current_price": 505.01,
+   "market_value": 2525.05,
+   "unrealized_pl": -252.3,
+   "unrealized_pl_pct": -9.08,
+   "entry_reason": "Se\u00f1al momentum=1 al cierre 2026-11-04. Compra dimensionada: 5 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:14.826319595Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -3.0,
+   "fill_vs_signal_close_bps": -10.8,
+   "modeled_slippage_usd": 1.39
+  }
+ ],
+ "orders_submitted": [
+  {
+   "id": 7,
+   "ts": "2026-11-17T21:26:02+00:00",
+   "client_order_id": "lab-momentum-MSFT-2026-11-17-sell",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "side": "sell",
+   "qty": 5.0,
+   "status": "accepted",
+   "alpaca_order_id": "7609d0ef-edb6-48c7-a23c-132a0b6fd7b1",
+   "error": null,
+   "ref_price": 506.07,
+   "reason": "STOP-LOSS: p\u00e9rdida -9.08% \u2264 -8%",
+   "filled_qty": null,
+   "filled_avg_price": null,
+   "filled_at": null
+  }
+ ],
+ "orders_rejected": [],
+ "decisions_not_executed": [],
+ "fills": [],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-17",
+   "close": 732.41,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-17",
+   "close": 657.06,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-17",
+   "close": 351.92,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 1,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-17",
+   "close": 506.07,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-17",
+   "close": 352.46,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}

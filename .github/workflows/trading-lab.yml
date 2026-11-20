@@ -1,0 +1,75 @@
+# Servicio programado del AI Trading Research Lab (SOLO Alpaca Paper Trading).
+# Requisitos (Settings → Secrets and variables → Actions):
+#   ALPACA_API_KEY, ALPACA_SECRET_KEY  (claves de la cuenta PAPER)
+#   SEC_USER_AGENT     (opcional, recomendado: "NombreLab tu@correo.com", lo exige SEC)
+#   ALERT_WEBHOOK_URL  (opcional: Slack/Discord para alertas)
+# Los workflows programados solo se ejecutan desde la rama por defecto del repositorio.
+# La memoria (journal) se guarda en la rama 'trading-lab-data' para no llenar de commits la rama de código.
+name: trading-lab
+on:
+  schedule:
+    - cron: "17 11-23 * * 1-5"   # cada hora, 6:17–18:17 (EST) / 7:17–19:17 (EDT) en Nueva York
+    - cron: "17 0-2 * * 2-6"     # noches de días laborables (cubre la sesión tras el cierre)
+    - cron: "17 */4 * * 0,6"     # fines de semana: noticias + aprendizaje semanal
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "Tarea concreta (vacío = tick normal)"
+        required: false
+        default: ""
+concurrency:
+  group: trading-lab
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+      ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+      LAB_JOURNAL_DIR: ${{ github.workspace }}/labdata/journal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: trading-lab/requirements.txt
+      - run: pip install -r trading-lab/requirements.txt
+      - name: Preparar rama de datos
+        run: |
+          git config user.name "trading-lab-bot"
+          git config user.email "trading-lab-bot@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin trading-lab-data >/dev/null; then
+            git clone --depth 1 --branch trading-lab-data "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" labdata
+          else
+            mkdir -p labdata && cd labdata && git init -b trading-lab-data
+            git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+            cp -r ../trading-lab/journal ./journal
+          fi
+      - name: Ejecutar tareas
+        id: run
+        working-directory: trading-lab
+        env:
+          JOB: ${{ inputs.job }}
+        run: |
+          set +e
+          if [ -n "$JOB" ]; then python -m trading_lab job "$JOB"; else python -m trading_lab tick; fi
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Guardar memoria
+        working-directory: labdata
+        run: |
+          git config user.name "trading-lab-bot"
+          git config user.email "trading-lab-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -q -m "journal $(date -u +%FT%TZ)"
+          git push -q origin trading-lab-data
+      - name: Alertas (falla el job si hay fuentes caídas o tareas con errores)
+        if: steps.run.outputs.code != '0'
+        run: |
+          cat labdata/journal/intel/ALERTS.md || true
+          exit 1
