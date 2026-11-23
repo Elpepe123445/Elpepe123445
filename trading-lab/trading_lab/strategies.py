@@ -143,3 +143,21 @@ def evaluate_signal_quality(df: pd.DataFrame, signal: pd.Series, horizons=(5, 10
             "n": int(len(fwd)),
         }
     return out
+
+
+def regime_filtered(signal: pd.Series, market_close: pd.Series, sma: int = 200) -> pd.Series:
+    """Filtro de régimen: impide ABRIR posiciones nuevas mientras el mercado (p. ej. SPY) cierra por debajo
+    de su SMA de `sma` sesiones. Las salidas de la estrategia no se modifican. Causal: usa datos hasta t.
+    Sin datos suficientes para la SMA, no se permiten entradas (conservador)."""
+    mc = market_close.reindex(signal.index).ffill()
+    ok = (mc > mc.rolling(sma, min_periods=sma).mean()).fillna(False).to_numpy()
+    s = signal.fillna(0).to_numpy()
+    out = np.zeros(len(s))
+    pos = 0.0
+    for i in range(len(s)):
+        if pos == 0 and s[i] >= 0.5 and ok[i]:
+            pos = 1.0
+        elif pos == 1 and s[i] < 0.5:
+            pos = 0.0
+        out[i] = pos
+    return pd.Series(out, index=signal.index, name=signal.name)

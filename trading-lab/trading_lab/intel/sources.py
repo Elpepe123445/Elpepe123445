@@ -177,11 +177,14 @@ def sec_filings(store: IntelStore, symbols: list[str], days_back: int = 30) -> i
                 continue  # ETFs y fondos no presentan 8-K/10-Q
             sub = http.get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
             r = sub["filings"]["recent"]
-            last_periodic = None
+            last_periodic = last_results = None
             for i, form in enumerate(r["form"]):
                 fd = r["filingDate"][i]
                 if form in ("10-Q", "10-K") and (last_periodic is None or fd > last_periodic):
                     last_periodic = fd
+                its = (r.get("items", [""] * len(r["form"]))[i] or "")
+                if form == "8-K" and "2.02" in its and (last_results is None or fd > last_results):
+                    last_results = fd  # 8-K 2.02 = publicación de resultados (fecha más fiable que el 10-Q)
                 if form not in SEC_FORMS or fd < cutoff:
                     continue
                 accn = r["accessionNumber"][i]
@@ -203,11 +206,15 @@ def sec_filings(store: IntelStore, symbols: list[str], days_back: int = 30) -> i
                 n += _add_item(store, key=accn, source="sec_edgar", kind="filing", published=acc_time.replace(".000Z", "Z"),
                                title=title, url=url, symbols=[sym], event=event,
                                data={"form": form, "items": items, "accession": accn, "cik": cik})
-            if last_periodic:  # estimación (no confirmada) de la próxima publicación de resultados
-                est = (date.fromisoformat(last_periodic) + timedelta(days=91)).isoformat()
+            anchor = last_results or last_periodic
+            if anchor:  # estimación (no confirmada): último anuncio de resultados + ~91 días, siempre en el futuro
+                est_d = date.fromisoformat(anchor) + timedelta(days=91)
+                while est_d < date.today():
+                    est_d += timedelta(days=91)
+                est = est_d.isoformat()
                 store.upsert("events", {"uid": uid("earn_est", sym), "kind": "earnings_estimate", "date": est,
-                                        "title": f"{sym}: resultados estimados (~91 días tras el último 10-Q/10-K)",
-                                        "source": "sec_edgar (estimación)", "url": "", "data": {"last_periodic": last_periodic}},
+                                        "title": f"{sym}: resultados estimados (~91 días tras los últimos resultados, {anchor})",
+                                        "source": "sec_edgar (estimación)", "url": "", "data": {"last_periodic": last_periodic, "last_results": last_results}},
                              commit=False)
         store.conn.commit()
         return n, "por eventos (sin calendario fijo)"

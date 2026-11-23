@@ -207,3 +207,21 @@ class TestScheduleAndVeto(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestRegimeFilter(unittest.TestCase):
+    def test_blocks_entries_only_and_is_causal(self):
+        from trading_lab.strategies import regime_filtered
+        idx = pd.bdate_range("2020-01-01", periods=400)
+        mkt = pd.Series(np.r_[np.linspace(100, 200, 300), np.linspace(200, 120, 100)], index=idx)  # alcista y luego bajista
+        sig = pd.Series(0.0, index=idx)
+        sig.iloc[250:390] = 1.0   # entra en alcista y sigue en bajista
+        sig.iloc[395:] = 1.0      # nueva entrada en bajista: debe bloquearse
+        f = regime_filtered(sig, mkt)
+        self.assertTrue((f.iloc[:200] == 0).all())          # sin SMA200 no se entra
+        self.assertEqual(f.iloc[251], 1.0)                   # entrada permitida en régimen alcista
+        self.assertEqual(f.iloc[385], 1.0)                   # se mantiene aunque el régimen cambie
+        self.assertEqual(f.iloc[391], 0.0)                   # salida de la estrategia respetada
+        self.assertTrue((f.iloc[395:] == 0).all())           # nueva entrada bloqueada en bajista
+        t = 380
+        self.assertEqual(f.iloc[t], regime_filtered(sig.iloc[:t + 1], mkt.iloc[:t + 1]).iloc[t])

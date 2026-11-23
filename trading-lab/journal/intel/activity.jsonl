@@ -65,3 +65,5 @@
 {"aid": "d99c615fa49e14df", "job": "official", "started_at": "2026-11-21T15:08:17+00:00", "finished_at": "2026-11-21T15:08:19+00:00", "status": "ok", "message": "Fed 0 comunicados, SEC 0 presentaciones"}
 {"aid": "e45788c4867eda60", "job": "learning", "started_at": "2026-11-21T15:08:19+00:00", "finished_at": null, "status": "running", "message": null}
 {"aid": "e45788c4867eda60", "finished_at": "2026-11-21T15:08:31+00:00", "status": "ok", "message": "ma_crossover: sin cambios: no supera los criterios fuera de muestra; rsi_mean_reversion: sin cambios: no supera los criterios fuera de muestra; macd_trend: sin cambios: no supera los criterios fuera de muestra; momentum: sin cambios: no supera los criterios fuera de muestra; breakout: sin cambios: no supera los criterios fuera de muestra"}
+{"aid": "4923870734b11bcf", "job": "official", "started_at": "2026-11-23T06:25:39+00:00", "status": "running"}
+{"aid": "4923870734b11bcf", "finished_at": "2026-11-23T06:25:41+00:00", "status": "ok", "message": "Fed 0 comunicados, SEC 0 presentaciones"}
