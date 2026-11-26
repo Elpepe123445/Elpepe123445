@@ -1,0 +1,91 @@
+{
+ "session_date": "2026-11-23",
+ "generated_at": "2026-11-23T16:26:01-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99680.21,
+  "cash": 99680.21,
+  "long_market_value": 0.0,
+  "exposure_pct": 0.0,
+  "day_pl": 0.0,
+  "day_pl_pct": 0.0
+ },
+ "positions": [],
+ "orders_submitted": [
+  {
+   "id": 9,
+   "ts": "2026-11-23T21:26:01+00:00",
+   "client_order_id": "lab-momentum-MSFT-2026-11-23-buy",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "side": "buy",
+   "qty": 6.0,
+   "status": "accepted",
+   "alpaca_order_id": "7ce65801-bf8d-4baf-8be3-36ade12aad02",
+   "error": null,
+   "ref_price": 492.95,
+   "reason": "Se\u00f1al momentum=1 al cierre 2026-11-23. Compra dimensionada: 6 acciones (presupuesto 2990.41 $)",
+   "filled_qty": null,
+   "filled_avg_price": null,
+   "filled_at": null
+  }
+ ],
+ "orders_rejected": [],
+ "decisions_not_executed": [],
+ "fills": [],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-23",
+   "close": 722.56,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-23",
+   "close": 651.18,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-23",
+   "close": 349.4,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-23",
+   "close": 492.95,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 0
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-23",
+   "close": 332.99,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}

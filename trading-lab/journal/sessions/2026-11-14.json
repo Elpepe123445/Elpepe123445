@@ -1,0 +1,141 @@
+{
+ "session_date": "2026-11-14",
+ "generated_at": "2026-11-14T23:34:53-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99812.61,
+  "cash": 94930.1,
+  "long_market_value": 4882.51,
+  "exposure_pct": 4.89,
+  "day_pl": 0.0,
+  "day_pl_pct": 0.0
+ },
+ "positions": [
+  {
+   "symbol": "MSFT",
+   "strategy": "momentum",
+   "qty": 5.0,
+   "entry_price": 555.47,
+   "current_price": 523.88,
+   "market_value": 2619.4,
+   "unrealized_pl": -157.95,
+   "unrealized_pl_pct": -5.69,
+   "entry_reason": "Se\u00f1al momentum=1 al cierre 2026-11-04. Compra dimensionada: 5 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:14.826319595Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -3.0,
+   "fill_vs_signal_close_bps": -10.8,
+   "modeled_slippage_usd": 1.39
+  },
+  {
+   "symbol": "SPY",
+   "strategy": "ma_crossover",
+   "qty": 3.0,
+   "entry_price": 764.18,
+   "current_price": 754.37,
+   "market_value": 2263.11,
+   "unrealized_pl": -29.43,
+   "unrealized_pl_pct": -1.28,
+   "entry_reason": "Se\u00f1al ma_crossover=1 al cierre 2026-11-04. Compra dimensionada: 3 acciones (presupuesto 3000.00 $)",
+   "entry_time": "2026-11-05T14:31:12.022898034Z",
+   "commission": 0.0,
+   "fill_vs_signal_close_usd": -7.65,
+   "fill_vs_signal_close_bps": -33.3,
+   "modeled_slippage_usd": 1.15
+  }
+ ],
+ "orders_submitted": [
+  {
+   "id": 5,
+   "ts": "2026-11-15T04:34:53+00:00",
+   "client_order_id": "lab-ma_crossover-SPY-2026-11-13-sell",
+   "strategy": "ma_crossover",
+   "symbol": "SPY",
+   "side": "sell",
+   "qty": 3.0,
+   "status": "accepted",
+   "alpaca_order_id": "502231b5-c415-46bc-b1e6-7c489d7ac1ee",
+   "error": null,
+   "ref_price": 754.27,
+   "reason": "Se\u00f1al ma_crossover=0 al cierre 2026-11-13: salida. Cierre de 3 acciones",
+   "filled_qty": null,
+   "filled_avg_price": null,
+   "filled_at": null
+  },
+  {
+   "id": 6,
+   "ts": "2026-11-15T04:34:53+00:00",
+   "client_order_id": "lab-macd_trend-AAPL-2026-11-13-buy",
+   "strategy": "macd_trend",
+   "symbol": "AAPL",
+   "side": "buy",
+   "qty": 8.0,
+   "status": "accepted",
+   "alpaca_order_id": "695d7d3e-802c-4add-a5d4-07b4e7a41f12",
+   "error": null,
+   "ref_price": 356.4,
+   "reason": "Se\u00f1al macd_trend=1 al cierre 2026-11-13. Compra dimensionada: 8 acciones (presupuesto 2994.38 $)",
+   "filled_qty": null,
+   "filled_avg_price": null,
+   "filled_at": null
+  }
+ ],
+ "orders_rejected": [],
+ "decisions_not_executed": [],
+ "fills": [],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-13",
+   "close": 754.27,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-13",
+   "close": 680.01,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-13",
+   "close": 356.4,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 1,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-13",
+   "close": 524.19,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-13",
+   "close": 355.39,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+# Alternativa a GitHub Actions: servicio persistente en un PC/VPS Linux (systemd).
+# 1) Copia a /etc/systemd/system/trading-lab.service y ajusta User y WorkingDirectory.
+# 2) Crea /etc/trading-lab.env con ALPACA_API_KEY=..., ALPACA_SECRET_KEY=..., SEC_USER_AGENT=... (chmod 600).
+# 3) sudo systemctl daemon-reload && sudo systemctl enable --now trading-lab
+# Comprueba que está vivo con: systemctl status trading-lab  /  journalctl -u trading-lab -f
+[Unit]
+Description=AI Trading Research Lab (solo Alpaca Paper Trading)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=lab
+WorkingDirectory=/opt/Elpepe123445/trading-lab
+EnvironmentFile=/etc/trading-lab.env
+ExecStart=/usr/bin/python3 -m trading_lab scheduler --interval 300
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

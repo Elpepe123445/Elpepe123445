@@ -1,0 +1,129 @@
+{
+ "session_date": "2026-11-20",
+ "generated_at": "2026-11-20T16:26:02-05:00",
+ "paper_verified": true,
+ "account_prefix": "PA",
+ "capital": {
+  "equity": 99680.28,
+  "cash": 99680.28,
+  "long_market_value": 0.0,
+  "exposure_pct": 0.0,
+  "day_pl": 20.16,
+  "day_pl_pct": 0.02
+ },
+ "positions": [],
+ "orders_submitted": [
+  {
+   "id": 8,
+   "ts": "2026-11-19T21:26:23+00:00",
+   "client_order_id": "lab-macd_trend-AAPL-2026-11-19-sell",
+   "strategy": "macd_trend",
+   "symbol": "AAPL",
+   "side": "sell",
+   "qty": 8.0,
+   "status": "filled",
+   "alpaca_order_id": "45f9fae3-82f9-467a-b557-39f044a3c18e",
+   "error": null,
+   "ref_price": 349.085,
+   "reason": "Se\u00f1al macd_trend=0 al cierre 2026-11-19: salida. Cierre de 8 acciones",
+   "filled_qty": 8.0,
+   "filled_avg_price": 351.73,
+   "filled_at": "2026-11-20T14:31:43.01894Z"
+  }
+ ],
+ "orders_rejected": [],
+ "decisions_not_executed": [
+  {
+   "id": 66,
+   "ts": "2026-11-19T21:26:23+00:00",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "signal_date": "2026-11-19",
+   "signal": 1.0,
+   "held_qty": 0.0,
+   "action": "blocked",
+   "reason": "Enfriamiento tras stop-loss del 2026-11-17",
+   "price": 498.45,
+   "details": "{\"params\": {\"lookback\": 126, \"threshold\": 0.0}, \"version\": \"v1\"}"
+  },
+  {
+   "id": 71,
+   "ts": "2026-11-20T21:26:02+00:00",
+   "strategy": "momentum",
+   "symbol": "MSFT",
+   "signal_date": "2026-11-20",
+   "signal": 1.0,
+   "held_qty": 0.0,
+   "action": "blocked",
+   "reason": "Enfriamiento tras stop-loss del 2026-11-17",
+   "price": 485.34,
+   "details": "{\"params\": {\"lookback\": 126, \"threshold\": 0.0}, \"version\": \"v1\"}"
+  }
+ ],
+ "fills": [
+  {
+   "symbol": "AAPL",
+   "side": "sell",
+   "qty": "8",
+   "filled_qty": "8",
+   "filled_avg_price": "351.73",
+   "filled_at": "2026-11-20T14:31:43.01894Z",
+   "status": "filled",
+   "client_order_id": "lab-macd_trend-AAPL-2026-11-19-sell"
+  }
+ ],
+ "errors": [],
+ "costs_note": "Comisi\u00f3n 0 $ (supuesto: Alpaca no cobra comisi\u00f3n en acciones). Las tasas regulatorias de venta no se simulan en paper. 'fill_vs_signal_close' incluye el gap nocturno, no solo deslizamiento.",
+ "scan": [
+  {
+   "symbol": "SPY",
+   "last_bar": "2026-11-20",
+   "close": 690.68,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "QQQ",
+   "last_bar": "2026-11-20",
+   "close": 609.75,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  },
+  {
+   "symbol": "AAPL",
+   "last_bar": "2026-11-20",
+   "close": 343.4,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 1
+  },
+  {
+   "symbol": "MSFT",
+   "last_bar": "2026-11-20",
+   "close": 485.34,
+   "ma_crossover": 1,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 1,
+   "breakout": 0
+  },
+  {
+   "symbol": "GLD",
+   "last_bar": "2026-11-20",
+   "close": 322.98,
+   "ma_crossover": 0,
+   "rsi_mean_reversion": 0,
+   "macd_trend": 0,
+   "momentum": 0,
+   "breakout": 0
+  }
+ ]
+}

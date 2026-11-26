@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trading Research Lab</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#0f1216;--panel:#171b21;--line:#262c35;--text:#e6e9ee;--muted:#8b95a3;--accent:#4f9cf9;--pos:#2fbf71;--neg:#e5534b;--warn:#d4a72c}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f5f6f8;--panel:#fff;--line:#e3e6eb;--text:#161a1f;--muted:#5f6b7a;--accent:#1f6fd1;--pos:#1a8f50;--neg:#c93c35;--warn:#9a7300}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+h1{font-size:17px;margin:0;font-weight:650}
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 12px;font-weight:600}
+.badge{font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.badge.ok{color:var(--pos);border-color:var(--pos)}.badge.bad{color:var(--neg);border-color:var(--neg)}
+main{padding:16px 20px;display:grid;gap:16px;max-width:1400px;margin:0 auto}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi,.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi .l{color:var(--muted);font-size:12px}.kpi .v{font-size:22px;font-weight:650;margin-top:4px;font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+main>*,.grid2>*{min-width:0}
+@media(max-width:600px){header,main{padding-left:16px;padding-right:16px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi .v{font-size:16px!important;overflow-wrap:anywhere}}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.muted{color:var(--muted)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--muted);font-weight:600;font-size:12px}
+td.wrap{white-space:normal;min-width:220px}
+.chart{position:relative;height:260px}
+.warn{border-left:3px solid var(--warn);padding:8px 12px;background:color-mix(in srgb,var(--warn) 10%,transparent);border-radius:4px;margin:6px 0;font-size:13px}
+select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.tabs button{background:none;border:1px solid var(--line);color:var(--muted);padding:5px 10px;border-radius:6px;cursor:pointer;font:inherit}
+.tabs button.on{color:var(--text);border-color:var(--accent)}
+#mi a{color:var(--accent)} #newsT td.wrap{min-width:340px} #mi ul{margin:6px 0;padding-left:18px} #mi li{margin:3px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>AI Trading Research Lab <span class="muted" style="font-weight:400">· simulación</span></h1>
+  <div class="row" style="margin:0">
+    <span id="paperBadge" class="badge">Verificando entorno…</span>
+    <span id="clock" class="badge"></span>
+    <span id="updated" class="muted" style="font-size:12px"></span>
+  </div>
+</header>
+<main>
+  <div class="warn">Solo Paper Trading con dinero ficticio. Los resultados simulados y de backtest no garantizan rentabilidad futura.</div>
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid2">
+    <div class="card"><h2>Evolución del capital (paper, 3 meses)</h2><div class="chart"><canvas id="eqChart"></canvas></div></div>
+    <div class="card"><h2>Drawdown (paper)</h2><div class="chart"><canvas id="ddChart"></canvas></div></div>
+  </section>
+
+  <section class="grid2">
+    <div class="card"><h2>Posiciones abiertas</h2><div class="tw"><table id="posT"></table></div></div>
+    <div class="card"><h2>Estrategias activas y límites de riesgo</h2><div class="tw"><table id="stratT"></table></div><div id="riskBox" class="muted" style="margin-top:10px;font-size:12px"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Rendimiento comparativo (backtest, fuera de muestra)</h2>
+    <div id="btWarn"></div>
+    <div class="grid2">
+      <div class="chart"><canvas id="cmpChart"></canvas></div>
+      <div>
+        <div class="row"><select id="btSel"></select><span id="btMeta" class="muted" style="font-size:12px"></span></div>
+        <div class="chart" style="height:220px"><canvas id="btChart"></canvas></div>
+      </div>
+    </div>
+    <div id="btDetail" style="margin-top:12px"></div>
+    <div class="tw" style="margin-top:12px"><table id="rankT"></table></div>
+  </section>
+
+  <section class="card">
+    <div class="row tabs" id="logTabs">
+      <button data-t="decisions" class="on">Decisiones del algoritmo</button>
+      <button data-t="orders">Órdenes del lab</button>
+      <button data-t="alpaca">Historial Alpaca</button>
+      <button data-t="errors">Errores y rechazos</button>
+    </div>
+    <div class="tw"><table id="logT"></table></div>
+  </section>
+
+  <section class="card" id="mi">
+    <div class="row" style="justify-content:space-between">
+      <h2 style="margin:0">Market Intelligence</h2>
+      <div class="row" style="margin:0"><span id="agentBadge" class="badge">Agente…</span><span id="netBadge" class="badge">Internet…</span></div>
+    </div>
+    <div id="miAlerts"></div>
+    <div class="row tabs" id="miTabs">
+      <button data-t="overview" class="on">Resumen diario</button>
+      <button data-t="news">Noticias</button>
+      <button data-t="reports">Informes</button>
+      <button data-t="preds">Predicciones vs realidad</button>
+      <button data-t="strats">Estrategias y aprendizaje</button>
+      <button data-t="sources">Fuentes y actividad</button>
+    </div>
+    <div id="miBody"></div>
+  </section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=v=>v==null||isNaN(v)?"—":Number(v).toLocaleString("es-ES",{style:"currency",currency:"USD"});
+const pct=v=>v==null||isNaN(v)?"—":`${v>0?"+":""}${Number(v).toFixed(2)}%`;
+const cls=v=>v>0?"pos":v<0?"neg":"";
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const charts={};
+function chart(id,cfg){charts[id]?.destroy();charts[id]=new Chart($(id),cfg)}
+const baseOpts=()=>({responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
+  plugins:{legend:{labels:{color:css("--muted"),boxWidth:12}}},
+  scales:{x:{ticks:{color:css("--muted"),maxTicksLimit:8},grid:{color:css("--line")}},y:{ticks:{color:css("--muted")},grid:{color:css("--line")}}}});
+const get=u=>fetch(u).then(r=>r.json()).catch(e=>({error:String(e)}));
+function table(el,cols,rows,empty="Sin datos"){
+  $(el).innerHTML=`<tr>${cols.map(c=>`<th>${esc(c[0])}</th>`).join("")}</tr>`+
+   (rows.length?rows.map(r=>`<tr>${cols.map(c=>`<td class="${c[2]?.(r)||""}">${c[1](r)}</td>`).join("")}</tr>`).join(""):`<tr><td class="muted" colspan="${cols.length}">${esc(empty)}</td></tr>`);
+}
+
+async function loadSummary(){
+  const s=await get("/api/summary");
+  const b=$("paperBadge");
+  if(s.error){b.textContent="Paper no verificado";b.className="badge bad";$("kpis").innerHTML=`<div class="kpi"><div class="l">Error</div><div class="v neg" style="font-size:14px">${esc(s.error)}</div></div>`;return}
+  b.textContent=`Paper verificado · ${s.account.account_number}`;b.className="badge ok";
+  $("clock").textContent=s.clock.is_open?"Mercado abierto":"Mercado cerrado";
+  const a=s.account,eq=+a.equity,le=+a.last_equity,day=eq-le;
+  const upl=s.positions.reduce((t,p)=>t+ +p.unrealized_pl,0);
+  const k=[["Valor del portafolio",money(a.portfolio_value)],["Saldo en efectivo",money(a.cash)],
+    ["Capital disponible (sin margen)",money(Math.max(+a.cash,0))],["Expuesto en posiciones",money(a.long_market_value)],
+    ["P/L del día",`<span class="${cls(day)}">${money(day)} (${pct(le?day/le*100:0)})</span>`],
+    ["P/L no realizado",`<span class="${cls(upl)}">${money(upl)}</span>`]];
+  $("kpis").innerHTML=k.map(([l,v])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
+  table("posT",[["Símbolo",r=>esc(r.symbol)],["Cant.",r=>r.qty],["Precio medio",r=>money(r.avg_entry_price)],
+    ["Actual",r=>money(r.current_price)],["Valor",r=>money(r.market_value)],
+    ["P/L",r=>`${money(r.unrealized_pl)} (${pct(r.unrealized_plpc*100)})`,r=>cls(+r.unrealized_pl)]],s.positions,"Sin posiciones abiertas");
+}
+
+async function loadHistory(){
+  const h=await get("/api/history");
+  if(h.error||!h.timestamp)return;
+  const pts=h.timestamp.map((t,i)=>[new Date(t*1000).toISOString().slice(0,10),h.equity[i]]).filter(p=>p[1]!=null&&p[1]>0); // excluye días previos a la creación de la cuenta
+  const labels=pts.map(p=>p[0]),eq=pts.map(p=>p[1]);
+  let peak=-Infinity;const dd=eq.map(v=>{peak=Math.max(peak,v);return +((v/peak-1)*100).toFixed(2)});
+  chart("eqChart",{type:"line",data:{labels,datasets:[{label:"Equity",data:eq,borderColor:css("--accent"),pointRadius:0,borderWidth:2,tension:.15}]},options:baseOpts()});
+  chart("ddChart",{type:"line",data:{labels,datasets:[{label:"Drawdown %",data:dd,borderColor:css("--neg"),backgroundColor:"rgba(229,83,75,.15)",fill:true,pointRadius:0,borderWidth:1.5}]},options:baseOpts()});
+}
+
+let BT=null;
+async function loadStrategies(){
+  const [s,l]=await Promise.all([get("/api/strategies"),get("/api/log")]);
+  if(s.error)return;
+  const last={};(l.decisions||[]).forEach(d=>{const k=d.strategy+d.symbol;if(!last[k])last[k]=d});
+  table("stratT",[["Estrategia",r=>esc(r.strategy)],["Activo",r=>esc(r.symbol)],
+    ["Parámetros",r=>esc(Object.entries(r.params).map(([k,v])=>`${k}=${v}`).join(", "))],
+    ["Última decisión",r=>{const d=last[r.strategy+r.symbol];return d?`${esc(d.action)} <span class="muted">${esc(d.ts.slice(0,16).replace("T"," "))}</span>`:"—"}]],s.allocations);
+  const r=s.risk;$("riskBox").textContent=`Riesgo: posición máx. ${r.max_position_pct}% · exposición total máx. ${r.max_total_exposure_pct}% · reserva de efectivo ${r.min_cash_reserve_pct}% · pérdida diaria máx. ${r.max_daily_loss_pct}% · drawdown máx. ${r.max_drawdown_pct}% · ${r.max_orders_per_day} órdenes/día · sin cortos ni apalancamiento.`;
+}
+
+async function loadBacktest(){
+  BT=await get("/api/backtest");
+  if(BT.error){$("btWarn").innerHTML=`<div class="warn">${esc(BT.error)}</div>`;return}
+  $("btWarn").innerHTML=BT.global_warnings.map(w=>`<div class="warn">${esc(w)}</div>`).join("")+
+    `<div class="muted" style="font-size:12px;margin:6px 0">Generado ${esc(BT.generated_at)} · ${esc(BT.config.execution)} · slippage ${BT.config.cost_model.slippage_bps} pb · comisión ${money(BT.config.cost_model.commission)} · Sharpe: ${esc(BT.sharpe_assumptions)}</div>`;
+  const bs=BT.by_strategy;
+  chart("cmpChart",{type:"bar",data:{labels:bs.map(x=>x.strategy),datasets:[
+    {label:"Sharpe medio test",data:bs.map(x=>x.avg_test_sharpe),backgroundColor:css("--accent")},
+    {label:"Sharpe medio B&H",data:bs.map(()=>+(BT.ranking.reduce((t,r)=>t+r.benchmark_sharpe,0)/BT.ranking.length).toFixed(2)),backgroundColor:css("--muted")}]},options:baseOpts()});
+  $("btSel").innerHTML=BT.results.map((r,i)=>`<option value="${i}">${esc(r.strategy)} · ${esc(r.symbol)}</option>`).join("");
+  $("btSel").onchange=showBt;showBt();
+  table("rankT",[["#",(r)=>BT.ranking.indexOf(r)+1],["Estrategia",r=>esc(r.strategy)],["Activo",r=>esc(r.symbol)],
+    ["Sharpe test (verde = supera B&H)",r=>r.test_sharpe,r=>cls(r.test_sharpe-r.benchmark_sharpe)],["Sharpe train",r=>r.train_sharpe],
+    ["Retorno test",r=>pct(r.test_return_pct)],["DD máx.",r=>pct(r.test_max_dd_pct),()=>"neg"],["Trades",r=>r.test_trades],
+    ["B&H retorno",r=>pct(r.benchmark_return_pct)],["B&H Sharpe",r=>r.benchmark_sharpe],["Avisos",r=>r.n_warnings]],BT.ranking);
+}
+function showBt(){
+  const r=BT.results[+$("btSel").value],t=r.test;
+  $("btMeta").textContent=`test ${t.start} → ${t.end} · params ${JSON.stringify(r.best_params)}`;
+  const bmap=Object.fromEntries(r.benchmark_curve.dates.map((d,i)=>[d,r.benchmark_curve.values[i]]));
+  chart("btChart",{type:"line",data:{labels:r.equity_curve.dates,datasets:[
+    {label:"Estrategia",data:r.equity_curve.values,borderColor:css("--accent"),pointRadius:0,borderWidth:2},
+    {label:"Comprar y mantener",data:r.equity_curve.dates.map(d=>bmap[d]??null),borderColor:css("--muted"),pointRadius:0,borderWidth:1.5,borderDash:[4,3]}]},options:baseOpts()});
+  const lt=r.losing_trades,pw=r.periodic.weekly;
+  $("btDetail").innerHTML=`<div class="kpis">${[
+    ["Retorno test",pct(t.total_return_pct)],["Drawdown máx.",pct(t.max_drawdown_pct)],["Sharpe",t.sharpe],
+    ["% operaciones positivas",t.win_rate_pct==null?"—":t.win_rate_pct+"%"],["Profit factor",t.profit_factor??"—"],
+    ["Nº operaciones",t.num_trades],["Costes estimados",money(t.costs)],["Exposición",t.exposure_pct+"%"],
+    ["Semanas positivas",pw.pct_positive+"%"],["Peor semana",pct(pw.worst_pct)],
+    ["Op. negativas",lt.count],["Peor pérdida",lt.worst_loss_pct!=null?pct(lt.worst_loss_pct):"—"]
+  ].map(([l,v])=>`<div class="kpi"><div class="l">${l}</div><div class="v" style="font-size:18px">${v}</div></div>`).join("")}</div>`+
+  r.warnings.map(w=>`<div class="warn">${esc(w)}</div>`).join("")+
+  `<div class="muted" style="font-size:12px;margin-top:6px">Hipótesis: ${esc(r.hypothesis)}</div>`;
+}
+
+let TAB="decisions",LOG={},AO=[];
+async function loadLog(){
+  [LOG,AO]=await Promise.all([get("/api/log"),get("/api/orders")]);renderLog();
+}
+function renderLog(){
+  const ts=r=>esc((r.ts||r.submitted_at||"").slice(0,19).replace("T"," "));
+  if(TAB==="decisions")table("logT",[["Fecha",ts],["Estrategia",r=>esc(r.strategy)],["Activo",r=>esc(r.symbol)],["Señal (barra)",r=>esc(r.signal_date)],
+    ["Señal",r=>r.signal??"—"],["Acción",r=>`<b>${esc(r.action)}</b>`],["Motivo",r=>esc(r.reason),()=>"wrap"],["Precio",r=>money(r.price)]],LOG.decisions||[],"Sin decisiones registradas. Ejecuta: python -m trading_lab paper");
+  if(TAB==="orders")table("logT",[["Fecha",ts],["client_order_id",r=>esc(r.client_order_id)],["Lado",r=>esc(r.side)],["Activo",r=>esc(r.symbol)],["Cant.",r=>r.qty],["Estado",r=>esc(r.status)],["Error",r=>esc(r.error),()=>"wrap"]],LOG.orders||[]);
+  if(TAB==="alpaca")table("logT",[["Enviada",ts],["Activo",r=>esc(r.symbol)],["Lado",r=>esc(r.side)],["Cant.",r=>r.qty],["Ejecutada",r=>r.filled_qty],["Precio medio",r=>money(r.filled_avg_price)],["Estado",r=>esc(r.status)]],Array.isArray(AO)?AO:[],AO.error||"Sin órdenes");
+  if(TAB==="errors")table("logT",[["Fecha",ts],["Origen",r=>esc(r.source)],["Mensaje",r=>esc(r.message),()=>"wrap"]],
+    [...(LOG.errors||[]),...(LOG.orders||[]).filter(o=>o.error).map(o=>({ts:o.ts,source:"orden "+o.client_order_id,message:o.status+": "+o.error}))],"Sin errores registrados");
+}
+$("logTabs").onclick=e=>{const t=e.target.dataset.t;if(!t)return;TAB=t;[...$("logTabs").children].forEach(b=>b.classList.toggle("on",b.dataset.t===t));renderLog()};
+
+async function refresh(){
+  await Promise.all([loadSummary(),loadHistory(),loadStrategies(),loadLog()]);
+  $("updated").textContent="Actualizado "+new Date().toLocaleTimeString("es-ES");
+}
+loadBacktest();refresh();setInterval(refresh,30000);
+
+// ---------------------------------------------------------------- MARKET INTELLIGENCE
+function md(src){ // markdown mínimo y seguro: se escapa todo antes de transformar
+  const lines=esc(src).split("\n");let out="",inT=false,inL=false;
+  const inline=t=>t.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/_(.+?)_/g,"<i>$1</i>").replace(/(https?:\/\/[^\s<)]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+  for(const l of lines){
+    if(/^\|/.test(l)){ if(/^\|[-| ]+\|$/.test(l))continue; const c=l.split("|").slice(1,-1);
+      if(!inT){out+='<div class="tw"><table>';inT=true;out+="<tr>"+c.map(x=>`<th>${inline(x)}</th>`).join("")+"</tr>";continue}
+      out+="<tr>"+c.map(x=>`<td>${inline(x)}</td>`).join("")+"</tr>";continue}
+    if(inT){out+="</table></div>";inT=false}
+    if(/^\s*- /.test(l)){if(!inL){out+="<ul>";inL=true}out+=`<li${/^\s{2,}/.test(l)?' style="margin-left:18px;list-style:circle"':""}>${inline(l.replace(/^\s*- /,""))}</li>`;continue}
+    if(inL){out+="</ul>";inL=false}
+    const h=l.match(/^(#{1,3}) (.*)/);if(h){out+=`<h${h[1].length+1} style="margin:14px 0 6px">${inline(h[2])}</h${h[1].length+1}>`;continue}
+    if(l.trim())out+=`<p style="margin:6px 0">${inline(l)}</p>`;
+  }
+  return out+(inT?"</table></div>":"")+(inL?"</ul>":"");
+}
+let MI_TAB="overview",MI={};
+async function loadMI(){
+  const [st,rep]=await Promise.all([get("/api/intel/status"),get("/api/intel/report")]);
+  MI.status=st;MI.report=rep;
+  if(!st.error){
+    const net=Object.values(st.internet||{}).every(Boolean);
+    $("netBadge").textContent=net?"Internet OK":"Internet: fallos";$("netBadge").className="badge "+(net?"ok":"bad");
+    $("agentBadge").textContent=`Agente: ${st.agent_state}${st.minutes_since_activity!=null?` · última tarea hace ${Math.round(st.minutes_since_activity)} min`:""}`;
+    $("agentBadge").className="badge "+(st.agent_state==="activo"?"ok":"bad");
+    $("miAlerts").innerHTML=(st.alerts||[]).map(a=>`<div class="warn">${esc(a)}</div>`).join("");
+  }
+  renderMI();
+}
+async function renderMI(){
+  const B=$("miBody");
+  if(MI_TAB==="overview"){const r=MI.report;if(!r||r.error){B.innerHTML=`<p class="muted">${esc(r?.error||"Cargando…")}</p>`;return}
+    const o=r.overview||{},m=r.macro||{};
+    B.innerHTML=`<div class="kpis">${[["Régimen",esc(o.regime||"—")],["Desde",esc(o.regime_since||"—")],["Amplitud (>SMA50)",(o.breadth_above_sma50_pct??"—")+"%"],["Datos al",esc(o.as_of||"—")]].map(([l,v])=>`<div class="kpi"><div class="l">${l}</div><div class="v" style="font-size:17px">${v}</div></div>`).join("")}</div>
+     <div class="grid2" style="margin-top:12px"><div><h2>Macro</h2>${(m.notes||[]).map(n=>`<div class="warn">${esc(n)}</div>`).join("")}
+       <h2 style="margin-top:12px">Próximos eventos</h2><ul>${(r.events||[]).map(e=>`<li>${esc(e.date)} · ${esc(e.title)} <span class="muted">(${esc(e.source)})</span></li>`).join("")||"<li class='muted'>—</li>"}</ul></div>
+       <div><h2>Movimientos inusuales</h2><ul>${(o.unusual||[]).map(u=>`<li><b>${esc(u.symbol)}</b>: ${esc(u.reasons.join("; "))}</li>`).join("")||"<li class='muted'>Ninguno</li>"}</ul></div></div>
+     <h2 style="margin-top:12px">Activos bajo seguimiento</h2><div class="tw"><table id="wlT"></table></div>
+     <h2 style="margin-top:12px">Sectores</h2><div class="tw"><table id="secT"></table></div>`;
+    const wl=Object.entries(o.watchlist||{}).map(([k,v])=>({sym:k,...v}));
+    table("wlT",[["Activo",r=>esc(r.sym)],["Cierre",r=>r.close],["1d",r=>pct(r.ret_1d_pct),r=>cls(r.ret_1d_pct)],["20d",r=>pct(r.ret_20d_pct),r=>cls(r.ret_20d_pct)],
+      ["Tendencia",r=>r.trend50>0?"alcista":r.trend50<0?"bajista":"lateral"],["RSI",r=>r.rsi14],["%B Bollinger",r=>r.bollinger_pct_b],["vs VWAP20",r=>pct(r.vs_vwap20_pct)],
+      ["Vol. rel.",r=>r.volume_ratio20],["Volat. 20d",r=>r.vol20_ann_pct+"%"],["Soporte",r=>r.support??"—"],["Resistencia",r=>r.resistance??"—"]],wl);
+    table("secT",[["ETF",r=>esc(r.etf)],["Sector",r=>esc(r.sector)],["1d",r=>pct(r.ret_1d_pct),r=>cls(r.ret_1d_pct)],["5d",r=>pct(r.ret_5d_pct),r=>cls(r.ret_5d_pct)],["20d",r=>pct(r.ret_20d_pct),r=>cls(r.ret_20d_pct)],["Vol. rel.",r=>r.volume_ratio20]],o.sectors||[]);
+  }
+  if(MI_TAB==="news"){const n=await get("/api/intel/news");B.innerHTML=`<p class="muted" style="font-size:12px">Impacto alto/medio, duplicados agrupados. Credibilidad: fact = fuente oficial; reported = agencia; opinion; rumor (no puntúa). Ninguna noticia ejecuta órdenes.</p><div class="tw"><table id="newsT"></table></div>`;
+    table("newsT",[["Publicada",r=>esc(r.published_at.slice(0,16).replace("T"," "))],["Activos",r=>esc(r.symbols)],["Evento",r=>esc(r.event_type)],["Impacto",r=>esc(r.impact)],["Credib.",r=>esc(r.credibility)],
+      ["Sent.",r=>r.sentiment,r=>cls(r.sentiment)],["Titular",r=>(r.url?`<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${esc(r.title)}</a>`:esc(r.title))+((r.flags||"").includes("contradicts")?' <span class="neg">⚠ contradicción</span>':""),()=>"wrap"],
+      ["Reacción",r=>esc(r.priced_in||"—"),()=>"wrap"],["Fuente",r=>esc(r.source)]],n.items||[]);}
+  if(MI_TAB==="reports"){const r=MI.report;if(!r||r.error){B.innerHTML=`<p class="muted">${esc(r?.error||"")}</p>`;return}
+    B.innerHTML=`<div class="row"><select id="repSel">${r.dates.map(d=>`<option ${d===r.date?"selected":""}>${esc(d)}</option>`).join("")}</select></div><div id="repBody" style="font-size:13px">${md(r.markdown)}</div>`;
+    $("repSel").onchange=async e=>{const x=await get("/api/intel/report?date="+encodeURIComponent(e.target.value));$("repBody").innerHTML=md(x.markdown||x.error||"")};}
+  if(MI_TAB==="preds"){const p=await get("/api/intel/predictions");const s=p.stats||{};
+    B.innerHTML=`<p class="muted" style="font-size:12px">Cada predicción se guarda antes de conocer el resultado y se evalúa tras ${5} sesiones. "naive:always_up" es la referencia ingenua: un modelo que no la supera no aporta información. Evaluadas: ${s.evaluated||0} · pendientes: ${s.pending??"—"}</p>
+      ${s.note?`<div class="warn">${esc(s.note)}</div>`:""}<h2>Por modelo</h2><div class="tw"><table id="pmT"></table></div><h2 style="margin-top:12px">Recientes</h2><div class="tw"><table id="prT"></table></div>`;
+    table("pmT",[["Modelo",r=>esc(r.label)],["n",r=>r.n],["Acierto",r=>r.hit_rate_pct+"%"],["Retorno medio",r=>pct(r.mean_return_pct)],["Exceso vs SPY",r=>pct(r.mean_excess_pct),r=>cls(r.mean_excess_pct)],["Brier",r=>r.brier??"—"],["¿Datos suficientes?",r=>r.enough_data?"sí":"no (<30)"]],s.by_model||[]);
+    table("prT",[["Modelo",r=>esc(r.model+"@"+r.model_version)],["Activo",r=>esc(r.symbol)],["Fecha",r=>esc(r.base_date)],["Predicción",r=>esc(r.direction)+(r.prob_up!=null?` (${(r.prob_up*100).toFixed(0)}%)`:"")],["Régimen",r=>esc(r.regime||"—")],
+      ["Resultado",r=>r.outcome_return==null?'<span class="muted">pendiente</span>':pct(r.outcome_return*100),r=>r.outcome_return==null?"":cls(r.outcome_return)],["¿Acierto?",r=>r.correct==null?"—":r.correct?"✔":"✘"],["Notas",r=>esc((()=>{try{return JSON.parse(r.notes||"[]").join(" · ")}catch{return ""}})()),()=>"wrap"]],p.recent||[]);}
+  if(MI_TAB==="strats"){const x=await get("/api/intel/strategies");const L=x.learning;
+    B.innerHTML=`<h2>Versiones de parámetros</h2><div class="tw"><table id="verT"></table></div><h2 style="margin-top:12px">Último aprendizaje walk-forward ${L?esc(L.generated_at):""}</h2>
+      <p class="muted" style="font-size:12px">Criterios para proponer cambios: mejora de Sharpe fuera de muestra ≥ ${L?.criteria?.min_sharpe_gain??"—"}, gana en ≥ ${((L?.criteria?.min_symbol_win_frac??0)*100)}% de activos, ≥ ${L?.criteria?.min_oos_trades??"—"} operaciones, consenso de parámetros ≥ ${L?.criteria?.min_param_stability??"—"}. Después: fase shadow y promoción ${"manual"}.</p><div class="tw"><table id="lrT"></table></div>`;
+    table("verT",[["Estrategia",r=>esc(r.strategy)],["Versión",r=>"v"+r.version],["Estado",r=>`<b>${esc(r.status)}</b>`],["Parámetros",r=>esc(r.params)],["Motivo",r=>esc(r.reason||""),()=>"wrap"]],x.versions||[]);
+    const rows=Object.entries(L?.strategies||{}).map(([k,v])=>({k,...v}));
+    table("lrT",[["Estrategia",r=>esc(r.k)],["Mejora Sharpe OOS",r=>r.mean_sharpe_gain,r=>cls(r.mean_sharpe_gain)],["Activos donde mejora",r=>Math.round(r.symbol_win_frac*100)+"%"],["Trades OOS",r=>r.oos_trades],
+      ["Por régimen (Sharpe)",r=>esc((r.regimes||[]).map(g=>`${g.regime}: ${g.sharpe}`).join(" · ")),()=>"wrap"],["Decisión",r=>esc(r.decision),()=>"wrap"]],rows,"Aún no se ha ejecutado el aprendizaje (semanal)");}
+  if(MI_TAB==="sources"){const s=MI.status||{};
+    B.innerHTML=`<h2>Conexión</h2><p>${Object.entries(s.internet||{}).map(([k,v])=>`<span class="badge ${v?"ok":"bad"}">${esc(k)} ${v?"OK":"sin respuesta"}</span>`).join(" ")}</p>
+      <h2 style="margin-top:12px">Fuentes de datos</h2><div class="tw"><table id="srcT"></table></div><h2 style="margin-top:12px">Actividad del agente</h2><div class="tw"><table id="actT"></table></div>`;
+    table("srcT",[["Fuente",r=>esc(r.source)],["Estado",r=>`<span class="${r.status==="ok"?"pos":"neg"}">${esc(r.status)}</span>`],["Último intento",r=>esc((r.last_attempt||"").slice(0,16))],["Último éxito",r=>esc((r.last_success||"—").slice(0,16))],["Elementos",r=>r.items_last],["Frescura",r=>esc(r.freshness||"—"),()=>"wrap"],["Error",r=>esc(r.last_error||""),()=>"wrap"]],s.sources||[]);
+    table("actT",[["Inicio",r=>esc(r.started_at.slice(0,19).replace("T"," "))],["Tarea",r=>esc(r.job)],["Estado",r=>`<span class="${r.status==="ok"?"pos":r.status==="error"?"neg":""}">${esc(r.status)}</span>`],["Resultado",r=>esc(r.message||""),()=>"wrap"]],s.activity||[]);}
+}
+$("miTabs").onclick=e=>{const t=e.target.dataset.t;if(!t)return;MI_TAB=t;[...$("miTabs").children].forEach(b=>b.classList.toggle("on",b.dataset.t===t));renderMI()};
+loadMI();setInterval(loadMI,60000);
+</script>
+</body>
+</html>
